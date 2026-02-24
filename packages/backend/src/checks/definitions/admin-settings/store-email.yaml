@@ -1,0 +1,21 @@
+check_type: store_email
+section: admin_settings
+subcategory: email
+display_name: "E-mail da loja"
+description: "Verificar se o e-mail de contato da loja está correto e acessível."
+execution_mode: manual
+default_assessment: >
+  Confirme que o e-mail de contato da loja exibido para clientes está correto e que alguém monitora essa caixa de entrada. Verifique se o endereço aparece em políticas, rodapé e páginas de contato.
+business_impact: >
+  E-mail incorreto ou não monitorado impede que clientes tirem dúvidas, gerando insatisfação e possíveis reclamações. Contato acessível melhora atendimento e reputação.
+recommendations:
+  - "Configure e-mail de contato nas configurações gerais da loja"
+  - "Garanta que o e-mail seja verificado regularmente"
+  - "Inclua o e-mail em políticas e página de contato"
+useful_links:
+  - title: "Configurações da loja"
+    url: "https://atendimento.nuvemshop.com.br/pt_BR/configuracoes"
+  - title: "Alterar e-mail e senha de acesso"
+    url: "https://atendimento.nuvemshop.com.br/email-e-senha-de-acesso"
+  - title: "Informações de contato"
+    url: "https://atendimento.nuvemshop.com.br/configuracoes/como-alterar-as-informacoes-de-contato-da-minha-loja"

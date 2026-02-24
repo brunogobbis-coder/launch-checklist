@@ -1,0 +1,21 @@
+check_type: 404_page_design
+section: front_end
+subcategory: experience
+display_name: "Design da página 404"
+description: "Revisar o design da página de erro 404 e navegação."
+execution_mode: manual
+default_assessment: >
+  Confirme que a página 404 está personalizada com mensagem amigável, identidade visual da marca e links úteis para o cliente retornar à navegação. Verifique se há campo de busca ou link para a página inicial.
+business_impact: >
+  Página 404 genérica ou confusa aumenta a taxa de rejeição e prejudica a experiência. Uma página 404 bem projetada mantém o visitante na loja e orienta o próximo passo.
+recommendations:
+  - "Personalize a mensagem da página 404 com tom da marca"
+  - "Inclua links para categorias principais e página inicial"
+  - "Adicione campo de busca para o cliente encontrar produtos"
+useful_links:
+  - title: "Personalizar layout"
+    url: "https://atendimento.nuvemshop.com.br/01-layout/conheca-a-opcao-minha-nuvemshop-e-aprenda-como-personalizar-o-seu-layout"
+  - title: "Barra de navegação e rodapé"
+    url: "https://atendimento.nuvemshop.com.br/barra-de-navegacao-rodape-do-layout"
+  - title: "Personalizar página inicial"
+    url: "https://atendimento.nuvemshop.com.br/pagina-inicial-do-layout/como-personalizar-a-pagina-inicial-da-minha-loja"

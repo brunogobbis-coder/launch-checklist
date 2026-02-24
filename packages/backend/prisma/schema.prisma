@@ -1,0 +1,64 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Store {
+  id          String   @id @default(uuid()) @db.Uuid
+  storeId     BigInt   @unique @map("store_id")
+  accessToken String   @map("access_token") @db.Text
+  scope       String?  @db.Text
+  tokenType   String?  @map("token_type") @db.VarChar(50)
+  userId      BigInt?  @map("user_id")
+  installedAt DateTime @default(now()) @map("installed_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+
+  @@map("stores")
+}
+
+enum ChecklistStatus {
+  in_progress
+  complete
+}
+
+enum CheckStatus {
+  pending
+  ready
+  not_ready
+  confirm_set_up
+  check_manually
+  failed
+}
+
+model Checklist {
+  id        String          @id @default(uuid()) @db.Uuid
+  storeId   BigInt          @map("store_id")
+  name      String          @db.VarChar(255)
+  status    ChecklistStatus @default(in_progress)
+  createdAt DateTime        @default(now()) @map("created_at")
+  updatedAt DateTime        @updatedAt @map("updated_at")
+  checks    ChecklistCheck[]
+
+  @@index([storeId, createdAt(sort: Desc)])
+  @@map("checklists")
+}
+
+model ChecklistCheck {
+  id               String      @id @default(uuid()) @db.Uuid
+  checklistId      String      @map("checklist_id") @db.Uuid
+  storeId          BigInt      @map("store_id")
+  checkType        String      @map("check_type") @db.VarChar(100)
+  status           CheckStatus @default(pending)
+  detailedFindings Json?       @map("detailed_findings")
+  createdAt        DateTime    @default(now()) @map("created_at")
+  updatedAt        DateTime    @updatedAt @map("updated_at")
+  checklist        Checklist   @relation(fields: [checklistId], references: [id], onDelete: Cascade)
+
+  @@index([checklistId, checkType])
+  @@index([storeId, checklistId])
+  @@map("checklist_checks")
+}

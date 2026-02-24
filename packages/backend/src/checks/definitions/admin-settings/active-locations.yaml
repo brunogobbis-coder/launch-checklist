@@ -1,0 +1,21 @@
+check_type: active_locations
+section: admin_settings
+subcategory: locations
+display_name: "Locais ativos"
+description: "Verificar se os locais ativos estão configurados corretamente."
+execution_mode: manual
+default_assessment: >
+  Revise os locais de envio e retirada cadastrados (endereço, CEP, horários) e confirme que estão corretos e ativos. Verifique se o centro de distribuição principal está definido para cálculo de frete.
+business_impact: >
+  Locais incorretos geram cálculo de frete errado, entregas em endereços errados e confusão na retirada. Configuração correta garante precisão no frete e operação fluida.
+recommendations:
+  - "Cadastre CEP e endereço do centro de envio principal"
+  - "Revise locais de retirada e horários de funcionamento"
+  - "Remova ou desative locais que não são mais utilizados"
+useful_links:
+  - title: "Centro de distribuição"
+    url: "https://atendimento.nuvemshop.com.br/centro-de-distribuicao/como-cadastrar-o-cep-de-centro-de-envio-da-minha-loja"
+  - title: "Configurar locais de envio"
+    url: "https://atendimento.nuvemshop.com.br/frete-e-loja-fisica/como-configurar-locais-de-envio"
+  - title: "Retirada na loja"
+    url: "https://atendimento.nuvemshop.com.br/frete-e-loja-fisica/como-configurar-retirada-na-loja"

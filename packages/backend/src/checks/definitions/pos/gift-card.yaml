@@ -1,0 +1,21 @@
+check_type: pos_gift_card
+section: pos
+subcategory: payments
+display_name: "Pagamento com vale-presente"
+description: "Verificar se pagamento com vale-presente está configurado para o PDV."
+execution_mode: manual
+default_assessment: >
+  Confirme se o pagamento com vale-presente está habilitado no PDV, que a leitura de código ou valor está funcionando e que o saldo é debitado corretamente nas vendas.
+business_impact: >
+  Vale-presente não configurado impede que clientes usem créditos no PDV, gerando frustração. Configuração adequada unifica a experiência entre online e físico.
+recommendations:
+  - "Habilite pagamento com vale-presente no PDV"
+  - "Configure leitura de código ou digitação manual conforme operação"
+  - "Teste uso de vale em venda completa e parcial"
+useful_links:
+  - title: "Vale-presente no PDV"
+    url: "https://atendimento.nuvemshop.com.br/pt_BR/pdv"
+  - title: "Vale-presente na Nuvemshop"
+    url: "https://atendimento.nuvemshop.com.br/pt_BR/vale-presente"
+  - title: "Pagamentos PDV"
+    url: "https://atendimento.nuvemshop.com.br/pt_BR/pdv"

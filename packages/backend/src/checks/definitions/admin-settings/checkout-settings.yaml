@@ -1,0 +1,21 @@
+check_type: checkout_settings
+section: admin_settings
+subcategory: checkout
+display_name: "Configurações do checkout"
+description: "Verificar se as configurações do checkout estão otimizadas para conversão."
+execution_mode: manual
+default_assessment: >
+  Revise as configurações do checkout: campos obrigatórios, opções de compra como convidado, termos e condições, cupons e upsell. Garanta que o fluxo esteja enxuto e sem fricções desnecessárias para maximizar conversão.
+business_impact: >
+  Checkout com muitos campos ou opções confusas aumenta abandono. Configurações otimizadas reduzem fricção e melhoram a taxa de conclusão de compra.
+recommendations:
+  - "Habilite compra como convidado para reduzir fricção"
+  - "Revise campos obrigatórios e remova os desnecessários"
+  - "Configure termos, políticas e cupons de forma clara e acessível"
+useful_links:
+  - title: "Tudo sobre opções de checkout"
+    url: "https://atendimento.nuvemshop.com.br/12311-opcoes-de-checkout/tudo-sobre-as-opcoes-de-checkout"
+  - title: "Configurar checkout"
+    url: "https://atendimento.nuvemshop.com.br/checkout/como-configurar-o-checkout-da-minha-loja"
+  - title: "Compra como convidado"
+    url: "https://atendimento.nuvemshop.com.br/checkout/como-ativar-a-compra-como-convidado"

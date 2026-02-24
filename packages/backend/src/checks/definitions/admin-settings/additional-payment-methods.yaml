@@ -1,0 +1,21 @@
+check_type: additional_payment_methods
+section: admin_settings
+subcategory: payments
+display_name: "Métodos de pagamento adicionais"
+description: "Verificar se métodos de pagamento adicionais estão configurados corretamente."
+execution_mode: manual
+default_assessment: >
+  Revise os métodos de pagamento adicionais (PIX, boleto, cartão em parcelas, etc.) e confirme que estão ativos e configurados conforme a estratégia da loja. Verifique a ordem de exibição no checkout.
+business_impact: >
+  Poucos métodos limitam opções do cliente e podem reduzir conversão. Métodos mal configurados geram confusão ou falhas no pagamento. Diversidade adequada aumenta conversão e satisfação.
+recommendations:
+  - "Ofereça PIX e boleto além de cartão para ampliar opções"
+  - "Configure parcelamento conforme margem e política da loja"
+  - "Ordene métodos de pagamento por preferência no checkout"
+useful_links:
+  - title: "Ordenar meios de pagamento no checkout"
+    url: "https://atendimento.nuvemshop.com.br/meios-de-pagamento/como-ordenar-os-meios-de-pagamento-no-checkout-da-loja"
+  - title: "PIX na Nuvemshop"
+    url: "https://atendimento.nuvemshop.com.br/meios-de-pagamento/como-configurar-o-pix-na-minha-loja"
+  - title: "Boleto bancário"
+    url: "https://atendimento.nuvemshop.com.br/meios-de-pagamento/como-configurar-boleto-bancario"

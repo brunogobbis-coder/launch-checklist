@@ -1,0 +1,21 @@
+check_type: pos_staff_role
+section: pos
+subcategory: staff
+display_name: "Funções da equipe"
+description: "Verificar se os membros da equipe possuem funções adequadas para operação do PDV (POS Pro)."
+execution_mode: manual
+default_assessment: >
+  Verifique se os membros da equipe que operam o PDV possuem funções e permissões adequadas: vendas, devoluções, descontos, fechamento de caixa e demais ações necessárias.
+business_impact: >
+  Funções inadequadas podem bloquear operações essenciais ou expor ações sensíveis. A configuração correta equilibra autonomia operacional e controle de acesso.
+recommendations:
+  - "Revise funções e permissões de cada membro da equipe PDV"
+  - "Configure níveis de desconto e aprovações conforme política"
+  - "Garanta que funções permitam operação fluida sem expor dados sensíveis"
+useful_links:
+  - title: "Funções da equipe"
+    url: "https://atendimento.nuvemshop.com.br/pt_BR/equipe"
+  - title: "Permissões no PDV"
+    url: "https://atendimento.nuvemshop.com.br/pt_BR/pdv"
+  - title: "POS Pro e permissões"
+    url: "https://atendimento.nuvemshop.com.br/pt_BR/pdv"

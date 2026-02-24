@@ -1,0 +1,21 @@
+check_type: order_customer_connection
+section: store_data
+subcategory: orders
+display_name: "Conexão pedido-cliente"
+description: "Garantir que os pedidos estão conectados a um cliente e os campos estão corretos."
+execution_mode: manual
+default_assessment: >
+  Verifique se todos os pedidos estão vinculados a um cliente válido e se os dados de contato (e-mail, telefone) e endereço de entrega estão corretos em cada pedido.
+business_impact: >
+  Pedidos sem vínculo correto com o cliente impedem rastreamento, notificações de status e podem causar envios para endereços errados. A integridade dos dados é fundamental para operação.
+recommendations:
+  - "Identifique pedidos órfãos (sem cliente associado) e vincule ou crie o cadastro"
+  - "Confirme que endereços de entrega estão completos antes de despachar"
+  - "Revise pedidos manuais para garantir que o cliente foi selecionado corretamente"
+useful_links:
+  - title: "Gerenciar vendas na Nuvemshop"
+    url: "https://atendimento.nuvemshop.com.br/pt_BR/vendas"
+  - title: "Como criar pedidos manuais"
+    url: "https://atendimento.nuvemshop.com.br/pedidos-manuais/como-criar-pedidos-manuais-em-meu-painel-nuvemshop"
+  - title: "Perguntas frequentes sobre vendas"
+    url: "https://atendimento.nuvemshop.com.br/vendas/perguntas-frequentes-sobre-vendas-na-nuvemshop"

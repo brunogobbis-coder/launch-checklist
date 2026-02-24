@@ -1,0 +1,21 @@
+check_type: favicon
+section: front_end
+subcategory: experience
+display_name: "Favicon"
+description: "Verificar se o favicon está configurado e representa a marca."
+execution_mode: manual
+default_assessment: >
+  Confirme que o favicon está configurado na loja, aparece corretamente na aba do navegador e representa a identidade visual da marca. Use imagem quadrada de pelo menos 32x32px (PNG ou ICO).
+business_impact: >
+  Favicon ausente ou genérico prejudica o reconhecimento da marca nas abas e favoritos. Um favicon adequado aumenta a credibilidade e facilita que o cliente identifique a loja.
+recommendations:
+  - "Prepare imagem quadrada de pelo menos 32x32px (PNG ou ICO)"
+  - "Faça upload do favicon na seção de identidade visual do layout"
+  - "Verifique a exibição em diferentes navegadores e dispositivos"
+useful_links:
+  - title: "Banners e logo do layout"
+    url: "https://atendimento.nuvemshop.com.br/banners-e-logo-do-layout"
+  - title: "Personalizar layout"
+    url: "https://atendimento.nuvemshop.com.br/01-layout/conheca-a-opcao-minha-nuvemshop-e-aprenda-como-personalizar-o-seu-layout"
+  - title: "Identidade visual"
+    url: "https://atendimento.nuvemshop.com.br/pt_BR/configuracoes"

@@ -1,0 +1,21 @@
+check_type: primary_payment_gateway
+section: admin_settings
+subcategory: payments
+display_name: "Gateway de pagamento principal"
+description: "Verificar se o gateway de pagamento principal está configurado e conectado."
+execution_mode: manual
+default_assessment: >
+  Confirme que o gateway de pagamento principal (ex.: Nuvem Pago, Mercado Pago) está conectado, ativo e configurado corretamente. Teste uma transação de teste para garantir que pagamentos são processados.
+business_impact: >
+  Gateway desconectado ou mal configurado impede vendas e gera perda de receita. Configuração correta garante que clientes consigam pagar e que o lojista receba os valores.
+recommendations:
+  - "Conecte e ative o gateway principal nas configurações de pagamento"
+  - "Realize transação de teste para validar o fluxo"
+  - "Verifique se parcelamento e taxas estão configurados conforme esperado"
+useful_links:
+  - title: "Meios de pagamento"
+    url: "https://atendimento.nuvemshop.com.br/pt_BR/meios-de-pagamento"
+  - title: "Guia de meios de pagamento"
+    url: "https://atendimento.nuvemshop.com.br/meios-de-pagamento/guia-meios-de-pagamento-disponiveis-na-sua-nuvemshop"
+  - title: "Configurar Nuvem Pago"
+    url: "https://atendimento.nuvemshop.com.br/pt_BR/configuracao-nuvem-pago"

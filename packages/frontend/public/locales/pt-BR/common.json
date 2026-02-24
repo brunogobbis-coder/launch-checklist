@@ -1,0 +1,58 @@
+{
+  "index": {
+    "title": "Checklist de Lançamento",
+    "newChecklist": "Novo checklist",
+    "alertTitle": "Sobre este aplicativo",
+    "alertDescription": "O Checklist de Lançamento ajuda a verificar se sua loja está pronta para operar. Revise todos os resultados antes de confirmar a prontidão.",
+    "allChecklists": "Todos os checklists",
+    "searchPlaceholder": "Buscar por nome\u2026",
+    "colName": "Nome",
+    "colTasks": "Tarefas",
+    "colStatus": "Status",
+    "colCreated": "Criado em",
+    "noResults": "Nenhum checklist encontrado.",
+    "emptyState": "Nenhum checklist criado ainda. Crie um para começar.",
+    "confirmDelete": "Tem certeza que deseja excluir este checklist?"
+  },
+  "modal": {
+    "title": "Novo checklist de lançamento",
+    "nameLabel": "Nome do checklist",
+    "namePlaceholder": "Ex: Lançamento Loja Principal",
+    "selectChecks": "Selecione as verificações",
+    "selectAll": "Selecionar todas",
+    "deselectAll": "Desmarcar todas",
+    "cancel": "Cancelar",
+    "start": "Iniciar",
+    "creating": "Criando\u2026"
+  },
+  "results": {
+    "back": "Voltar",
+    "backToList": "Voltar para a lista",
+    "notFound": "Checklist não encontrado.",
+    "legendTitle": "Entendendo os resultados",
+    "legendReady": "Configuração verificada e pronta.",
+    "legendNotReady": "Requer ação antes do lançamento.",
+    "legendConfirm": "Revise e confirme a configuração.",
+    "legendManual": "Verifique manualmente."
+  },
+  "sidebar": {
+    "loading": "Carregando\u2026",
+    "findings": "Detalhamento",
+    "noFindings": "Nenhum detalhamento disponível. Verifique manualmente no painel admin.",
+    "impact": "Impacto no negócio",
+    "recommendations": "Recomendações",
+    "links": "Links úteis"
+  },
+  "status": {
+    "pending": "Pendente",
+    "ready": "Pronto",
+    "not_ready": "Não pronto",
+    "confirm_set_up": "Confirmar configuração",
+    "check_manually": "Verificar manualmente",
+    "failed": "Falhou"
+  },
+  "checklistStatus": {
+    "in_progress": "Em andamento",
+    "complete": "Completo"
+  }
+}

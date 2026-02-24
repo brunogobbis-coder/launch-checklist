@@ -1,0 +1,21 @@
+check_type: order_submission
+section: b2b
+subcategory: checkout_experience
+display_name: "Envio de pedidos B2B"
+description: "Verificar se o envio de pedidos B2B está configurado para processamento automático ou rascunho."
+execution_mode: manual
+default_assessment: >
+  Revise se o envio de pedidos B2B está configurado para processamento automático ou rascunho, conforme o fluxo operacional da loja. Verifique aprovações e notificações.
+business_impact: >
+  Configuração inadequada pode gerar pedidos não processados ou fluxos manuais desnecessários. O alinhamento entre envio e operação reduz erros e acelera o atendimento.
+recommendations:
+  - "Defina se pedidos B2B serão processados automaticamente ou exigirão aprovação"
+  - "Configure notificações para compradores e equipe sobre status do pedido"
+  - "Revise o fluxo de rascunho para pedidos que precisam de validação prévia"
+useful_links:
+  - title: "Pedidos B2B na Nuvemshop"
+    url: "https://atendimento.nuvemshop.com.br/pt_BR/pedidos"
+  - title: "Configurar envio de pedidos"
+    url: "https://atendimento.nuvemshop.com.br/pt_BR/checkout"
+  - title: "B2B e atacado"
+    url: "https://atendimento.nuvemshop.com.br/pt_BR/b2b"

@@ -1,0 +1,21 @@
+check_type: staff_accounts
+section: admin_settings
+subcategory: staff
+display_name: "Contas da equipe"
+description: "Revisar contas da equipe para níveis de acesso e contas inativas."
+execution_mode: manual
+default_assessment: >
+  Revise as contas da equipe: confirme que cada pessoa tem o nível de acesso adequado ao seu papel, que não há contas de ex-funcionários ativas e que e-mails e permissões estão atualizados.
+business_impact: >
+  Contas com acesso excessivo ou de ex-funcionários ativas representam risco de segurança e vazamento de dados. Revisão periódica garante controle de acesso e conformidade.
+recommendations:
+  - "Remova ou desative contas de colaboradores que saíram"
+  - "Ajuste níveis de acesso conforme função de cada pessoa"
+  - "Revise permissões de administrador e dados sensíveis"
+useful_links:
+  - title: "Contas da equipe"
+    url: "https://atendimento.nuvemshop.com.br/pt_BR/configuracoes"
+  - title: "Adicionar membros da equipe"
+    url: "https://atendimento.nuvemshop.com.br/equipe/como-adicionar-membros-da-equipe-na-minha-loja"
+  - title: "Permissões e níveis de acesso"
+    url: "https://atendimento.nuvemshop.com.br/equipe/como-configurar-permissoes-e-niveis-de-acesso"

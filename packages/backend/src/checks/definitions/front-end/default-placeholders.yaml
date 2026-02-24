@@ -1,0 +1,21 @@
+check_type: default_placeholders
+section: front_end
+subcategory: experience
+display_name: "Placeholders padrão"
+description: "Identificar e remover conteúdo placeholder padrão."
+execution_mode: manual
+default_assessment: >
+  Navegue pela loja como cliente e identifique textos de exemplo ("Lorem ipsum", descrições genéricas) e imagens placeholder. Substitua por conteúdo real da marca: descrições, banners e textos institucionais.
+business_impact: >
+  Conteúdo placeholder transmite desleixo e prejudica a credibilidade. Loja com conteúdo real converte mais e passa maior confiança ao cliente.
+recommendations:
+  - "Substitua textos de exemplo por descrições reais"
+  - "Revise imagens de placeholder em banners e produtos"
+  - "Use a IA da Nuvemshop para criar descrições se necessário"
+useful_links:
+  - title: "Personalizar página inicial"
+    url: "https://atendimento.nuvemshop.com.br/pagina-inicial-do-layout/como-personalizar-a-pagina-inicial-da-minha-loja"
+  - title: "Criar descrições com IA"
+    url: "https://atendimento.nuvemshop.com.br/adicionar-um-novo-produto/como-criar-descricoes-para-os-produtos-na-nuvemshop-usando-inteligencia-artificial"
+  - title: "Banners e logo do layout"
+    url: "https://atendimento.nuvemshop.com.br/banners-e-logo-do-layout"

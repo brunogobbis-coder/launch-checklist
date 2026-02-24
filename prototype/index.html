@@ -1,0 +1,1278 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checklist de Lançamento</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Inter', 'Geist', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #F3F4F6;
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+      color: #333;
+    }
+
+    /* ============================================================
+       LAYOUT
+       ============================================================ */
+    .admin-body { display: flex; min-height: 100vh; position: relative; }
+
+    .admin-topright {
+      position: fixed; top: 16px; right: 20px; z-index: 20;
+      display: flex; align-items: center; gap: 12px;
+    }
+    .topbar-help {
+      width: 28px; height: 28px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      border: 1px solid #E5E7EB; background: #fff; cursor: pointer;
+      color: #888; font-size: 13px; font-weight: 600;
+    }
+    .topbar-help:hover { background: #F5F5F5; }
+    .topbar-user {
+      display: flex; align-items: center; gap: 8px;
+      font-size: 13px; color: #333; font-weight: 500;
+    }
+    .topbar-avatar {
+      width: 28px; height: 28px; border-radius: 50%;
+      background: #0050C3; color: #fff;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 12px; font-weight: 700;
+    }
+
+    /* ============================================================
+       SIDEBAR
+       ============================================================ */
+    .sidebar {
+      width: 270px; background: #fff; flex-shrink: 0;
+      padding: 0;
+      border-right: 1px solid #E8E8E8;
+      position: sticky; top: 0; height: 100vh;
+      overflow-y: auto;
+      display: flex; flex-direction: column;
+    }
+    .sb-header {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 16px 16px 8px;
+    }
+    .sb-logo { color: #0059d5; display: flex; align-items: center; }
+    .sb-logo svg { height: 20px; width: auto; }
+    .sb-toggle {
+      width: 28px; height: 28px; border-radius: 6px;
+      display: flex; align-items: center; justify-content: center;
+      background: none; border: none; cursor: pointer; color: #333;
+      padding: 0;
+    }
+    .sb-toggle:hover { background: #EDF4FF; }
+    .sb-body {
+      flex: 1; overflow-y: auto;
+      padding: 4px 8px;
+    }
+    .sb-item {
+      display: flex; align-items: center; gap: 10px;
+      padding: 7px 12px; font-size: 13px; font-weight: 600;
+      color: #333; cursor: pointer; line-height: 1.3;
+      border-radius: 6px; margin-bottom: 1px;
+      transition: background .1s;
+      text-decoration: none;
+    }
+    .sb-item:hover { background: #F5F5F5; }
+    .sb-item.active {
+      background: #EDF4FF; color: #0059D5;
+      font-weight: 500;
+    }
+    .sb-item svg { width: 16px; height: 16px; flex-shrink: 0; color: #666; }
+    .sb-item.active svg { color: #0059D5; }
+    .sb-item.disabled { color: #B0B0B0; cursor: default; }
+    .sb-item.disabled:hover { background: none; }
+    .sb-item.disabled svg { color: #B0B0B0; }
+    .sb-section {
+      font-size: 11px; font-weight: 600; text-transform: uppercase;
+      letter-spacing: 0.5px; color: #999;
+      padding: 16px 12px 6px;
+    }
+    .sb-badge {
+      margin-left: auto;
+      background: #0059D5;
+      color: #fff;
+      font-size: 10px;
+      font-weight: 600;
+      padding: 2px 8px;
+      border-radius: 10px;
+      line-height: 14px;
+      white-space: nowrap;
+    }
+    .sb-badge-green {
+      margin-left: auto;
+      background: #D1FAE5;
+      color: #065F46;
+      font-size: 10px;
+      font-weight: 600;
+      padding: 2px 8px;
+      border-radius: 10px;
+      line-height: 14px;
+    }
+    .sb-external {
+      margin-left: auto; color: #bbb;
+      display: flex; align-items: center;
+    }
+    .sb-external svg { width: 12px; height: 12px; }
+    .sb-bottom {
+      margin-top: auto;
+      border-top: 1px solid #E8E8E8;
+      padding: 8px;
+    }
+    .sb-item .sb-chevron { margin-left: auto; color: #bbb; display: flex; }
+    .sb-item .sb-chevron svg { width: 12px; height: 12px; }
+
+    /* ============================================================
+       MAIN CONTENT
+       ============================================================ */
+    .admin-main {
+      flex: 1; background: #F3F4F6;
+      padding: 80px 40px 28px;
+      overflow-y: auto;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .lc-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; }
+    .lc-header-left { display: flex; align-items: center; gap: 12px; }
+    .lc-back { display: flex; align-items: center; gap: 6px; color: #6B778C; font-size: 13px; cursor: pointer; text-decoration: none; }
+    .lc-back:hover { color: #0059D5; }
+    .lc-breadcrumb { color: #6B778C; font-size: 13px; }
+    .lc-breadcrumb::after { content: ' / '; color: #ccc; }
+    .lc-header h1 { font-size: 22px; font-weight: 700; color: #111; margin: 0; }
+    .btn-primary { display: inline-flex; align-items: center; gap: 6px; padding: 8px 16px; border-radius: 8px; background: #0059D5; color: #fff; font-size: 13px; font-weight: 500; border: none; cursor: pointer; font-family: inherit; }
+    .btn-primary:hover { background: #1565C0; }
+    .btn-secondary { display: inline-flex; align-items: center; gap: 6px; padding: 8px 16px; border-radius: 8px; background: #fff; color: #555; font-size: 13px; font-weight: 500; border: 1px solid #E8E8E8; cursor: pointer; font-family: inherit; }
+    .btn-secondary:hover { background: #F5F5F5; }
+
+    .lc-search { position: relative; margin-bottom: 16px; }
+    .lc-search-icon { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); color: #9CA3AF; pointer-events: none; }
+    .lc-search-input { width: 100%; padding: 10px 14px 10px 40px; border: 1px solid #E8E8E8; border-radius: 8px; font-size: 14px; font-family: inherit; background: #fff; color: #333; transition: border-color .15s; }
+    .lc-search-input:focus { outline: none; border-color: #0059D5; box-shadow: 0 0 0 3px rgba(0,89,213,0.08); }
+    .lc-search-input::placeholder { color: #9CA3AF; }
+
+    .lc-card { background: #fff; border: 1px solid #E8E8E8; border-radius: 8px; margin-bottom: 16px; overflow: hidden; }
+    .lc-table { width: 100%; border-collapse: collapse; }
+    .lc-table th { text-align: left; padding: 12px 16px; font-size: 13px; font-weight: 600; color: #6B778C; background: #FAFAFA; border-bottom: 1px solid #E8E8E8; }
+    .lc-table td { padding: 14px 16px; font-size: 13px; font-weight: 400; color: #333; border-bottom: 1px solid #F0F0F0; cursor: pointer; transition: background .15s; }
+    .lc-table tr:hover td { background: #FAFAFA; }
+    .lc-table tr:last-child td { border-bottom: none; }
+    .lc-tasks-badge { display: inline-flex; align-items: center; justify-content: center; min-width: 36px; height: 22px; padding: 0 8px; background: #F3F4F6; color: #6B778C; font-size: 12px; font-weight: 600; border-radius: 6px; }
+    .lc-status-badge { display: inline-flex; padding: 3px 10px; border-radius: 12px; font-size: 11px; font-weight: 600; }
+    .lc-status-badge.complete { background: #DCFCE7; color: #166534; }
+    .lc-status-badge.in-progress { background: #EDF4FF; color: #0059D5; }
+    .lc-status-badge.ready { background: #DCFCE7; color: #166534; }
+    .lc-status-badge.in-review { background: #FEF3C7; color: #92400E; }
+    .lc-status-badge.pending { background: #F1F5F9; color: #475569; }
+
+
+    .lc-legend { display: flex; flex-wrap: wrap; gap: 10px; padding: 16px 20px; background: #FAFAFA; border-bottom: 1px solid #E8E8E8; }
+    .lc-legend-item { display: flex; align-items: center; gap: 8px; font-size: 12px; color: #6B778C; padding: 5px 12px; border-radius: 20px; border: 1.5px solid transparent; cursor: pointer; transition: all .15s; user-select: none; background: none; font-family: inherit; }
+    .lc-legend-item:hover { background: #F0F0F0; }
+    .lc-legend-item.active { border-color: currentColor; background: #fff; color: #333; font-weight: 500; }
+    .lc-legend-item.active.filter-ready { border-color: #22C55E; color: #166534; background: #F0FDF4; }
+    .lc-legend-item.active.filter-in-review { border-color: #F59E0B; color: #92400E; background: #FFFBEB; }
+    .lc-legend-item.active.filter-pending { border-color: #94A3B8; color: #475569; background: #F8FAFC; }
+    .lc-legend-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+    .lc-legend-dot.ready { background: #22C55E; }
+    .lc-legend-dot.in-review { background: #F59E0B; }
+    .lc-legend-dot.pending { background: #94A3B8; }
+
+    .lc-section { border-bottom: 1px solid #E8E8E8; }
+    .lc-section:last-child { border-bottom: none; }
+    .lc-section-header { display: flex; align-items: center; gap: 12px; padding: 14px 20px; cursor: pointer; transition: background .15s; }
+    .lc-section-header:hover { background: #FAFAFA; }
+    .lc-section-title { font-size: 14px; font-weight: 600; color: #111; min-width: 240px; }
+    .lc-section-counts { display: flex; align-items: center; gap: 8px; margin-left: auto; }
+    .lc-count-badge { display: inline-flex; align-items: center; gap: 4px; padding: 2px 8px; border-radius: 6px; font-size: 11px; font-weight: 600; }
+    .lc-count-badge.ready { background: #DCFCE7; color: #166534; }
+    .lc-count-badge.in-review { background: #FEF3C7; color: #92400E; }
+    .lc-count-badge.pending { background: #F1F5F9; color: #475569; }
+    .lc-section-chevron { width: 16px; height: 16px; color: #6B778C; transition: transform .2s; }
+    .lc-section.open .lc-section-chevron { transform: rotate(180deg); }
+    .lc-section-body { max-height: 0; overflow: hidden; transition: max-height .3s ease; }
+    .lc-section.open .lc-section-body { max-height: 5000px; }
+
+    .lc-subcategory { padding: 20px 20px 0; }
+    .lc-subcategory:last-child { padding-bottom: 20px; }
+    .lc-subcategory-title { font-size: 12px; font-weight: 600; color: #6B778C; letter-spacing: 0.3px; margin-bottom: 12px; }
+    .lc-check-row { display: flex; align-items: center; gap: 12px; padding: 12px 16px; border-radius: 6px; transition: background .15s; border: 1px solid transparent; }
+    .lc-check-row:hover { background: #FAFAFA; }
+    .lc-check-row:last-child { margin-bottom: 16px; }
+    .lc-check-info { flex: 1; min-width: 0; }
+    .lc-check-name { font-size: 13px; font-weight: 600; color: #111; margin-bottom: 2px; }
+    .lc-check-desc { font-size: 12px; color: #6B778C; line-height: 1.4; }
+    .lc-check-actions { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+    .lc-check-actions button { width: 28px; height: 28px; border-radius: 6px; border: none; background: none; cursor: pointer; color: #6B778C; display: flex; align-items: center; justify-content: center; }
+    .lc-check-actions button:hover { background: #EBECF0; color: #333; }
+    .lc-status-wrap { position: relative; }
+    .lc-status-dropdown { position: absolute; top: calc(100% + 4px); right: 0; background: #fff; border: 1px solid #E8E8E8; border-radius: 8px; box-shadow: 0 8px 24px rgba(0,0,0,0.12); z-index: 50; min-width: 220px; padding: 4px; display: none; }
+    .lc-status-dropdown.show { display: block; }
+    .lc-status-option { display: flex; align-items: center; gap: 10px; padding: 8px 12px; border-radius: 6px; font-size: 13px; color: #333; cursor: pointer; transition: background .1s; }
+    .lc-status-option:hover { background: #F5F5F5; }
+    .lc-status-option .lc-legend-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+    .lc-status-option.selected { font-weight: 600; background: #F8FAFC; }
+
+    .lc-check-name { cursor: pointer; transition: color .15s; display: inline-flex; align-items: center; gap: 6px; }
+    .lc-check-name:hover { color: #0059D5; }
+    .lc-check-name:hover .lc-help-icon { background: #0059D5; color: #fff; }
+    .lc-help-icon { display: inline-flex; align-items: center; justify-content: center; width: 16px; height: 16px; border-radius: 50%; background: #E8E8E8; color: #6B778C; font-size: 10px; font-weight: 700; flex-shrink: 0; transition: all .15s; line-height: 1; }
+
+    .lc-add-item-btn { display: flex; align-items: center; gap: 6px; margin: 0 20px 16px; padding: 8px 14px; border: 1px dashed #CBD5E1; border-radius: 8px; background: none; cursor: pointer; font-size: 13px; font-weight: 500; color: #64748B; transition: all .15s; }
+    .lc-add-item-btn:hover { border-color: #0059D5; color: #0059D5; background: #F0F6FF; }
+    .lc-add-item-btn svg { width: 14px; height: 14px; }
+
+    .lc-add-form { margin: 0 20px 16px; padding: 16px; border: 1px solid #E2E8F0; border-radius: 8px; background: #F8FAFC; }
+    .lc-add-form-row { margin-bottom: 12px; }
+    .lc-add-form-row:last-child { margin-bottom: 0; }
+    .lc-add-form-label { display: block; font-size: 12px; font-weight: 600; color: #475569; margin-bottom: 4px; }
+    .lc-add-form-input { width: 100%; padding: 8px 12px; border: 1px solid #CBD5E1; border-radius: 6px; font-size: 13px; color: #111; background: #fff; outline: none; transition: border-color .15s; box-sizing: border-box; }
+    .lc-add-form-input:focus { border-color: #0059D5; box-shadow: 0 0 0 2px rgba(0,89,213,0.1); }
+    .lc-add-form-select { width: 100%; padding: 8px 12px; border: 1px solid #CBD5E1; border-radius: 6px; font-size: 13px; color: #111; background: #fff; outline: none; cursor: pointer; }
+    .lc-add-form-actions { display: flex; gap: 8px; justify-content: flex-end; margin-top: 14px; }
+    .lc-add-form-actions button { padding: 7px 16px; border-radius: 6px; font-size: 13px; font-weight: 600; cursor: pointer; transition: all .15s; }
+    .lc-add-btn-cancel { background: #fff; border: 1px solid #CBD5E1; color: #475569; }
+    .lc-add-btn-cancel:hover { background: #F1F5F9; }
+    .lc-add-btn-save { background: #0059D5; border: 1px solid #0059D5; color: #fff; }
+    .lc-add-btn-save:hover { background: #0047B3; }
+    .lc-add-btn-save:disabled { opacity: 0.5; cursor: not-allowed; }
+
+    .lc-delete-btn { width: 24px; height: 24px; border-radius: 6px; border: none; background: none; cursor: pointer; color: #94A3B8; display: flex; align-items: center; justify-content: center; transition: all .15s; flex-shrink: 0; }
+    .lc-delete-btn:hover { background: #FEE2E2; color: #DC2626; }
+
+    .lc-panel-backdrop { position: fixed; inset: 0; background: rgba(0,0,0,0.2); z-index: 99; opacity: 0; pointer-events: none; transition: opacity .25s; }
+    .lc-panel-backdrop.show { opacity: 1; pointer-events: auto; }
+    .lc-panel { position: fixed; top: 0; right: 0; width: 440px; max-width: 100%; height: 100vh; background: #fff; box-shadow: -4px 0 24px rgba(0,0,0,0.12); z-index: 100; display: flex; flex-direction: column; transform: translateX(100%); transition: transform .3s ease; }
+    .lc-panel.show { transform: translateX(0); }
+    .lc-panel-header { padding: 20px 24px; border-bottom: 1px solid #E8E8E8; display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; }
+    .lc-panel-header h2 { font-size: 16px; font-weight: 700; color: #111; margin: 0; line-height: 1.4; }
+    .lc-panel-close { width: 32px; height: 32px; border-radius: 6px; border: none; background: none; cursor: pointer; color: #6B778C; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .lc-panel-close:hover { background: #F5F5F5; color: #333; }
+    .lc-panel-body { padding: 24px; overflow-y: auto; flex: 1; }
+    .lc-help-desc { font-size: 13px; color: #6B778C; margin: 0 0 20px; line-height: 1.5; }
+    .lc-help-summary { font-size: 13px; color: #333; line-height: 1.6; margin-bottom: 20px; padding: 14px 16px; background: #F8FAFC; border-radius: 8px; border: 1px solid #E8E8E8; }
+    .lc-help-steps-title { font-size: 13px; font-weight: 700; color: #111; margin: 0 0 12px; }
+    .lc-help-steps { margin: 0 0 24px; padding-left: 20px; }
+    .lc-help-steps li { font-size: 13px; color: #333; line-height: 1.6; margin-bottom: 8px; }
+    .lc-help-steps li:last-child { margin-bottom: 0; }
+    .lc-help-link { display: inline-flex; align-items: center; gap: 6px; padding: 10px 20px; background: #0059D5; color: #fff; font-size: 13px; font-weight: 600; border-radius: 8px; text-decoration: none; transition: background .15s; }
+    .lc-help-link:hover { background: #0047B3; }
+
+    /* Focus states */
+    :focus-visible { outline: 2px solid #0059D5; outline-offset: 2px; border-radius: 4px; }
+    button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible { outline: 2px solid #0059D5; outline-offset: 2px; }
+    .sb-item:focus-visible { outline-offset: -2px; }
+    .lc-status-badge:focus-visible { outline-offset: 1px; }
+    .lc-legend-item:focus-visible { outline-offset: 1px; }
+
+    /* Reduced motion */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+      .lc-section-body { transition: none; }
+      .lc-panel { transition: none; }
+      .lc-panel-backdrop { transition: none; }
+    }
+
+    /* Panel touch fix */
+    .lc-panel { overscroll-behavior: contain; }
+
+    @media (max-width: 800px) {
+      .sidebar { display: none; }
+      .admin-main { padding: 20px 16px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ======== BODY ======== -->
+<div class="admin-body">
+
+  <div class="admin-topright">
+    <button class="topbar-help" aria-label="Ajuda">?</button>
+    <div class="topbar-user">
+      <div class="topbar-avatar">T</div>
+      <span>teste</span>
+    </div>
+  </div>
+
+  <!-- ======== SIDEBAR ======== -->
+  <div class="sidebar">
+    <div class="sb-header">
+      <div class="sb-logo">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 124 20" height="20" color="#0059d5"><path fill="currentColor" d="M35.4705 15.5619H33.3642V6.66537H35.4705V7.8454C35.7651 7.39629 36.1712 7.03139 36.6492 6.78641C37.1271 6.54143 37.6605 6.42479 38.1971 6.44789C40.3719 6.44789 41.6445 7.88164 41.6445 10.2054V15.5619H39.5382V10.6042C39.5382 9.22276 38.8495 8.38909 37.5607 8.38909C36.272 8.38909 35.4705 9.35164 35.4705 10.878V15.5619Z"></path><path fill="currentColor" d="M43.1709 11.7278V6.66537H45.2732V11.611C45.2732 13.0085 45.9659 13.8422 47.1258 13.8422C48.2857 13.8422 48.9784 13.0085 48.9784 11.611V6.66537H51.0847V11.7278C51.0847 14.2892 49.5946 15.7793 47.1258 15.7793C44.657 15.7793 43.1709 14.2892 43.1709 11.7278Z"></path><path fill="currentColor" d="M51.717 6.66538H53.9522L56.3284 12.8192L58.7448 6.64927H60.9236L57.2587 15.5458H55.4061L51.717 6.66538Z"></path><path fill="currentColor" d="M69.4012 13.4717C69.0175 14.1983 68.4352 14.801 67.7222 15.2096C67.0092 15.6181 66.1948 15.8157 65.3739 15.7794C62.6675 15.7794 60.7424 13.8543 60.7424 11.1116C60.7424 8.44548 62.7037 6.4479 65.2651 6.4479C67.8265 6.4479 69.6952 8.46159 69.6952 11.1116C69.6952 11.2767 69.6952 11.5144 69.6751 11.7479H62.8286C62.8914 12.3769 63.1901 12.9588 63.6646 13.3764C64.139 13.7941 64.7541 14.0166 65.3859 13.9992C66.5499 13.9992 67.1459 13.4354 67.6574 12.6541L69.4012 13.4717ZM67.6211 10.2216C67.5565 9.64322 67.2758 9.11065 66.8352 8.73051C66.3945 8.35038 65.8265 8.15075 65.245 8.17162C64.6726 8.18618 64.1229 8.39827 63.6891 8.77189C63.2553 9.14552 62.9641 9.65769 62.8648 10.2216H67.6211Z"></path><path fill="currentColor" d="M72.9413 15.5619H70.835V6.66538H72.9413V7.8454C73.1927 7.39888 73.5638 7.03145 74.0128 6.78453C74.4619 6.53761 74.9709 6.42102 75.4826 6.4479C76.0466 6.42085 76.6058 6.56379 77.0876 6.8582C77.5694 7.15261 77.9517 7.58492 78.185 8.09913C78.4845 7.58327 78.9174 7.15767 79.4383 6.86709C79.9593 6.57651 80.5489 6.4317 81.1451 6.4479C83.1991 6.4479 84.367 7.86151 84.367 10.0967V15.5619H82.2607V10.4954C82.2607 9.18652 81.6606 8.37299 80.5531 8.37299C79.4456 8.37299 78.6643 9.29526 78.6481 10.7491V15.582H76.5418V10.5679C76.5418 9.18652 75.9417 8.37299 74.8342 8.37299C73.7267 8.37299 72.9293 9.3154 72.9293 10.8418L72.9413 15.5619Z"></path><path fill="currentColor" d="M86.9365 12.6179C87.0561 13.0009 87.2915 13.3375 87.6103 13.5813C87.9291 13.8251 88.3156 13.9641 88.7166 13.9791C89.3691 13.9791 89.9248 13.6892 89.9248 13.0569C89.9248 12.5655 89.6188 12.3118 88.9099 12.0943L87.8386 11.748C86.3324 11.2566 85.5672 10.4028 85.5672 9.17042C85.5672 7.49906 86.9647 6.44791 88.6361 6.44791C89.3107 6.43412 89.9747 6.61724 90.547 6.97488C91.1192 7.33251 91.5748 7.84915 91.858 8.4616L90.1665 9.36777C89.8242 8.66297 89.2966 8.18774 88.624 8.18774C88.0239 8.18774 87.5527 8.49785 87.5527 8.99322C87.5527 9.39596 87.8789 9.73828 88.5515 9.95576L89.6067 10.3021C91.274 10.866 91.9466 11.7157 91.9466 12.8958C91.9466 14.7121 90.4202 15.7673 88.6804 15.7673C87.9386 15.8033 87.2046 15.6027 86.5842 15.1944C85.9638 14.7862 85.4892 14.1914 85.2289 13.4958L86.9365 12.6179Z"></path><path fill="currentColor" d="M95.104 15.5619H92.9977V3.33474H95.104V7.84541C95.3982 7.39691 95.8037 7.03238 96.2809 6.78744C96.7581 6.54249 97.2906 6.42551 97.8265 6.44791C100.005 6.44791 101.278 7.88166 101.278 10.2055V15.5619H99.1717V10.6042C99.1717 9.22277 98.483 8.38911 97.1942 8.38911C95.9055 8.38911 95.104 9.35165 95.104 10.878V15.5619Z"></path><path fill="currentColor" d="M111.85 11.1116C111.865 12.0523 111.6 12.9761 111.089 13.7657C110.577 14.5552 109.842 15.1747 108.977 15.5452C108.113 15.9157 107.157 16.0206 106.233 15.8464C105.308 15.6723 104.456 15.2269 103.786 14.5672C103.115 13.9074 102.656 13.063 102.467 12.1414C102.278 11.2199 102.367 10.2629 102.723 9.39225C103.08 8.52162 103.687 7.77673 104.468 7.25241C105.249 6.72808 106.169 6.44803 107.11 6.44791C107.73 6.43165 108.348 6.54059 108.925 6.76823C109.502 6.99587 110.028 7.33755 110.47 7.77285C110.913 8.20815 111.263 8.72815 111.5 9.3018C111.737 9.87545 111.856 10.491 111.85 11.1116ZM104.46 11.1116C104.477 11.6316 104.647 12.135 104.949 12.559C105.25 12.983 105.67 13.3088 106.155 13.4958C106.641 13.6829 107.171 13.7229 107.679 13.6109C108.187 13.4988 108.651 13.2397 109.013 12.8658C109.374 12.4919 109.618 12.0198 109.713 11.5083C109.809 10.9968 109.751 10.4686 109.548 9.98949C109.345 9.51041 109.006 9.10165 108.572 8.81419C108.139 8.52673 107.63 8.37329 107.11 8.373C106.756 8.37769 106.407 8.45247 106.082 8.59301C105.758 8.73355 105.464 8.93706 105.219 9.19175C104.974 9.44645 104.781 9.74728 104.653 10.0768C104.525 10.4064 104.463 10.7581 104.472 11.1116H104.46Z"></path><path fill="currentColor" d="M115.164 6.66538V7.934C115.512 7.46384 115.966 7.08358 116.49 6.82504C117.014 6.5665 117.593 6.43718 118.177 6.4479C120.63 6.4479 122.518 8.46159 122.518 11.1116C122.518 13.7616 120.63 15.7794 118.177 15.7794C117.597 15.7991 117.02 15.6792 116.496 15.4297C115.972 15.1802 115.515 14.8084 115.164 14.3456V18.8845H113.058V6.66538H115.164ZM117.742 8.35285C117.193 8.33521 116.651 8.48189 116.186 8.7741C115.721 9.06632 115.353 9.49075 115.131 9.99304C114.908 10.4953 114.841 11.0526 114.937 11.5934C115.034 12.1343 115.289 12.6341 115.671 13.0288C116.053 13.4236 116.544 13.6952 117.082 13.8091C117.619 13.9229 118.178 13.8737 118.688 13.6677C119.197 13.4618 119.633 13.1085 119.94 12.6531C120.248 12.1977 120.412 11.661 120.412 11.1116C120.421 10.7544 120.358 10.3991 120.228 10.0663C120.098 9.73356 119.903 9.42997 119.655 9.17324C119.406 8.91651 119.109 8.71177 118.781 8.57093C118.452 8.43008 118.099 8.35595 117.742 8.35285Z"></path><path fill="currentColor" d="M17.7661 5.51016e-05C15.1695 0.00074292 12.6751 1.0118 10.8108 2.81923C9.62785 2.31908 8.33944 2.11956 7.06058 2.23846C5.78172 2.35737 4.55218 2.791 3.48167 3.50066C2.41116 4.21033 1.53297 5.17395 0.925454 6.30557C0.31794 7.43718 0 8.70158 0 9.98596C0 11.2703 0.31794 12.5347 0.925454 13.6664C1.53297 14.798 2.41116 15.7616 3.48167 16.4713C4.55218 17.1809 5.78172 17.6146 7.06058 17.7335C8.33944 17.8524 9.62785 17.6528 10.8108 17.1527C11.9846 18.2995 13.4225 19.1398 14.9978 19.5996C16.5731 20.0593 18.2373 20.1243 19.8437 19.7888C21.45 19.4533 22.9491 18.7277 24.2088 17.6759C25.4684 16.6241 26.4498 15.2785 27.0664 13.7578C27.6831 12.237 27.916 10.5879 27.7447 8.95587C27.5733 7.32384 27.003 5.75905 26.0839 4.39954C25.1649 3.04004 23.9254 1.92759 22.4748 1.16034C21.0242 0.393086 19.4071 -0.00539192 17.7661 5.51016e-05ZM17.7661 17.781C16.7423 17.7836 15.7279 17.5844 14.7811 17.1946C13.8343 16.8049 12.9736 16.2323 12.2483 15.5096C11.523 14.7869 10.9473 13.9283 10.5542 12.9829C10.161 12.0376 9.95809 11.0239 9.95704 10.0001H7.746C7.74544 11.89 8.28327 13.741 9.29654 15.3363C8.79677 15.4825 8.27879 15.5571 7.75808 15.5578C6.28407 15.5578 4.87042 14.9723 3.82813 13.93C2.78584 12.8877 2.20029 11.4741 2.20029 10.0001C2.20029 8.52604 2.78584 7.11239 3.82813 6.0701C4.87042 5.02781 6.28407 4.44226 7.75808 4.44226C8.48794 4.44226 9.21066 4.58602 9.88496 4.86532C10.5593 5.14463 11.1719 5.55401 11.688 6.0701C12.2041 6.58619 12.6135 7.19888 12.8928 7.87318C13.1721 8.54748 13.3159 9.2702 13.3159 10.0001H15.539C15.5451 8.86508 15.3007 7.74274 14.8231 6.71311C14.3456 5.68348 13.6466 4.77194 12.7762 4.04355C13.735 3.24008 14.8734 2.67974 16.0949 2.41008C17.3164 2.14042 18.5849 2.16939 19.7928 2.49455C21.0008 2.8197 22.1124 3.43144 23.0335 4.27786C23.9546 5.12427 24.6579 6.18038 25.0837 7.35657C25.5096 8.53277 25.6454 9.79433 25.4797 11.0342C25.314 12.2741 24.8517 13.4557 24.1319 14.4788C23.4122 15.5019 22.4562 16.3363 21.3452 16.9112C20.2342 17.486 19.0009 17.7844 17.75 17.781H17.7661Z"></path></svg>
+      </div>
+      <button class="sb-toggle" title="Recolher menu" aria-label="Recolher menu">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M2 3.5h12a.625.625 0 110 1.25H2a.625.625 0 010-1.25zm0 4h12a.625.625 0 110 1.25H2a.625.625 0 010-1.25zm0 4h12a.625.625 0 110 1.25H2a.625.625 0 010-1.25z"></path></svg>
+      </button>
+    </div>
+
+    <div class="sb-body">
+      <!-- Início -->
+      <div class="sb-item">
+        <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M15.5 14.69h-1.25V7.78a.62.62 0 0 0-.25-.47L8.4 2.7a.65.65 0 0 0-.81 0L2 7.31a.62.62 0 0 0-.22.47v6.91H.5V7.78a1.87 1.87 0 0 1 .68-1.44l5.62-4.6a1.88 1.88 0 0 1 2.39 0l5.63 4.6a1.87 1.87 0 0 1 .68 1.44z"></path><path d="M11.05 12.11H9.8A1.72 1.72 0 0 0 8 10.49a1.72 1.72 0 0 0-1.8 1.62H5a3 3 0 0 1 3-2.87 3 3 0 0 1 3.05 2.87m-6.1 0H6.2v2.58H4.95zm4.85 0h1.25v2.58H9.8z"></path></svg>
+        Início
+      </div>
+
+      <!-- Estatísticas -->
+      <div class="sb-item">
+        <svg aria-hidden="true" viewBox="0 0 16 16" width="16" height="16" fill="currentColor"><path d="M1.75 13.25V1.5H.5v12a1.24 1.24 0 0 0 1.22 1H15.5v-1.25z"></path><path d="M3.15 8H4.4v3.9H3.15zm3.26-4h1.26v7.9H6.41zm3.27 2h1.25v5.9H9.68zm3.27-3.5h1.25v9.4h-1.25z"></path></svg>
+        Estatísticas
+      </div>
+
+      <div class="sb-section">Gestão</div>
+
+      <!-- Vendas -->
+      <div class="sb-item">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M13.35 10.48H4.5l-.24-1.25h9.13a1.24 1.24 0 0 0 1.22-1l.84-4a1.25 1.25 0 0 0-1.22-1.51H3l-.22-1.24H.5v1.25h1.25l1.5 7.84a2 2 0 0 0-1.54 1.93 2.09 2.09 0 0 0 2.16 2 2.08 2.08 0 0 0 2.13-2 2 2 0 0 0-.16-.77h5.49a2 2 0 0 0-.16.77 2.09 2.09 0 0 0 2.16 2 2 2 0 1 0 0-4zM14.23 4l-.84 4H4l-.74-4zM3.87 13.27A.85.85 0 0 1 3 12.5a.85.85 0 0 1 .91-.77.84.84 0 0 1 .9.77.84.84 0 0 1-.94.77"></path></svg>
+        Vendas
+      </div>
+
+      <!-- Produtos -->
+      <div class="sb-item">
+        <svg aria-hidden="true" viewBox="0 0 16 16" width="16" height="16" fill="currentColor"><path d="M15 7.2 8.8 1a1.25 1.25 0 0 0-.88-.34h-6A1.25 1.25 0 0 0 .66 1.91v6A1.25 1.25 0 0 0 1 8.8L7.2 15a1.24 1.24 0 0 0 .88.36A1.28 1.28 0 0 0 9 15l6-6a1.27 1.27 0 0 0 0-1.8zm-6.9 6.89L1.91 7.92v-6h6l6.17 6.17z"></path><ellipse cx="4.95" cy="4.95" rx="1.41" ry="1.5"></ellipse></svg>
+        Produtos
+      </div>
+
+      <!-- Nuvem Pago -->
+      <div class="sb-item">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M12.32 8a3 3 0 0 0-2-.7H5.63A1.59 1.59 0 0 1 4 5.69a2 2 0 0 1 0-.25 1.59 1.59 0 0 1 1.63-1.33h4.62a1.59 1.59 0 0 1 1.57 1.33h1.5a3.08 3.08 0 0 0-3.07-2.83H8.67V.31H7.42v2.3H5.63a3.08 3.08 0 0 0-3.07 2.83 2 2 0 0 0 0 .25 3.07 3.07 0 0 0 3.07 3.07h4.74A1.59 1.59 0 0 1 12 10.35a2 2 0 0 1 0 .34 1.59 1.59 0 0 1-1.55 1.24h-4.7a1.59 1.59 0 0 1-1.55-1.24H2.69a3.08 3.08 0 0 0 3.06 2.73h1.67v2.2h1.25v-2.2h1.7a3.08 3.08 0 0 0 3.06-2.74 2 2 0 0 0 0-.33A3.07 3.07 0 0 0 12.32 8z"></path></svg>
+        Nuvem Pago
+      </div>
+
+      <!-- Nuvem Envio -->
+      <div class="sb-item">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M15.17 7.36 13 4.92a1.25 1.25 0 0 0-.94-.42h-2V2.75A1.25 1.25 0 0 0 8.82 1.5H1.76A1.25 1.25 0 0 0 .51 2.75v8.5a1.25 1.25 0 0 0 1.25 1.25h.33a2.07 2.07 0 0 0 2.13 2 2.08 2.08 0 0 0 2.14-2H10a2.07 2.07 0 0 0 2.13 2 2.08 2.08 0 0 0 2.14-2 1.26 1.26 0 0 0 1.2-1.25V8.19a1.22 1.22 0 0 0-.3-.83M4.22 13.25a.82.82 0 0 1-.88-.75.82.82 0 0 1 .88-.75.83.83 0 0 1 .89.75.83.83 0 0 1-.89.75m4.6-7.58v5.58H1.76v-8.5h7.06zm3.31 7.58a.82.82 0 0 1-.88-.75.82.82 0 0 1 .88-.75.83.83 0 0 1 .89.75.83.83 0 0 1-.89.75m2.34-2h-.18a2.07 2.07 0 0 0-2.16-1.75 2.08 2.08 0 0 0-2.07 1.5h-.24V5.75h2l2.17 2.44v3.06z"></path></svg>
+        Nuvem Envio
+      </div>
+
+      <!-- Chat -->
+      <div class="sb-item">
+        <svg aria-hidden="true" viewBox="0 0 16 16" width="16" height="16" fill="currentColor"><path d="M8 2.19c3.13 0 5.68 2.25 5.68 5s-2.55 5-5.68 5a5.65 5.65 0 0 1-1.89-.29l-.75-.26-.56.56a13.78 13.78 0 0 1-2 1.55.13.13 0 0 1-.07 0v-.06a6.58 6.58 0 0 0 .15-4.29 5.25 5.25 0 0 1-.55-2.16c0-2.77 2.55-5 5.68-5M8 .94c-3.83 0-6.93 2.81-6.93 6.27a6.42 6.42 0 0 0 .64 2.64 5.53 5.53 0 0 1-.18 3.48 1.32 1.32 0 0 0 .49 1.51 1.38 1.38 0 0 0 .8.25 1.5 1.5 0 0 0 .78-.23A14.86 14.86 0 0 0 6.1 13a6.84 6.84 0 0 0 1.9.27c3.83 0 6.93-2.81 6.93-6.27S11.83.94 8 .94z"></path><circle cx="5" cy="7.19" r="1"></circle><circle cx="8" cy="7.19" r="1"></circle><circle cx="11" cy="7.19" r="1"></circle></svg>
+        Chat
+        <span class="sb-badge">Novo</span>
+      </div>
+
+      <!-- Clientes -->
+      <div class="sb-item">
+        <svg aria-hidden="true" viewBox="0 0 16 16" width="16" height="16" fill="currentColor"><path d="M5.1 7.93A2.87 2.87 0 0 0 7.87 5 2.88 2.88 0 0 0 5.1 2a2.88 2.88 0 0 0-2.78 3A2.88 2.88 0 0 0 5.1 7.93zm0-4.67A1.62 1.62 0 0 1 6.62 5 1.63 1.63 0 0 1 5.1 6.68 1.63 1.63 0 0 1 3.58 5 1.62 1.62 0 0 1 5.1 3.26zm7.19 5.05a2.39 2.39 0 0 0 2.3-2.46 2.39 2.39 0 0 0-2.3-2.47A2.39 2.39 0 0 0 10 5.85a2.39 2.39 0 0 0 2.29 2.46zm0-3.68a1.14 1.14 0 0 1 1.06 1.22 1.14 1.14 0 0 1-1.06 1.21 1.14 1.14 0 0 1-1-1.21 1.14 1.14 0 0 1 1-1.22zm2.21 5.81a3.78 3.78 0 0 0-4.45 0 4.39 4.39 0 0 0-3.23-1.41 4.28 4.28 0 0 0-4.57 3.94.62.62 0 0 0 .59.67.63.63 0 0 0 .66-.6 3 3 0 0 1 3.32-2.76 3.16 3.16 0 0 1 3.32 2.76.63.63 0 0 0 .66.6.62.62 0 0 0 .59-.67 4.27 4.27 0 0 0-.55-1.81 2.61 2.61 0 0 1 3.25.3.62.62 0 0 0 .89 0 .63.63 0 0 0-.48-1.02z"></path></svg>
+        Clientes
+      </div>
+
+      <!-- Descontos -->
+      <div class="sb-item">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M8 .5c4.413 0 8 3.365 8 7.5s-3.587 7.5-8 7.5S0 12.135 0 8 3.587.5 8 .5m0 1.25C4.2 1.75 1.25 4.63 1.25 8S4.2 14.25 8 14.25s6.75-2.88 6.75-6.25S11.8 1.75 8 1.75m2.679 2.88-4.28 7.414-1.083-.625 4.28-7.413zm-.348 3.8c.952 0 1.625.83 1.625 1.725s-.673 1.725-1.625 1.725-1.625-.83-1.625-1.725.673-1.725 1.625-1.725m0 1.25c-.152 0-.375.156-.375.475 0 .32.223.475.375.475s.375-.155.375-.475-.223-.475-.375-.475m-4.662-5.43c.952 0 1.625.83 1.625 1.725S6.621 7.7 5.669 7.7s-1.625-.83-1.625-1.725.673-1.725 1.625-1.725m0 1.25c-.152 0-.375.156-.375.475 0 .32.223.475.375.475s.375-.155.375-.475-.223-.475-.375-.475"></path></svg>
+        Descontos
+      </div>
+
+      <!-- Marketing -->
+      <div class="sb-item">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M14.25 2.1a1.25 1.25 0 0 0-1.17-.1L6.91 4.43a1.2 1.2 0 0 1-.46.09H2.5a1.25 1.25 0 0 0-1.25 1.25v.1H0v3h1.25V9a1.25 1.25 0 0 0 1.25 1.22L4 13.4a1.26 1.26 0 0 0 1.13.72h.63A1.25 1.25 0 0 0 7 12.87v-2.53l6.08 2.43a1.3 1.3 0 0 0 .47.09 1.3 1.3 0 0 0 .7-.22 1.25 1.25 0 0 0 .55-1V3.13a1.25 1.25 0 0 0-.55-1.03m-8.5 3.67V9H2.5V5.77zm0 7.1h-.63l-1.23-2.65h1.86zm1.62-3.72A2.3 2.3 0 0 0 7 9V5.7a2.3 2.3 0 0 0 .37-.19l6.13-2.38v9.52l-6.13-2.4z"></path></svg>
+        Marketing
+      </div>
+
+      <div class="sb-section">Canais de venda</div>
+
+      <!-- Loja online -->
+      <div class="sb-item">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M15.5 4.825c0 .549-.155 1.06-.42 1.498v7.554c0 .344-.28.623-.624.623H1.546a.624.624 0 0 1-.625-.623v-7.55A2.9 2.9 0 0 1 .5 4.824V1.5h15zM10.292 6.62a2.91 2.91 0 0 1-4.583 0 2.91 2.91 0 0 1-3.537.833v5.8h3.204v-2.012A2.623 2.623 0 0 1 8 8.622a2.62 2.62 0 0 1 2.626 2.62v2.012h3.205V7.452a2.91 2.91 0 0 1-3.54-.832m-2.29 3.25c-.76 0-1.376.614-1.376 1.371v2.013h2.75V11.24c0-.757-.615-1.372-1.375-1.372M1.75 2.75v2.075c0 .913.746 1.654 1.664 1.654.919 0 1.664-.74 1.664-1.654V2.75zm4.578 0v2.075c0 .913.746 1.654 1.664 1.654.918 0 1.664-.74 1.664-1.654V2.75zm4.579 0v2.075c0 .913.745 1.654 1.663 1.654.918 0 1.664-.74 1.664-1.654V2.75z"></path></svg>
+        Loja online
+        <span class="sb-external"><svg viewBox="0 0 12 12" fill="none"><path d="M8.5 1h3v3M5.5 7l6-6M9.5 6.5V10a1 1 0 01-1 1h-6a1 1 0 01-1-1V4a1 1 0 011-1H6" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </div>
+
+      <!-- Ponto de Venda -->
+      <div class="sb-item">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M15 6.354h-3.7v1.721h2.324c1.036 0 1.876.85 1.876 1.9V14.5h-1.251V9.975a.63.63 0 0 0-.625-.633H2.377a.63.63 0 0 0-.626.633V14.5H.5V9.975c0-1.05.84-1.9 1.877-1.9H10V6.354H6.3V1.5H15zm-3.595 6.47h-6.81V11.56h6.81zM7.551 5.098h6.198V2.756H7.551z"></path></svg>
+        Ponto de Venda
+        <span class="sb-external"><svg viewBox="0 0 12 12" fill="none"><path d="M8.5 1h3v3M5.5 7l6-6M9.5 6.5V10a1 1 0 01-1 1h-6a1 1 0 01-1-1V4a1 1 0 011-1H6" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </div>
+
+      <!-- Instagram e Facebook -->
+      <div class="sb-item">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M8 4.918c1.005-1.426 2.29-2.14 3.63-2.054 1.582.102 2.911 1.298 3.63 3.029.704 1.692.896 3.417.617 4.757-.271 1.308-1.078 2.493-2.535 2.493-1.323 0-2.321-.86-3.183-2.02-.701-.945-1.396-2.206-2.159-3.66-.763 1.454-1.458 2.715-2.159 3.66-.862 1.16-1.86 2.02-3.183 2.02-1.457 0-2.264-1.185-2.535-2.493-.279-1.34-.087-3.065.616-4.757.72-1.731 2.05-2.927 3.63-3.029C5.71 2.778 6.995 3.492 8 4.918zm3.517-.812c-.928-.06-1.876.518-2.71 1.82-.458.715-.915 1.619-1.458 2.819l-.396.876-.397-.876c-.543-1.2-1-2.104-1.458-2.82-.834-1.3-1.782-1.879-2.71-1.819-1.103.071-2.1.988-2.69 2.406-.536 1.29-.72 2.714-.487 3.834.194.934.715 1.596 1.447 1.596.862 0 1.587-.6 2.33-1.6.668-.899 1.326-2.075 2.066-3.483l.9-1.71.898 1.71c.74 1.408 1.398 2.584 2.065 3.483.744 1 1.47 1.6 2.331 1.6.732 0 1.253-.662 1.447-1.596.233-1.12.049-2.544-.487-3.834-.59-1.418-1.587-2.335-2.69-2.406z"></path></svg>
+        Instagram e Facebook
+      </div>
+
+      <!-- Google Shopping -->
+      <div class="sb-item">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="m15.459 7.94-.047.673c-.102 1.477-.622 3.181-1.781 4.528-1.176 1.367-2.97 2.318-5.505 2.318C3.949 15.459.54 12.13.54 8S3.95.541 8.126.541c1.96 0 3.753.734 5.1 1.94l.468.42-.836.939-.468-.42A6.37 6.37 0 0 0 8.126 1.8c-3.509 0-6.33 2.79-6.33 6.2s2.821 6.2 6.33 6.2c2.188 0 3.629-.805 4.555-1.881.779-.906 1.22-2.037 1.4-3.12H8.494v-1.26z"></path></svg>
+        Google Shopping
+      </div>
+
+      <!-- TikTok -->
+      <div class="sb-item">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M8.613 1.115c0-.34.285-.615.637-.615s.637.275.637.615c0 1.202.495 2.355 1.376 3.205a4.8 4.8 0 0 0 3.322 1.329v1.23a6.1 6.1 0 0 1-4.223-1.69 6 6 0 0 1-.475-.516v6.753a3.97 3.97 0 0 1-.713 2.258 4.2 4.2 0 0 1-1.902 1.505 4.4 4.4 0 0 1-2.447.232 4.3 4.3 0 0 1-2.17-1.118 4.05 4.05 0 0 1-1.158-2.093 3.95 3.95 0 0 1 .24-2.36 4.1 4.1 0 0 1 1.56-1.835 4.35 4.35 0 0 1 2.354-.689v1.23a3.04 3.04 0 0 0-1.645.482c-.487.313-.867.76-1.091 1.282a2.76 2.76 0 0 0-.169 1.65c.115.555.397 1.064.811 1.464.415.4.943.675 1.518.793a3.1 3.1 0 0 0 1.712-.163 2.95 2.95 0 0 0 1.33-1.053c.336-.46.515-1.01.514-1.576V1.115z"></path></svg>
+        TikTok
+      </div>
+
+      <!-- Pinterest -->
+      <div class="sb-item disabled">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M6.446.717A5.7 5.7 0 0 1 9.171.622a5.84 5.84 0 0 1 2.482 1.193 6.3 6.3 0 0 1 1.728 2.232A6.7 6.7 0 0 1 14 6.857c0 1.628-.537 3.12-1.516 4.2-.913 1.007-2.155 1.589-3.408 1.589-1.149 0-1.941-.378-2.469-.796l-.697 3.147a.66.66 0 0 1-.217.362.6.6 0 0 1-.913-.166.68.68 0 0 1-.076-.49l2.153-9.706a.65.65 0 0 1 .275-.404.6.6 0 0 1 .468-.081c.16.04.299.147.384.293a.68.68 0 0 1 .076.487l-1.13 5.089c.22.31.827.964 2.146.964 1.802 0 3.69-1.665 3.69-4.487 0-.777-.17-1.543-.493-2.239a5 5 0 0 0-1.369-1.77A4.6 4.6 0 0 0 9.008 1.87a4.4 4.4 0 0 0-2.17.075c-.713.213-1.363.587-1.901 1.095a4.78 4.78 0 0 0-1.252 1.799A5.2 5.2 0 0 0 3.254 7c.02.728.2 1.44.527 2.083a.68.68 0 0 1-.003.582.63.63 0 0 1-.424.34.6.6 0 0 1-.526-.093A6.35 6.35 0 0 1 1.37 7.805 6.7 6.7 0 0 1 2.112 3.67 6.2 6.2 0 0 1 4.227 1.56 5.7 5.7 0 0 1 6.446.717z"></path></svg>
+        Pinterest
+      </div>
+
+      <!-- Marketplaces -->
+      <div class="sb-item">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M14.224 1.5c1.036 0 1.876.84 1.876 1.877V14.5h-1.251V3.377a.626.626 0 0 0-.625-.626H2.977a.626.626 0 0 0-.626.626V14.5H1.1V3.377C1.1 2.34 1.94 1.5 2.977 1.5zM8.6 7.474c1.72 0 3.065 1.455 3.065 3.185V14.5h-1.25v-3.84c0-1.098-.84-1.935-1.815-1.935-.974 0-1.814.837-1.814 1.934V14.5h-1.25v-3.84c0-1.731 1.344-3.186 3.064-3.186m5.498-1.814H3.089V4.358h11.009z"></path></svg>
+        Marketplaces
+      </div>
+
+      <div class="sb-section">Potencializar</div>
+
+      <!-- Aplicativos -->
+      <div class="sb-item">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M11.938 3.939v2.817h1.201V3.939h2.653v-1.22H13.14V0h-1.201v2.72H9.14v1.219z"></path><path fill-rule="evenodd" d="M7.973 3.096 6.787 2.39.804 5.92a1.206 1.206 0 0 0 0 2.08l1.52.898-1.52.907a1.225 1.225 0 0 0 0 2.102l6.574 3.92c.383.23.86.23 1.244 0l6.574-3.92a1.225 1.225 0 0 0 0-2.102l-1.52-.907 2.07-1.217-1.189-.71h-.001L8 10.842 1.425 6.96l6.548-3.865Zm-4.45 6.51-2.098 1.251L8 14.777l6.575-3.92-2.098-1.25-3.855 2.275c-.383.226-.86.226-1.244 0z"></path></svg>
+        Aplicativos
+      </div>
+
+      <!-- Checklist de Lançamento (feature page) -->
+      <div class="sb-item active">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M12 1H4a1.5 1.5 0 0 0-1.5 1.5v11A1.5 1.5 0 0 0 4 15h8a1.5 1.5 0 0 0 1.5-1.5v-11A1.5 1.5 0 0 0 12 1zm.25 12.5a.25.25 0 0 1-.25.25H4a.25.25 0 0 1-.25-.25v-11A.25.25 0 0 1 4 2.25h8a.25.25 0 0 1 .25.25z"></path><path d="M5 5.5h1.25v1.25H5zm2.5 0h3.25v1.25H7.5zM5 8.5h1.25v1.25H5zm2.5 0h3.25v1.25H7.5zM5 11.5h1.25v1.25H5zm2.5 0h3.25v1.25H7.5z"></path></svg>
+        Checklist de Lançamento
+      </div>
+    </div>
+
+    <div class="sb-bottom">
+      <div class="sb-item">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M13.42 6.78a1.25 1.25 0 0 0-1-1.22l-1.18-.22a5.21 5.21 0 0 0-.38-.91l.69-1a1.24 1.24 0 0 0-.12-1.57A6.79 6.79 0 0 0 9.67.68a1.25 1.25 0 0 0-1.57.14l-.82.78a5 5 0 0 0-1 0l-.82-.78A1.25 1.25 0 0 0 3.91.68a6.79 6.79 0 0 0-1.76 1.18 1.24 1.24 0 0 0-.12 1.57l.69 1a5.21 5.21 0 0 0-.38.91l-1.18.22a1.25 1.25 0 0 0-1 1.22v2.44a1.25 1.25 0 0 0 1 1.22l1.18.22a5.21 5.21 0 0 0 .38.91l-.69 1a1.24 1.24 0 0 0 .12 1.57 6.79 6.79 0 0 0 1.76 1.18 1.25 1.25 0 0 0 1.57-.14l.82-.78a5 5 0 0 0 1 0l.82.78a1.25 1.25 0 0 0 1.57-.14 6.79 6.79 0 0 0 1.76-1.18 1.24 1.24 0 0 0 .12-1.57l-.69-1a5.21 5.21 0 0 0 .38-.91l1.18-.22a1.25 1.25 0 0 0 1-1.22zM8 10.5A2.5 2.5 0 1 1 10.5 8 2.5 2.5 0 0 1 8 10.5zm0-3.75A1.25 1.25 0 1 0 9.25 8 1.25 1.25 0 0 0 8 6.75z"></path></svg>
+        Configurações
+        <span class="sb-chevron"><svg viewBox="0 0 12 12" fill="none"><path d="M4.5 2.5l3.5 3.5-3.5 3.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======== MAIN: LAUNCH CHECKLIST ======== -->
+  <div class="admin-main">
+
+    <!-- TELA 1: Índice de Checklists -->
+    <div id="screenIndex">
+      <div class="lc-header">
+        <h1 style="margin:0;font-size:26px;font-weight:800;">Checklist de Lançamento</h1>
+      </div>
+      <div class="lc-search">
+        <svg class="lc-search-icon" aria-hidden="true" width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="7" cy="7" r="5.25" stroke="currentColor" stroke-width="1.5"/><path d="M11 11l3.5 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        <input type="text" class="lc-search-input" id="checklistSearch" aria-label="Buscar verificações" autocomplete="off" placeholder="Buscar por seção, verificação ou status\u2026" oninput="filterChecklists()">
+      </div>
+      <div class="lc-card">
+        <div class="lc-legend" role="group" aria-label="Filtrar por status">
+          <button type="button" class="lc-legend-item filter-ready" data-filter="ready" onclick="toggleLegendFilter('ready')"><span class="lc-legend-dot ready" aria-hidden="true"></span>Pronto</button>
+          <button type="button" class="lc-legend-item filter-in-review" data-filter="in_review" onclick="toggleLegendFilter('in_review')"><span class="lc-legend-dot in-review" aria-hidden="true"></span>Em revisão</button>
+          <button type="button" class="lc-legend-item filter-pending" data-filter="pending" onclick="toggleLegendFilter('pending')"><span class="lc-legend-dot pending" aria-hidden="true"></span>Pendente</button>
+        </div>
+        <div id="checklistSections"></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<script>
+function escapeHtml(str) {
+  const el = document.createElement('span');
+  el.textContent = str;
+  return el.innerHTML;
+}
+
+function getSectionStats(sec) {
+  let pending = 0, ready = 0, inReview = 0;
+  sec.subcategories.forEach(sc => sc.checks.forEach(ch => {
+    if (ch.status === 'pending') pending++;
+    else if (ch.status === 'ready') ready++;
+    else if (ch.status === 'in_review') inReview++;
+  }));
+  const total = pending + ready + inReview;
+  const status = (pending > 0 || inReview > 0) ? 'in-progress' : 'complete';
+  return { pending, ready, inReview, total, status };
+}
+
+const SECTIONS_DATA = [
+  { id: 'store', name: 'Dados da loja', total: 9, subcategories: [
+    { name: 'Clientes', checks: [
+      { id: 'suspicious', name: 'Clientes suspeitos', desc: 'Detectar contas de clientes duplicadas ou falsas.', status: 'pending' },
+      { id: 'customer_details', name: 'Dados dos clientes', desc: 'Campos obrigatórios dos clientes estão preenchidos.', status: 'pending' }
+    ]},
+    { name: 'Pedidos', checks: [
+      { id: 'order_customer', name: 'Vínculo pedido-cliente', desc: 'Pedidos estão corretamente vinculados aos registros de clientes.', status: 'pending' },
+      { id: 'order_status', name: 'Status do pedido', desc: 'Fluxo de status dos pedidos está configurado.', status: 'pending' },
+      { id: 'test_orders', name: 'Pedidos de teste', desc: 'Pedidos de teste devem ser removidos ou marcados antes do lançamento.', status: 'pending' }
+    ]},
+    { name: 'Produtos', checks: [
+      { id: 'product_active', name: 'Status de produto ativo', desc: 'Produtos estão publicados e visíveis.', status: 'pending' },
+      { id: 'product_details', name: 'Detalhes do produto', desc: 'Campos obrigatórios dos produtos estão preenchidos.', status: 'pending' },
+      { id: 'product_inventory', name: 'Estoque do produto', desc: 'Controle de estoque está configurado.', status: 'pending' },
+      { id: 'product_pricing', name: 'Preços do produto', desc: 'Todos os produtos possuem preços válidos.', status: 'pending' }
+    ]}
+  ]},
+  { id: 'admin', name: 'Configurações do admin', total: 18, subcategories: [
+    { name: 'Aplicativos', checks: [{ id: 'installed_apps', name: 'Aplicativos instalados', desc: 'Aplicativos de terceiros estão configurados corretamente.', status: 'pending' }]},
+    { name: 'Checkout', checks: [
+      { id: 'checkout_styling', name: 'Estilo do checkout', desc: 'Checkout combina com a identidade visual da loja.', status: 'pending' },
+      { id: 'checkout_settings', name: 'Configurações do checkout', desc: 'Fluxo de checkout está configurado.', status: 'pending' }
+    ]},
+    { name: 'Clientes', checks: [{ id: 'customer_accounts', name: 'Configurações de conta do cliente', desc: 'Cadastro de clientes está configurado.', status: 'pending' }]},
+    { name: 'Domínios', checks: [{ id: 'custom_domain', name: 'Domínio personalizado', desc: 'Domínio personalizado está conectado.', status: 'pending' }]},
+    { name: 'E-mail', checks: [
+      { id: 'email_notification', name: 'Personalização de e-mails', desc: 'E-mails transacionais estão com a identidade da marca.', status: 'pending' },
+      { id: 'sender_email', name: 'E-mail do remetente', desc: 'E-mail de envio válido está configurado.', status: 'pending' },
+      { id: 'store_email', name: 'E-mail da loja', desc: 'E-mail de contato da loja está definido.', status: 'pending' }
+    ]},
+    { name: 'Idiomas', checks: [{ id: 'published_languages', name: 'Idiomas publicados', desc: 'Idiomas da loja estão publicados.', status: 'pending' }]},
+    { name: 'Localizações', checks: [{ id: 'active_locations', name: 'Localizações ativas', desc: 'Pelo menos uma localização está ativa.', status: 'pending' }]},
+    { name: 'Organização', checks: [{ id: 'org_owner', name: 'Proprietário da organização', desc: 'Organização possui um proprietário válido.', status: 'pending' }]},
+    { name: 'Pagamentos', checks: [
+      { id: 'primary_gateway', name: 'Gateway de pagamento principal', desc: 'Método de pagamento principal está configurado.', status: 'pending' },
+      { id: 'additional_payments', name: 'Métodos de pagamento adicionais', desc: 'Métodos de pagamento opcionais estão configurados.', status: 'pending' },
+      { id: 'bank_account', name: 'Conta bancária e repasse', desc: 'Destino de repasse está configurado.', status: 'pending' }
+    ]},
+    { name: 'Políticas', checks: [{ id: 'store_policies', name: 'Políticas da loja', desc: 'Políticas de privacidade, termos e devolução estão publicadas.', status: 'pending' }]},
+    { name: 'Envios', checks: [{ id: 'shipping_profiles', name: 'Perfis de envio', desc: 'Métodos de envio estão configurados.', status: 'pending' }]},
+    { name: 'Equipe', checks: [{ id: 'staff_accounts', name: 'Contas da equipe', desc: 'Acesso da equipe está configurado corretamente.', status: 'pending' }]},
+    { name: 'Propriedade', checks: [{ id: 'store_ownership', name: 'Propriedade da loja', desc: 'Propriedade da loja está verificada.', status: 'pending' }]}
+  ]},
+  { id: 'frontend', name: 'Front-end', total: 12, subcategories: [
+    { name: 'Experiência', checks: [
+      { id: '404_page', name: 'Página 404', desc: 'Página 404 personalizada está configurada.', status: 'pending' },
+      { id: 'favicon', name: 'Favicon', desc: 'Favicon está definido para as abas do navegador.', status: 'pending' },
+      { id: 'footer_links', name: 'Links do rodapé', desc: 'Navegação do rodapé está configurada.', status: 'pending' },
+      { id: 'header_links', name: 'Links do cabeçalho', desc: 'Navegação do cabeçalho está configurada.', status: 'pending' },
+      { id: 'password_page', name: 'Página de senha', desc: 'Página de senha da loja está configurada.', status: 'pending' },
+      { id: 'placeholders', name: 'Conteúdos padrão', desc: 'Conteúdos de exemplo foram substituídos.', status: 'pending' }
+    ]},
+    { name: 'Redirecionamentos', checks: [{ id: 'redirects_301', name: 'Redirecionamentos 301', desc: 'Regras de redirecionamento estão configuradas, se necessário.', status: 'pending' }]},
+    { name: 'SEO', checks: [
+      { id: 'social_image', name: 'Imagem de compartilhamento social', desc: 'Imagem OG para compartilhamento social está definida.', status: 'pending' },
+      { id: 'meta_title', name: 'Meta título e descrição', desc: 'Meta tags de SEO estão configuradas.', status: 'pending' }
+    ]},
+    { name: 'Rastreamento', checks: [
+      { id: 'ga', name: 'Google Analytics', desc: 'Rastreamento de analytics está configurado.', status: 'pending' },
+      { id: 'gtm', name: 'Google Tag Manager', desc: 'Container do GTM está instalado.', status: 'pending' },
+      { id: 'meta_pixel', name: 'Meta Pixel', desc: 'Meta Pixel está instalado para anúncios.', status: 'pending' }
+    ]}
+  ]},
+  { id: 'b2b', name: 'B2B', total: 5, subcategories: [
+    { name: 'Experiência de checkout', checks: [
+      { id: 'order_submission', name: 'Envio de pedidos', desc: 'Fluxo de pedidos B2B está configurado.', status: 'pending' },
+      { id: 'one_time_shipping', name: 'Endereços de envio avulsos', desc: 'Tratamento de endereços para B2B está definido.', status: 'pending' }
+    ]},
+    { name: 'Contas de clientes', checks: [{ id: 'b2b_forms', name: 'Formulários de cadastro B2B', desc: 'Fluxo de cadastro B2B está configurado.', status: 'pending' }]},
+    { name: 'Preços', checks: [
+      { id: 'catalog_assignment', name: 'Atribuição de catálogo', desc: 'Catálogos B2B estão atribuídos.', status: 'pending' },
+      { id: 'payment_terms', name: 'Condições de pagamento', desc: 'Condições de pagamento estão configuradas.', status: 'pending' }
+    ]}
+  ]},
+  { id: 'pos', name: 'Ponto de venda (PDV)', total: 15, subcategories: [
+    { name: 'Configuração', checks: [
+      { id: 'pos_customer_display', name: 'Display do cliente no terminal', desc: 'Display voltado ao cliente está configurado para o PDV.', status: 'pending' },
+      { id: 'pos_language', name: 'Idioma do local e dispositivo', desc: 'Idiomas estão configurados corretamente para cada região do PDV.', status: 'pending' },
+      { id: 'pos_receipt', name: 'Personalização de recibos', desc: 'Recibos estão personalizados com a identidade da marca (POS Pro).', status: 'pending' },
+      { id: 'pos_return_rules', name: 'Regras de devolução', desc: 'Regras de devolução estão configuradas para atendimento consistente (POS Pro).', status: 'pending' },
+      { id: 'pos_smart_grid', name: 'Personalização do Smart Grid', desc: 'Layout do Smart Grid está customizado e atribuído aos locais corretos.', status: 'pending' }
+    ]},
+    { name: 'Fulfillment', checks: [
+      { id: 'pos_pickup', name: 'Retirada na loja', desc: 'Retirada na loja está habilitada e configurada (POS Pro).', status: 'pending' },
+      { id: 'pos_ship_to_customer', name: 'Envio para o cliente', desc: 'Envio a partir da loja física está configurado (POS Pro).', status: 'pending' }
+    ]},
+    { name: 'Pagamentos', checks: [
+      { id: 'pos_cash_tracking', name: 'Controle de caixa', desc: 'Sessões de teste de caixa foram encerradas e o controle está configurado (POS Pro).', status: 'pending' },
+      { id: 'pos_custom_payments', name: 'Pagamentos personalizados', desc: 'Métodos de pagamento personalizados estão configurados para o PDV.', status: 'pending' },
+      { id: 'pos_gift_card', name: 'Pagamento com vale-presente', desc: 'Pagamento com vale-presente está configurado para o PDV.', status: 'pending' },
+      { id: 'pos_offline_payments', name: 'Pagamentos offline', desc: 'Pagamentos offline estão habilitados para operação sem internet.', status: 'pending' }
+    ]},
+    { name: 'Produtos', checks: [
+      { id: 'pos_barcodes', name: 'Códigos de barras dos produtos', desc: 'Produtos disponíveis no PDV possuem códigos de barras cadastrados.', status: 'pending' },
+      { id: 'pos_sales_channel', name: 'Canal de vendas PDV', desc: 'Produtos estão disponíveis no canal de vendas do PDV.', status: 'pending' }
+    ]},
+    { name: 'Equipe', checks: [
+      { id: 'pos_staff_location', name: 'Equipe atribuída ao local', desc: 'Membros da equipe estão atribuídos aos locais corretos (POS Pro).', status: 'pending' },
+      { id: 'pos_staff_role', name: 'Funções da equipe', desc: 'Membros da equipe possuem funções adequadas para operação do PDV (POS Pro).', status: 'pending' }
+    ]}
+  ]}
+];
+
+function getStatusLabel(s) {
+  const m = { pending: 'Pendente', ready: 'Pronto', in_review: 'Em revisão' };
+  return m[s] || s;
+}
+function getStatusClass(s) {
+  const m = { pending: 'pending', ready: 'ready', in_review: 'in-review' };
+  return m[s] || 'pending';
+}
+function getStatusIcon(s) {
+  const icons = { pending: '○', ready: '✓', in_review: '◐' };
+  return icons[s] || '○';
+}
+
+let openIndexSections = {};
+let activeStatusFilters = new Set();
+
+function toggleLegendFilter(status) {
+  if (activeStatusFilters.has(status)) {
+    activeStatusFilters.delete(status);
+  } else {
+    activeStatusFilters.add(status);
+  }
+  document.querySelectorAll('.lc-legend-item[data-filter]').forEach(el => {
+    el.classList.toggle('active', activeStatusFilters.has(el.dataset.filter));
+  });
+  applyFilters();
+}
+
+function applyFilters() {
+  const q = (document.getElementById('checklistSearch').value || '').toLowerCase().trim();
+  renderChecklistTable(q);
+}
+
+function checkMatchesQuery(ch, q) {
+  return ch.name.toLowerCase().includes(q)
+    || ch.desc.toLowerCase().includes(q)
+    || getStatusLabel(ch.status).toLowerCase().includes(q);
+}
+
+function renderChecklistTable(filter) {
+  const container = document.getElementById('checklistSections');
+  const q = (filter || '').toLowerCase().trim();
+  const hasStatusFilter = activeStatusFilters.size > 0;
+
+  let filtered = SECTIONS_DATA.map(sec => {
+    const sectionNameMatch = q && sec.name.toLowerCase().includes(q);
+    const matchedSubs = sec.subcategories.map(sc => {
+      const subNameMatch = q && sc.name.toLowerCase().includes(q);
+      const matchedChecks = sc.checks.filter(ch => {
+        const passStatus = !hasStatusFilter || activeStatusFilters.has(ch.status);
+        const passQuery = !q || sectionNameMatch || subNameMatch || checkMatchesQuery(ch, q);
+        return passStatus && passQuery;
+      });
+      return matchedChecks.length ? { ...sc, checks: matchedChecks } : null;
+    }).filter(Boolean);
+    return matchedSubs.length ? { ...sec, subcategories: matchedSubs } : null;
+  }).filter(Boolean);
+
+  if (!filtered.length) {
+    container.innerHTML = '<div style="text-align:center;padding:32px 16px;color:#9CA3AF;">Nenhum checklist encontrado</div>';
+    return;
+  }
+
+  container.innerHTML = '';
+  filtered.forEach(sec => {
+    const stats = getSectionStats(sec);
+    const isOpen = (q || hasStatusFilter) ? true : (openIndexSections[sec.id] === true);
+    const div = document.createElement('div');
+    div.className = 'lc-section' + (isOpen ? ' open' : '');
+    div.innerHTML = `
+      <div class="lc-section-header" role="button" tabindex="0" aria-expanded="${isOpen}" onclick="toggleIndexSection('${sec.id}')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleIndexSection('${sec.id}');}">
+        <span class="lc-section-title">${escapeHtml(sec.name)} <span style="font-weight:400;color:#9CA3AF;">(${stats.total})</span></span>
+        <div class="lc-section-counts">
+          ${stats.pending ? `<span class="lc-count-badge pending">○ ${stats.pending}</span>` : ''}
+          ${stats.inReview ? `<span class="lc-count-badge in-review">◐ ${stats.inReview}</span>` : ''}
+          ${stats.ready ? `<span class="lc-count-badge ready">✓ ${stats.ready}</span>` : ''}
+        </div>
+        <svg class="lc-section-chevron" aria-hidden="true" viewBox="0 0 16 16"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <div class="lc-section-body">
+        ${sec.subcategories.map(sc => `
+          <div class="lc-subcategory">
+            <div class="lc-subcategory-title">${escapeHtml(sc.name)}</div>
+            ${sc.checks.map(ch => `
+              <div class="lc-check-row">
+                <div class="lc-check-info">
+                  <div class="lc-check-name" title="Clique para ver como fazer" onclick="event.stopPropagation();openHelpPanel('${escapeHtml(ch.id)}')" data-check-id="${escapeHtml(ch.id)}">${escapeHtml(ch.name)}<span class="lc-help-icon" aria-hidden="true">?</span></div>
+                  <div class="lc-check-desc">${escapeHtml(ch.desc)}</div>
+                </div>
+                <div class="lc-check-actions">
+                  ${ch.custom ? `<button class="lc-delete-btn" title="Excluir item" onclick="event.stopPropagation();deleteCustomCheck('${escapeHtml(ch.id)}')"><svg aria-hidden="true" viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 4h12M5.33 4V2.67a1.33 1.33 0 011.34-1.34h2.66a1.33 1.33 0 011.34 1.34V4m2 0v9.33a1.33 1.33 0 01-1.34 1.34H4.67a1.33 1.33 0 01-1.34-1.34V4h9.34z"/></svg></button>` : ''}
+                  <div class="lc-status-wrap">
+                    <span class="lc-status-badge ${getStatusClass(ch.status)}" onclick="event.stopPropagation();toggleStatusDropdown('${escapeHtml(ch.id)}')" style="cursor:pointer;" role="button" tabindex="0" aria-label="Status: ${getStatusLabel(ch.status)}">${getStatusLabel(ch.status)}</span>
+                    <div class="lc-status-dropdown" id="dropdown-${escapeHtml(ch.id)}" role="listbox">
+                      ${['pending','in_review','ready'].map(s => `<div class="lc-status-option ${ch.status === s ? 'selected' : ''}" role="option" onclick="event.stopPropagation();setCheckStatus('${escapeHtml(ch.id)}','${s}')"><span class="lc-legend-dot ${getStatusClass(s)}" aria-hidden="true"></span>${getStatusLabel(s)}</div>`).join('')}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            `).join('')}
+          </div>
+        `).join('')}
+        <button class="lc-add-item-btn" onclick="event.stopPropagation();showAddForm('${sec.id}')" aria-label="Adicionar item personalizado à seção ${escapeHtml(sec.name)}">
+          <svg aria-hidden="true" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><line x1="8" y1="3" x2="8" y2="13"/><line x1="3" y1="8" x2="13" y2="8"/></svg>
+          Adicionar item personalizado
+        </button>
+        <div class="lc-add-form" id="addForm-${sec.id}" style="display:none;">
+          <div class="lc-add-form-row">
+            <label class="lc-add-form-label" for="addSub-${sec.id}">Subcategoria</label>
+            <select class="lc-add-form-select" id="addSub-${sec.id}">
+              ${sec.subcategories.map(sc => `<option value="${escapeHtml(sc.name)}">${escapeHtml(sc.name)}</option>`).join('')}
+              <option value="__new__">+ Nova subcategoria\u2026</option>
+            </select>
+          </div>
+          <div class="lc-add-form-row" id="newSubRow-${sec.id}" style="display:none;">
+            <label class="lc-add-form-label" for="newSubName-${sec.id}">Nome da nova subcategoria</label>
+            <input class="lc-add-form-input" id="newSubName-${sec.id}" placeholder="Ex: Integrações" />
+          </div>
+          <div class="lc-add-form-row">
+            <label class="lc-add-form-label" for="addName-${sec.id}">Nome do item</label>
+            <input class="lc-add-form-input" id="addName-${sec.id}" placeholder="Ex: Verificar integração com ERP" />
+          </div>
+          <div class="lc-add-form-row">
+            <label class="lc-add-form-label" for="addDesc-${sec.id}">Descrição</label>
+            <input class="lc-add-form-input" id="addDesc-${sec.id}" placeholder="Breve descrição do que verificar" />
+          </div>
+          <div class="lc-add-form-actions">
+            <button class="lc-add-btn-cancel" onclick="event.stopPropagation();hideAddForm('${sec.id}')">Cancelar</button>
+            <button class="lc-add-btn-save" onclick="event.stopPropagation();saveCustomCheck('${sec.id}')">Adicionar</button>
+          </div>
+        </div>
+      </div>
+    `;
+    container.appendChild(div);
+  });
+}
+
+function toggleIndexSection(id) {
+  openIndexSections[id] = !openIndexSections[id];
+  renderChecklistTable();
+}
+
+function filterChecklists() {
+  applyFilters();
+}
+
+let openDropdownId = null;
+
+function toggleStatusDropdown(checkId) {
+  const dd = document.getElementById('dropdown-' + checkId);
+  if (!dd) return;
+  const isOpen = dd.classList.contains('show');
+  closeAllDropdowns();
+  if (!isOpen) {
+    dd.classList.add('show');
+    openDropdownId = checkId;
+  }
+}
+
+function closeAllDropdowns() {
+  document.querySelectorAll('.lc-status-dropdown.show').forEach(el => el.classList.remove('show'));
+  openDropdownId = null;
+}
+
+function setCheckStatus(checkId, newStatus) {
+  SECTIONS_DATA.forEach(sec => sec.subcategories.forEach(sc => sc.checks.forEach(ch => {
+    if (ch.id === checkId) ch.status = newStatus;
+  })));
+  closeAllDropdowns();
+  applyFilters();
+}
+
+let customIdCounter = 0;
+
+function showAddForm(secId) {
+  const form = document.getElementById('addForm-' + secId);
+  if (!form) return;
+  form.style.display = 'block';
+  const nameInput = document.getElementById('addName-' + secId);
+  if (nameInput) nameInput.focus();
+  const select = document.getElementById('addSub-' + secId);
+  if (select) {
+    select.value = select.options[0].value;
+    document.getElementById('newSubRow-' + secId).style.display = 'none';
+    select.onchange = function() {
+      document.getElementById('newSubRow-' + secId).style.display = this.value === '__new__' ? 'block' : 'none';
+    };
+  }
+}
+
+function hideAddForm(secId) {
+  const form = document.getElementById('addForm-' + secId);
+  if (!form) return;
+  form.style.display = 'none';
+  const nameInput = document.getElementById('addName-' + secId);
+  const descInput = document.getElementById('addDesc-' + secId);
+  const newSubInput = document.getElementById('newSubName-' + secId);
+  if (nameInput) nameInput.value = '';
+  if (descInput) descInput.value = '';
+  if (newSubInput) newSubInput.value = '';
+}
+
+function saveCustomCheck(secId) {
+  const name = (document.getElementById('addName-' + secId).value || '').trim();
+  const desc = (document.getElementById('addDesc-' + secId).value || '').trim();
+  const subSelect = document.getElementById('addSub-' + secId);
+  const subValue = subSelect.value;
+  if (!name) { document.getElementById('addName-' + secId).focus(); return; }
+
+  let subName = subValue;
+  if (subValue === '__new__') {
+    subName = (document.getElementById('newSubName-' + secId).value || '').trim();
+    if (!subName) { document.getElementById('newSubName-' + secId).focus(); return; }
+  }
+
+  const sec = SECTIONS_DATA.find(s => s.id === secId);
+  if (!sec) return;
+
+  customIdCounter++;
+  const checkId = 'custom_' + Date.now() + '_' + customIdCounter;
+  const newCheck = { id: checkId, name, desc: desc || name, status: 'pending', custom: true };
+
+  let sub = sec.subcategories.find(sc => sc.name === subName);
+  if (!sub) {
+    sub = { name: subName, checks: [] };
+    sec.subcategories.push(sub);
+  }
+  sub.checks.push(newCheck);
+
+  CHECK_HELP[checkId] = {
+    summary: desc || name,
+    steps: ['Revise esta configuração manualmente', 'Confirme que está pronta para o lançamento'],
+    link: 'https://atendimento.nuvemshop.com.br/',
+    linkLabel: 'Central de Ajuda'
+  };
+
+  hideAddForm(secId);
+  openIndexSections[secId] = true;
+  applyFilters();
+}
+
+function deleteCustomCheck(checkId) {
+  for (const sec of SECTIONS_DATA) {
+    for (const sc of sec.subcategories) {
+      const idx = sc.checks.findIndex(ch => ch.id === checkId && ch.custom);
+      if (idx !== -1) {
+        sc.checks.splice(idx, 1);
+        if (sc.checks.length === 0) {
+          const subIdx = sec.subcategories.indexOf(sc);
+          sec.subcategories.splice(subIdx, 1);
+        }
+        delete CHECK_HELP[checkId];
+        applyFilters();
+        return;
+      }
+    }
+  }
+}
+
+document.addEventListener('click', (e) => {
+  closeAllDropdowns();
+  if (!e.target.closest('.lc-panel') && !e.target.closest('.lc-check-name')) closeHelpPanel();
+});
+
+const CHECK_HELP = {
+  suspicious: {
+    summary: 'Verifique se há contas de clientes duplicadas ou com dados suspeitos na sua base. Isso ajuda a prevenir fraudes e manter a integridade dos pedidos.',
+    steps: ['Acesse Clientes no painel admin', 'Ordene por data de criação e revise cadastros recentes', 'Identifique e-mails duplicados ou endereços inconsistentes', 'Bloqueie ou exclua contas suspeitas'],
+    link: 'https://atendimento.nuvemshop.com.br/pt_BR/clientes',
+    linkLabel: 'Gerenciar clientes'
+  },
+  customer_details: {
+    summary: 'Garanta que todos os campos obrigatórios dos clientes estejam preenchidos, como nome, e-mail e endereço de entrega.',
+    steps: ['Acesse Clientes no painel admin', 'Revise os cadastros e identifique dados faltantes', 'Exporte a lista de clientes para verificação em massa'],
+    link: 'https://atendimento.nuvemshop.com.br/pt_BR/clientes',
+    linkLabel: 'Gerenciar clientes'
+  },
+  order_customer: {
+    summary: 'Confirme que todos os pedidos estão vinculados a um cliente válido. Pedidos órfãos podem causar problemas no fulfillment e relatórios.',
+    steps: ['Acesse Vendas > Pedidos no painel admin', 'Filtre por pedidos sem cliente associado', 'Vincule manualmente os pedidos ao cliente correto'],
+    link: 'https://atendimento.nuvemshop.com.br/pt_BR/vendas',
+    linkLabel: 'Gerenciar vendas'
+  },
+  order_status: {
+    summary: 'Configure o fluxo de status dos pedidos para acompanhar cada etapa: pagamento, envio e entrega.',
+    steps: ['Acesse Vendas > Pedidos', 'Revise os status disponíveis (pendente, pago, enviado, entregue)', 'Teste o fluxo criando um pedido de teste', 'Confirme que as notificações por e-mail estão ativas para cada mudança de status'],
+    link: 'https://atendimento.nuvemshop.com.br/pt_BR/vendas',
+    linkLabel: 'Gerenciar vendas'
+  },
+  test_orders: {
+    summary: 'Remova ou arquive pedidos de teste antes do lançamento para não distorcer seus relatórios e métricas.',
+    steps: ['Acesse Vendas > Pedidos', 'Filtre pedidos criados durante testes', 'Arquive ou cancele cada pedido de teste', 'Use o modo de teste do gateway de pagamento para testes futuros'],
+    link: 'https://atendimento.nuvemshop.com.br/pt_BR/vendas',
+    linkLabel: 'Gerenciar vendas'
+  },
+  product_active: {
+    summary: 'Verifique se todos os produtos que deseja vender estão publicados e visíveis na loja.',
+    steps: ['Acesse Produtos no painel admin', 'Filtre por status "Oculto" ou "Inativo"', 'Publique os produtos que devem estar disponíveis'],
+    link: 'https://atendimento.nuvemshop.com.br/organizar-produtos/como-ocultar-meus-produtos',
+    linkLabel: 'Como ocultar/mostrar produtos'
+  },
+  product_details: {
+    summary: 'Complete todos os campos obrigatórios: nome, descrição, preço, peso e variantes de cada produto.',
+    steps: ['Acesse Produtos e revise cada item', 'Preencha descrição, peso e dimensões', 'Configure as variantes (tamanho, cor etc.)', 'Adicione o SKU e código de barras se aplicável'],
+    link: 'https://atendimento.nuvemshop.com.br/adicionar-um-novo-produto/como-cadastrar-um-produto',
+    linkLabel: 'Como cadastrar um produto'
+  },
+  product_inventory: {
+    summary: 'Configure o controle de estoque para evitar vendas de produtos indisponíveis.',
+    steps: ['Acesse Produtos > Inventário', 'Defina o tipo de estoque: limitado ou infinito', 'Insira as quantidades iniciais', 'Configure alertas de estoque baixo'],
+    link: 'https://atendimento.nuvemshop.com.br/gestao-Inventario/como-administrar-o-estoque-dos-meus-produtos',
+    linkLabel: 'Gerenciar inventário'
+  },
+  product_pricing: {
+    summary: 'Revise os preços de todos os produtos. Garanta que estão corretos, com moeda consistente e preços promocionais configurados.',
+    steps: ['Acesse Produtos e revise os preços individualmente', 'Use a edição em massa para ajustar vários preços de uma vez', 'Configure preços promocionais se aplicável', 'Verifique a moeda da loja em Configurações'],
+    link: 'https://atendimento.nuvemshop.com.br/adicionar-um-novo-produto/como-precificar-corretamente-meus-produtos',
+    linkLabel: 'Como precificar produtos'
+  },
+  installed_apps: {
+    summary: 'Revise os aplicativos instalados na sua loja. Garanta que estão configurados corretamente e sem conflitos.',
+    steps: ['Acesse Aplicativos no painel admin', 'Revise a lista de apps instalados', 'Desinstale apps que não está usando', 'Verifique se os apps essenciais estão funcionando (pagamento, envio, marketing)'],
+    link: 'https://atendimento.nuvemshop.com.br/pt_BR/aplicativos',
+    linkLabel: 'Sobre aplicativos'
+  },
+  checkout_styling: {
+    summary: 'Personalize a aparência do checkout para que combine com a identidade visual da sua loja.',
+    steps: ['Acesse Configurações > Checkout', 'Adicione seu logotipo no checkout', 'Ajuste as cores para combinar com sua marca', 'Pré-visualize no celular e no desktop'],
+    link: 'https://atendimento.nuvemshop.com.br/12311-opcoes-de-checkout/tudo-sobre-as-opcoes-de-checkout',
+    linkLabel: 'Personalizar checkout'
+  },
+  checkout_settings: {
+    summary: 'Configure as opções do checkout: campos obrigatórios, checkout como visitante, e informações de entrega.',
+    steps: ['Acesse Configurações > Opções de checkout', 'Defina se permite checkout como visitante', 'Configure os campos obrigatórios (CPF, telefone etc.)', 'Revise as opções de entrega exibidas no checkout'],
+    link: 'https://atendimento.nuvemshop.com.br/12311-opcoes-de-checkout/tudo-sobre-as-opcoes-de-checkout',
+    linkLabel: 'Opções de checkout'
+  },
+  customer_accounts: {
+    summary: 'Configure como os clientes se cadastram e acessam suas contas na loja.',
+    steps: ['Acesse Configurações > Clientes', 'Defina se o cadastro é obrigatório ou opcional', 'Configure os campos do formulário de cadastro', 'Teste o fluxo de criação de conta'],
+    link: 'https://atendimento.nuvemshop.com.br/pt_BR/clientes',
+    linkLabel: 'Gerenciar clientes'
+  },
+  custom_domain: {
+    summary: 'Conecte um domínio próprio para dar credibilidade à sua loja. Lojas com domínio próprio retêm 6x mais clientes.',
+    steps: ['Compre seu domínio em um registrador (Registro.br, GoDaddy etc.)', 'Acesse Configurações > Domínios no painel admin', 'Configure os apontamentos DNS conforme o tutorial', 'Aguarde a propagação (até 48h) e ative o SSL'],
+    link: 'https://atendimento.nuvemshop.com.br/dominios/como-usar-um-dominio-proprio-na-nuvemshop',
+    linkLabel: 'Como usar domínio próprio'
+  },
+  email_notification: {
+    summary: 'Personalize os e-mails transacionais (confirmação de pedido, envio etc.) com a identidade da sua marca.',
+    steps: ['Acesse Configurações > E-mails', 'Personalize o template com seu logo e cores', 'Revise o conteúdo de cada e-mail automático', 'Envie e-mails de teste para verificar'],
+    link: 'https://atendimento.nuvemshop.com.br/12312-emails',
+    linkLabel: 'Configurar e-mails'
+  },
+  sender_email: {
+    summary: 'Configure um e-mail de remetente válido para que os e-mails da loja não caiam em spam.',
+    steps: ['Acesse Configurações > E-mails', 'Defina o e-mail de envio (preferencialmente com seu domínio)', 'Verifique o e-mail se solicitado', 'Teste enviando um e-mail de confirmação'],
+    link: 'https://atendimento.nuvemshop.com.br/12312-emails',
+    linkLabel: 'Configurar e-mails'
+  },
+  store_email: {
+    summary: 'Defina o e-mail de contato da loja que será exibido para os clientes.',
+    steps: ['Acesse Configurações > Geral', 'Preencha o e-mail de contato da loja', 'Use um e-mail profissional (ex: contato@sualoja.com.br)', 'Verifique se o e-mail está recebendo mensagens'],
+    link: 'https://atendimento.nuvemshop.com.br/email-e-senha-de-acesso',
+    linkLabel: 'E-mail e senha de acesso'
+  },
+  published_languages: {
+    summary: 'Configure os idiomas da sua loja. Se vende para outros países, publique os idiomas necessários.',
+    steps: ['Acesse Configurações > Idiomas', 'Revise o idioma principal da loja', 'Adicione idiomas adicionais se necessário', 'Publique os idiomas configurados'],
+    link: 'https://atendimento.nuvemshop.com.br/pt_BR/configuracoes',
+    linkLabel: 'Configurações gerais'
+  },
+  active_locations: {
+    summary: 'Configure pelo menos uma localização ativa (endereço de envio) para que o frete funcione corretamente.',
+    steps: ['Acesse Configurações > Localizações', 'Adicione o endereço do seu centro de distribuição', 'Defina como localização principal', 'Configure localizações adicionais se tiver mais de um estoque'],
+    link: 'https://atendimento.nuvemshop.com.br/centro-de-distribuicao/como-cadastrar-o-cep-de-centro-de-envio-da-minha-loja',
+    linkLabel: 'Cadastrar centro de distribuição'
+  },
+  org_owner: {
+    summary: 'Verifique se a loja tem um proprietário válido definido. Isso garante acesso administrativo completo.',
+    steps: ['Acesse Configurações > Equipe', 'Confirme quem é o proprietário da conta', 'Verifique se o e-mail do proprietário está atualizado', 'Transfira a propriedade se necessário'],
+    link: 'https://atendimento.nuvemshop.com.br/pt_BR/configuracoes',
+    linkLabel: 'Configurações gerais'
+  },
+  primary_gateway: {
+    summary: 'Configure o meio de pagamento principal da loja (cartão de crédito, Pix, boleto).',
+    steps: ['Acesse Configurações > Meios de pagamento', 'Escolha o gateway principal (Nuvem Pago, Mercado Pago, PagSeguro etc.)', 'Siga o tutorial de configuração do gateway escolhido', 'Faça uma compra de teste para validar'],
+    link: 'https://atendimento.nuvemshop.com.br/meios-de-pagamento/guia-meios-de-pagamento-disponiveis-na-sua-nuvemshop',
+    linkLabel: 'Meios de pagamento disponíveis'
+  },
+  additional_payments: {
+    summary: 'Adicione métodos de pagamento adicionais para oferecer mais opções aos clientes.',
+    steps: ['Acesse Configurações > Meios de pagamento', 'Adicione opções como Pix, boleto ou pagamento personalizado', 'Configure desconto para pagamento via Pix se desejado', 'Ordene os meios de pagamento no checkout'],
+    link: 'https://atendimento.nuvemshop.com.br/meios-de-pagamento/como-ordenar-os-meios-de-pagamento-no-checkout-da-loja',
+    linkLabel: 'Ordenar meios de pagamento'
+  },
+  bank_account: {
+    summary: 'Configure a conta bancária para receber os repasses das vendas.',
+    steps: ['Acesse as configurações do seu gateway de pagamento', 'Cadastre os dados bancários para repasse', 'Verifique os prazos de repasse do gateway', 'Confirme que a conta está validada'],
+    link: 'https://atendimento.nuvemshop.com.br/pt_BR/ativacao-e-configuracoes',
+    linkLabel: 'Ativação e configurações Nuvem Pago'
+  },
+  store_policies: {
+    summary: 'Publique as políticas obrigatórias: privacidade, termos de uso e política de devolução. São exigências legais.',
+    steps: ['Acesse Configurações > Páginas', 'Crie a Política de Privacidade', 'Crie os Termos e Condições', 'Crie a Política de Trocas e Devoluções', 'Publique todas as páginas e vincule no rodapé'],
+    link: 'https://atendimento.nuvemshop.com.br/pt_BR/configuracoes',
+    linkLabel: 'Configurações gerais'
+  },
+  shipping_profiles: {
+    summary: 'Configure os métodos de envio da loja para que os clientes possam calcular o frete no checkout.',
+    steps: ['Acesse Configurações > Formas de entrega', 'Ative o Nuvem Envio ou instale um app de frete', 'Configure o endereço de origem (centro de distribuição)', 'Adicione peso e dimensões nos seus produtos', 'Teste o cálculo de frete no checkout'],
+    link: 'https://atendimento.nuvemshop.com.br/frete-e-loja-fisica/como-configurar-o-frete-dos-correios',
+    linkLabel: 'Como configurar o frete'
+  },
+  staff_accounts: {
+    summary: 'Configure o acesso da equipe com permissões adequadas para cada função.',
+    steps: ['Acesse Configurações > Equipe', 'Convide membros da equipe por e-mail', 'Defina as permissões de cada membro', 'Revise os acessos periodicamente'],
+    link: 'https://atendimento.nuvemshop.com.br/pt_BR/configuracoes',
+    linkLabel: 'Configurações gerais'
+  },
+  store_ownership: {
+    summary: 'Confirme que a propriedade da loja está verificada e os dados do titular estão corretos.',
+    steps: ['Acesse Configurações > Minha conta', 'Verifique os dados do titular', 'Atualize informações se necessário', 'Confirme o e-mail de propriedade'],
+    link: 'https://atendimento.nuvemshop.com.br/pt_BR/minha-conta',
+    linkLabel: 'Minha conta'
+  },
+  '404_page': {
+    summary: 'Configure uma página 404 personalizada para quando clientes acessarem URLs inexistentes.',
+    steps: ['Acesse Loja online > Personalizar layout', 'Localize a configuração da página 404', 'Adicione uma mensagem amigável e links úteis', 'Inclua um campo de busca ou link para a home'],
+    link: 'https://atendimento.nuvemshop.com.br/01-layout/conheca-a-opcao-minha-nuvemshop-e-aprenda-como-personalizar-o-seu-layout',
+    linkLabel: 'Personalizar layout'
+  },
+  favicon: {
+    summary: 'Defina o favicon da loja (ícone que aparece na aba do navegador).',
+    steps: ['Prepare uma imagem quadrada de pelo menos 32x32px (PNG ou ICO)', 'Acesse Loja online > Personalizar layout', 'Faça upload do favicon na seção de identidade visual', 'Verifique se aparece corretamente na aba do navegador'],
+    link: 'https://atendimento.nuvemshop.com.br/banners-e-logo-do-layout',
+    linkLabel: 'Banners e logo'
+  },
+  footer_links: {
+    summary: 'Configure os links do rodapé da loja com informações importantes: políticas, contato, redes sociais.',
+    steps: ['Acesse Loja online > Personalizar layout > Rodapé', 'Adicione links para Política de Privacidade, Termos e Trocas', 'Inclua links de contato e redes sociais', 'Organize os links em colunas se suportado pelo layout'],
+    link: 'https://atendimento.nuvemshop.com.br/barra-de-navegacao-rodape-do-layout',
+    linkLabel: 'Barra de navegação e rodapé'
+  },
+  header_links: {
+    summary: 'Configure o menu de navegação do cabeçalho com as categorias e páginas principais.',
+    steps: ['Acesse Loja online > Personalizar layout > Cabeçalho', 'Adicione links para as categorias principais', 'Inclua páginas institucionais (Sobre, Contato)', 'Organize a ordem dos itens do menu'],
+    link: 'https://atendimento.nuvemshop.com.br/barra-de-navegacao-rodape-do-layout',
+    linkLabel: 'Barra de navegação e rodapé'
+  },
+  password_page: {
+    summary: 'Configure a página de senha para proteger a loja enquanto não estiver pronta para o público.',
+    steps: ['Acesse Loja online > Preferências', 'Ative ou desative a página de senha', 'Personalize a mensagem exibida aos visitantes', 'Desative antes do lançamento oficial'],
+    link: 'https://atendimento.nuvemshop.com.br/123410-pagina-em-construcao/como-deixar-minha-loja-no-modo-pagina-em-construcao',
+    linkLabel: 'Página em construção'
+  },
+  placeholders: {
+    summary: 'Substitua todos os conteúdos de exemplo (textos, imagens) por conteúdo real da sua marca.',
+    steps: ['Navegue pela loja como cliente', 'Identifique textos de exemplo ("Lorem ipsum" etc.)', 'Substitua por conteúdo real: descrições, banners, textos institucionais', 'Revise imagens de placeholder nos banners e produtos'],
+    link: 'https://atendimento.nuvemshop.com.br/pagina-inicial-do-layout/como-personalizar-a-pagina-inicial-da-minha-loja',
+    linkLabel: 'Personalizar página inicial'
+  },
+  redirects_301: {
+    summary: 'Configure redirecionamentos 301 se migrou de outra plataforma ou alterou URLs de páginas.',
+    steps: ['Acesse Configurações > Redirecionamento 301', 'Liste as URLs antigas que precisam ser redirecionadas', 'Configure o redirecionamento de cada URL antiga para a nova', 'Teste os redirecionamentos acessando as URLs antigas'],
+    link: 'https://atendimento.nuvemshop.com.br/12315-redirecionamento-301',
+    linkLabel: 'Redirecionamento 301'
+  },
+  social_image: {
+    summary: 'Defina a imagem de compartilhamento social (Open Graph) que aparece ao compartilhar sua loja no Facebook, WhatsApp etc.',
+    steps: ['Prepare uma imagem de 1200x630px com sua marca', 'Acesse Configurações > SEO ou Loja online > Preferências', 'Faça upload da imagem de compartilhamento', 'Teste compartilhando a URL da loja no WhatsApp'],
+    link: 'https://atendimento.nuvemshop.com.br/adicionar-um-novo-produto/como-configurar-o-seo-dos-meus-produtos',
+    linkLabel: 'Configurar SEO'
+  },
+  meta_title: {
+    summary: 'Configure o meta título e descrição da loja para melhorar o posicionamento nos buscadores (Google).',
+    steps: ['Acesse Configurações > SEO', 'Defina um título com até 60 caracteres incluindo sua marca', 'Escreva uma descrição de até 160 caracteres', 'Inclua palavras-chave relevantes para o seu negócio'],
+    link: 'https://atendimento.nuvemshop.com.br/adicionar-um-novo-produto/como-configurar-o-seo-dos-meus-produtos',
+    linkLabel: 'Configurar SEO'
+  },
+  ga: {
+    summary: 'Instale o Google Analytics para acompanhar o tráfego e comportamento dos visitantes da sua loja.',
+    steps: ['Crie uma conta no Google Analytics (GA4)', 'Copie o ID de medição (G-XXXXXXXXXX)', 'Acesse Configurações > Códigos externos na Nuvemshop', 'Cole o código de rastreamento e salve'],
+    link: 'https://atendimento.nuvemshop.com.br/12313-codigos-externos',
+    linkLabel: 'Códigos externos'
+  },
+  gtm: {
+    summary: 'Instale o Google Tag Manager para gerenciar tags de marketing e conversão de forma centralizada.',
+    steps: ['Crie um container no Google Tag Manager', 'Copie o ID do container (GTM-XXXXXXX)', 'Acesse Configurações > Códigos externos na Nuvemshop', 'Cole o código do GTM e salve'],
+    link: 'https://atendimento.nuvemshop.com.br/12313-codigos-externos',
+    linkLabel: 'Códigos externos'
+  },
+  meta_pixel: {
+    summary: 'Instale o Meta Pixel (Facebook) para rastrear conversões e criar públicos para anúncios.',
+    steps: ['Acesse o Gerenciador de Eventos do Meta Business', 'Crie ou copie o ID do Pixel', 'Acesse Configurações > Códigos externos na Nuvemshop', 'Cole o código do Pixel e salve'],
+    link: 'https://atendimento.nuvemshop.com.br/12313-codigos-externos',
+    linkLabel: 'Códigos externos'
+  },
+  order_submission: {
+    summary: 'Configure o fluxo de envio de pedidos B2B para que clientes empresariais façam pedidos corretamente.',
+    steps: ['Acesse as configurações de checkout B2B', 'Defina os campos obrigatórios para pedidos empresariais (CNPJ, razão social)', 'Configure as regras de aprovação de pedidos', 'Teste o fluxo completo com um pedido de teste'],
+    link: 'https://atendimento.nuvemshop.com.br/pt_BR/vendas',
+    linkLabel: 'Gerenciar vendas'
+  },
+  one_time_shipping: {
+    summary: 'Configure o tratamento de endereços de envio avulsos para pedidos B2B.',
+    steps: ['Acesse as configurações de envio B2B', 'Habilite endereços de entrega diferentes do cadastro', 'Configure as opções de frete para pedidos B2B', 'Teste o envio para um endereço diferente do cadastro'],
+    link: 'https://atendimento.nuvemshop.com.br/pt_BR/frete-e-loja-fisica',
+    linkLabel: 'Formas de entrega'
+  },
+  b2b_forms: {
+    summary: 'Configure o formulário de cadastro B2B com campos específicos para clientes empresariais.',
+    steps: ['Acesse Configurações > Clientes', 'Habilite o cadastro B2B', 'Adicione campos como CNPJ, Inscrição Estadual e Razão Social', 'Teste o fluxo de cadastro como cliente B2B'],
+    link: 'https://atendimento.nuvemshop.com.br/pt_BR/clientes',
+    linkLabel: 'Gerenciar clientes'
+  },
+  catalog_assignment: {
+    summary: 'Atribua catálogos específicos aos clientes B2B com preços e condições diferenciadas.',
+    steps: ['Acesse Produtos > Listas de preços (se disponível)', 'Crie listas de preços específicas para B2B', 'Atribua as listas aos grupos de clientes B2B', 'Verifique se os preços aparecem corretamente para cada grupo'],
+    link: 'https://atendimento.nuvemshop.com.br/pt_BR/produtos',
+    linkLabel: 'Gerenciar produtos'
+  },
+  payment_terms: {
+    summary: 'Configure condições de pagamento diferenciadas para clientes B2B (prazo, faturamento etc.).',
+    steps: ['Acesse Configurações > Meios de pagamento', 'Configure opções de pagamento faturado ou a prazo', 'Defina limites de crédito por cliente se aplicável', 'Teste o checkout com as condições B2B'],
+    link: 'https://atendimento.nuvemshop.com.br/pt_BR/meios-de-pagamento',
+    linkLabel: 'Meios de pagamento'
+  },
+  pos_customer_display: {
+    summary: 'Configure o display voltado ao cliente no terminal POS para que ele acompanhe itens e total da compra em tempo real.',
+    steps: ['Acesse as configurações do POS Terminal', 'Ative a opção de display do cliente', 'Configure uma segunda tela ou monitor voltado ao cliente', 'Teste com uma venda simulada para confirmar a exibição'],
+    link: 'https://atendimento.nuvemshop.com.br/ponto-de-venda/como-funciona-a-tela-de-vendas-no-ponto-de-venda',
+    linkLabel: 'Tela de vendas no PDV'
+  },
+  pos_language: {
+    summary: 'Verifique se os idiomas estão configurados corretamente para cada localização e dispositivo do PDV.',
+    steps: ['Acesse Configurações > Localizações', 'Defina o idioma principal para cada local', 'Configure o idioma do dispositivo PDV', 'Confirme que recibos e telas refletem o idioma correto'],
+    link: 'https://atendimento.nuvemshop.com.br/ponto-de-venda/perguntas-frequentes-sobre-o-ponto-de-venda-da-nuvemshop',
+    linkLabel: 'FAQ do PDV'
+  },
+  pos_receipt: {
+    summary: 'Personalize os recibos do PDV com logotipo, informações da loja e mensagens personalizadas (disponível em locais POS Pro).',
+    steps: ['Acesse as configurações do POS Pro', 'Personalize o template do recibo com seu logotipo', 'Adicione informações de contato e política de troca', 'Imprima um recibo de teste para conferir o layout'],
+    link: 'https://atendimento.nuvemshop.com.br/ponto-de-venda/como-imprimir-os-comprovantes-e-o-fechamento-de-caixa-do-ponto-de-venda',
+    linkLabel: 'Imprimir comprovantes no PDV'
+  },
+  pos_return_rules: {
+    summary: 'Configure as regras de devolução para garantir um atendimento consistente nas vendas presenciais (disponível em locais POS Pro).',
+    steps: ['Acesse as configurações do POS Pro', 'Defina prazos e condições para devoluções', 'Configure se devoluções geram reembolso ou crédito na loja', 'Treine a equipe sobre as regras configuradas'],
+    link: 'https://atendimento.nuvemshop.com.br/ponto-de-venda/perguntas-frequentes-sobre-o-ponto-de-venda-da-nuvemshop',
+    linkLabel: 'FAQ do PDV'
+  },
+  pos_smart_grid: {
+    summary: 'Personalize o layout do Smart Grid para acesso rápido a produtos, descontos e ações frequentes no PDV.',
+    steps: ['Acesse as configurações do PDV', 'Customize os tiles do Smart Grid com produtos mais vendidos', 'Adicione atalhos para descontos e ações comuns', 'Atribua layouts diferentes por localização se necessário'],
+    link: 'https://atendimento.nuvemshop.com.br/ponto-de-venda/o-que-e-o-ponto-de-venda-pdv-da-nuvemshop',
+    linkLabel: 'O que é o PDV'
+  },
+  pos_pickup: {
+    summary: 'Habilite e configure a retirada na loja para que clientes online possam buscar pedidos no local físico (disponível em locais POS Pro).',
+    steps: ['Acesse as configurações do POS Pro', 'Ative a opção de retirada na loja', 'Defina os locais disponíveis para retirada', 'Configure notificações para avisar quando o pedido estiver pronto'],
+    link: 'https://atendimento.nuvemshop.com.br/ponto-de-venda/perguntas-frequentes-sobre-o-ponto-de-venda-da-nuvemshop',
+    linkLabel: 'FAQ do PDV'
+  },
+  pos_ship_to_customer: {
+    summary: 'Configure o envio para o cliente a partir da loja física, permitindo que vendas presenciais sejam despachadas (disponível em locais POS Pro).',
+    steps: ['Acesse as configurações do POS Pro', 'Ative a opção "Enviar para o cliente"', 'Configure os métodos de frete disponíveis para envio da loja', 'Teste o fluxo com uma venda simulada'],
+    link: 'https://atendimento.nuvemshop.com.br/ponto-de-venda/perguntas-frequentes-sobre-o-ponto-de-venda-da-nuvemshop',
+    linkLabel: 'FAQ do PDV'
+  },
+  pos_cash_tracking: {
+    summary: 'Encerre sessões de teste de controle de caixa e verifique se o gerenciamento de dinheiro está configurado corretamente (disponível em locais POS Pro).',
+    steps: ['Acesse o PDV e verifique se há sessões de caixa abertas', 'Encerre qualquer sessão de teste pendente', 'Configure o valor de abertura de caixa padrão', 'Teste o fluxo de abertura e fechamento de caixa'],
+    link: 'https://atendimento.nuvemshop.com.br/ponto-de-venda/como-imprimir-os-comprovantes-e-o-fechamento-de-caixa-do-ponto-de-venda',
+    linkLabel: 'Fechamento de caixa no PDV'
+  },
+  pos_custom_payments: {
+    summary: 'Configure métodos de pagamento personalizados para o PDV (ex: pagamento por link, transferência bancária).',
+    steps: ['Acesse as configurações de pagamento do PDV', 'Adicione métodos de pagamento personalizados', 'Nomeie cada método de forma clara para os vendedores', 'Teste cada método durante uma venda simulada'],
+    link: 'https://atendimento.nuvemshop.com.br/ponto-de-venda/como-registrar-suas-vendas-no-ponto-de-venda-pdv-da-nuvemshop',
+    linkLabel: 'Registrar vendas no PDV'
+  },
+  pos_gift_card: {
+    summary: 'Configure o pagamento com vale-presente no PDV para que clientes possam usar créditos de presente em compras presenciais.',
+    steps: ['Verifique se o recurso de vale-presente está ativo na sua loja', 'Acesse as configurações de pagamento do PDV', 'Habilite a opção de pagamento com vale-presente', 'Teste o resgate de um vale-presente no checkout do PDV'],
+    link: 'https://atendimento.nuvemshop.com.br/ponto-de-venda/como-registrar-suas-vendas-no-ponto-de-venda-pdv-da-nuvemshop',
+    linkLabel: 'Registrar vendas no PDV'
+  },
+  pos_offline_payments: {
+    summary: 'Habilite pagamentos offline para que o PDV continue operando mesmo sem conexão com a internet.',
+    steps: ['Acesse as configurações de pagamento do PDV', 'Ative a opção de pagamentos offline', 'Defina quais métodos de pagamento funcionam offline', 'Teste desconectando a internet e processando uma venda'],
+    link: 'https://atendimento.nuvemshop.com.br/ponto-de-venda/como-registrar-suas-vendas-no-ponto-de-venda-pdv-da-nuvemshop',
+    linkLabel: 'Registrar vendas no PDV'
+  },
+  pos_barcodes: {
+    summary: 'Cadastre códigos de barras nos produtos disponíveis no PDV para agilizar o processo de venda com leitura por scanner.',
+    steps: ['Acesse Produtos no painel admin', 'Edite cada produto e preencha o campo de código de barras', 'Use códigos EAN-13 ou UPC padrão', 'Teste a leitura dos códigos com um scanner no PDV'],
+    link: 'https://atendimento.nuvemshop.com.br/ponto-de-venda/escanear-codigo-de-barras-para-incluir-produtos-no-carrinho-pdv',
+    linkLabel: 'Escanear código de barras no PDV'
+  },
+  pos_sales_channel: {
+    summary: 'Verifique se os produtos que deseja vender presencialmente estão disponíveis no canal de vendas do PDV.',
+    steps: ['Acesse Produtos no painel admin', 'Filtre por canal de vendas e verifique a disponibilidade no PDV', 'Publique no canal PDV os produtos que devem estar disponíveis', 'Confirme que os produtos aparecem no app de vendas'],
+    link: 'https://atendimento.nuvemshop.com.br/ponto-de-venda/o-que-e-o-ponto-de-venda-pdv-da-nuvemshop',
+    linkLabel: 'O que é o PDV'
+  },
+  pos_staff_location: {
+    summary: 'Atribua cada membro da equipe ao local físico correto para controle de acesso e operação do PDV (disponível em locais POS Pro).',
+    steps: ['Acesse Configurações > Equipe', 'Selecione o membro da equipe', 'Atribua ao local físico onde ele opera', 'Confirme que o membro consegue acessar o PDV do local atribuído'],
+    link: 'https://atendimento.nuvemshop.com.br/ponto-de-venda/como-adicionar-o-vendedor-no-ponto-de-venda-pdv-da-nuvemshop',
+    linkLabel: 'Adicionar vendedor no PDV'
+  },
+  pos_staff_role: {
+    summary: 'Defina funções adequadas para cada membro da equipe no PDV (caixa, vendedor, gerente) para controle de acesso e permissões (disponível em locais POS Pro).',
+    steps: ['Acesse Configurações > Equipe', 'Selecione o membro e edite suas permissões de PDV', 'Defina a função: caixa, vendedor ou gerente', 'Configure permissões de desconto, cancelamento e relatórios por função'],
+    link: 'https://atendimento.nuvemshop.com.br/ponto-de-venda/como-adicionar-o-vendedor-no-ponto-de-venda-pdv-da-nuvemshop',
+    linkLabel: 'Adicionar vendedor no PDV'
+  }
+};
+
+function findCheck(checkId) {
+  for (const sec of SECTIONS_DATA) {
+    for (const sc of sec.subcategories) {
+      for (const ch of sc.checks) {
+        if (ch.id === checkId) return ch;
+      }
+    }
+  }
+  return null;
+}
+
+function openHelpPanel(checkId) {
+  const ch = findCheck(checkId);
+  if (!ch) return;
+  const help = CHECK_HELP[checkId] || {
+    summary: 'Revise esta configuração e confirme que está pronta para o lançamento.',
+    steps: ['Acesse a seção correspondente no painel admin', 'Revise as configurações', 'Confirme que tudo está correto'],
+    link: 'https://atendimento.nuvemshop.com.br/',
+    linkLabel: 'Central de Ajuda'
+  };
+  document.getElementById('helpTitle').textContent = ch.name;
+  document.getElementById('helpDesc').textContent = ch.desc;
+  document.getElementById('helpSummary').textContent = help.summary;
+  document.getElementById('helpSteps').innerHTML = help.steps.map(s => '<li>' + escapeHtml(s) + '</li>').join('');
+  const linkEl = document.getElementById('helpLink');
+  linkEl.href = help.link;
+  linkEl.textContent = help.linkLabel || 'Saiba mais na Central de Ajuda';
+  document.getElementById('helpPanel').classList.add('show');
+  document.getElementById('helpBackdrop').classList.add('show');
+}
+
+function closeHelpPanel() {
+  document.getElementById('helpPanel').classList.remove('show');
+  document.getElementById('helpBackdrop').classList.remove('show');
+}
+
+renderChecklistTable();
+</script>
+
+<div class="lc-panel-backdrop" id="helpBackdrop" onclick="closeHelpPanel()"></div>
+<div class="lc-panel" id="helpPanel">
+  <div class="lc-panel-header">
+    <h2 id="helpTitle"></h2>
+    <button class="lc-panel-close" aria-label="Fechar painel" onclick="closeHelpPanel()">
+      <svg aria-hidden="true" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 4l8 8M12 4l-8 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+    </button>
+  </div>
+  <div class="lc-panel-body">
+    <p class="lc-help-desc" id="helpDesc"></p>
+    <div class="lc-help-summary" id="helpSummary"></div>
+    <h3 class="lc-help-steps-title">Como fazer</h3>
+    <ol class="lc-help-steps" id="helpSteps"></ol>
+    <a id="helpLink" class="lc-help-link" target="_blank" rel="noopener">Saiba mais na Central de Ajuda</a>
+  </div>
+</div>
+
+</body>
+</html>

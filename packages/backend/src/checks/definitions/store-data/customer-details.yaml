@@ -1,0 +1,21 @@
+check_type: customer_details
+section: store_data
+subcategory: customers
+display_name: "Detalhes dos clientes"
+description: "Verificar se os campos dos registros de clientes estão preenchidos corretamente."
+execution_mode: manual
+default_assessment: >
+  Confira se os registros de clientes possuem os campos essenciais preenchidos: nome completo, e-mail válido, telefone e endereço de entrega quando aplicável. Dados incompletos dificultam comunicação e envio.
+business_impact: >
+  Clientes com dados incompletos geram atrasos no atendimento, problemas no envio de pedidos e dificultam campanhas de marketing. Dados corretos garantem entregas e comunicação eficiente.
+recommendations:
+  - "Valide e-mails e telefones dos clientes que já realizaram compras"
+  - "Configure campos obrigatórios no checkout para novos cadastros"
+  - "Importe ou corrija dados de clientes migrados de outras plataformas"
+useful_links:
+  - title: "Gerenciar clientes na Nuvemshop"
+    url: "https://atendimento.nuvemshop.com.br/pt_BR/clientes"
+  - title: "Como cadastrar clientes manualmente"
+    url: "https://atendimento.nuvemshop.com.br/meus-clientes/como-cadastrar-clientes-manualmente"
+  - title: "Como importar lista de clientes"
+    url: "https://atendimento.nuvemshop.com.br/migrando-do-mercado-shops/como-importar-a-planilha-de-clientes-em-minha-nuvemshop-"

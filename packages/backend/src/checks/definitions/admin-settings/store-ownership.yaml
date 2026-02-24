@@ -1,0 +1,21 @@
+check_type: store_ownership
+section: admin_settings
+subcategory: ownership
+display_name: "Propriedade da loja"
+description: "Verificar se a propriedade da loja está atribuída corretamente."
+execution_mode: manual
+default_assessment: >
+  Confirme que o proprietário da loja está corretamente identificado e que tem controle total sobre cobrança, configurações e transferência. Verifique se dados cadastrais (CPF/CNPJ, e-mail) estão corretos.
+business_impact: >
+  Propriedade incorreta ou dados desatualizados impedem alterações críticas, renovação do plano e suporte. Atribuição correta garante governança e continuidade do negócio.
+recommendations:
+  - "Verifique o proprietário nas configurações da loja"
+  - "Mantenha dados cadastrais (CPF/CNPJ, e-mail) atualizados"
+  - "Documente processo de transferência de propriedade para sucessão"
+useful_links:
+  - title: "Minha conta"
+    url: "https://atendimento.nuvemshop.com.br/pt_BR/minha-conta"
+  - title: "Transferir propriedade da loja"
+    url: "https://atendimento.nuvemshop.com.br/organizacao/como-transferir-a-propriedade-da-minha-loja"
+  - title: "Alterar dados da conta"
+    url: "https://atendimento.nuvemshop.com.br/email-e-senha-de-acesso"

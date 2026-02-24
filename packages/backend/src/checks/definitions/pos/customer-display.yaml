@@ -1,0 +1,21 @@
+check_type: pos_customer_display
+section: pos
+subcategory: configuration
+display_name: "Display do cliente no terminal"
+description: "Verificar se o display voltado ao cliente está configurado para o PDV."
+execution_mode: manual
+default_assessment: >
+  Verifique se o display voltado ao cliente está conectado, configurado e exibindo as informações corretas durante as vendas no PDV (itens, totais, promoções).
+business_impact: >
+  Display mal configurado prejudica a transparência da venda e a experiência do cliente. Configuração adequada aumenta confiança e reduz erros de comunicação no ponto de venda.
+recommendations:
+  - "Confirme conexão e reconhecimento do display pelo sistema"
+  - "Revise o que é exibido (itens, preços, totais) e ajuste conforme necessidade"
+  - "Teste o display em uma venda real antes do go-live"
+useful_links:
+  - title: "PDV na Nuvemshop"
+    url: "https://atendimento.nuvemshop.com.br/pt_BR/pdv"
+  - title: "Configurar PDV"
+    url: "https://atendimento.nuvemshop.com.br/pt_BR/pdv"
+  - title: "Display do cliente"
+    url: "https://atendimento.nuvemshop.com.br/pt_BR/pdv"

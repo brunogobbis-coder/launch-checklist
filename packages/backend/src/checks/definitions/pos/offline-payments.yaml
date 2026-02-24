@@ -1,0 +1,21 @@
+check_type: pos_offline_payments
+section: pos
+subcategory: payments
+display_name: "Pagamentos offline"
+description: "Verificar se pagamentos offline estão habilitados para operação sem internet."
+execution_mode: manual
+default_assessment: >
+  Verifique se os pagamentos offline estão habilitados e configurados para permitir vendas quando não houver conexão com a internet, com sincronização posterior.
+business_impact: >
+  Sem pagamentos offline, quedas de internet interrompem vendas e prejudicam a operação. A configuração garante continuidade e reduz perda de vendas por instabilidade de rede.
+recommendations:
+  - "Habilite modo offline no PDV para operação sem internet"
+  - "Revise limites e regras de pagamentos offline (cartão, etc.)"
+  - "Teste fluxo de sincronização quando a conexão voltar"
+useful_links:
+  - title: "Modo offline no PDV"
+    url: "https://atendimento.nuvemshop.com.br/pt_BR/pdv"
+  - title: "Operação offline"
+    url: "https://atendimento.nuvemshop.com.br/pt_BR/pdv"
+  - title: "PDV e conectividade"
+    url: "https://atendimento.nuvemshop.com.br/pt_BR/pdv"

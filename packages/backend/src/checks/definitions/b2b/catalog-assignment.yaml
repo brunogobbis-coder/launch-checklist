@@ -1,0 +1,21 @@
+check_type: catalog_assignment
+section: b2b
+subcategory: pricing
+display_name: "Atribuição de catálogo"
+description: "Verificar se catálogos estão configurados, ativos e atribuídos a empresas."
+execution_mode: manual
+default_assessment: >
+  Verifique se os catálogos B2B estão criados, ativos e corretamente atribuídos às empresas. Confirme preços, produtos e visibilidade conforme segmento de cada comprador.
+business_impact: >
+  Catálogos mal atribuídos podem expor preços incorretos ou produtos inadequados a cada segmento. A atribuição correta garante precificação segmentada e experiência adequada por empresa.
+recommendations:
+  - "Revise catálogos ativos e produtos incluídos em cada um"
+  - "Confirme atribuição de catálogos às empresas corretas"
+  - "Verifique preços e condições específicas por catálogo"
+useful_links:
+  - title: "Catálogos B2B"
+    url: "https://atendimento.nuvemshop.com.br/pt_BR/b2b"
+  - title: "Precificação e catálogos"
+    url: "https://atendimento.nuvemshop.com.br/pt_BR/produtos"
+  - title: "Empresas B2B"
+    url: "https://atendimento.nuvemshop.com.br/pt_BR/b2b"

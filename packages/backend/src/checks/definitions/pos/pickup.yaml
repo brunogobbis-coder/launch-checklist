@@ -1,0 +1,21 @@
+check_type: pos_pickup
+section: pos
+subcategory: fulfillment
+display_name: "Retirada na loja"
+description: "Verificar se a retirada na loja está habilitada e configurada (POS Pro)."
+execution_mode: manual
+default_assessment: >
+  Confirme se a retirada na loja está habilitada, com horários e instruções configurados, e que o fluxo de notificação e confirmação está funcionando para pedidos online.
+business_impact: >
+  Retirada na loja mal configurada gera pedidos não retirados, clientes insatisfeitos e estoque travado. Configuração adequada otimiza o fluxo omnichannel.
+recommendations:
+  - "Habilite retirada na loja nos locais corretos"
+  - "Configure horários de retirada e prazo para busca"
+  - "Revise notificações ao cliente (pedido pronto, lembrete)"
+useful_links:
+  - title: "Retirada na loja"
+    url: "https://atendimento.nuvemshop.com.br/pt_BR/envio"
+  - title: "PDV e retirada"
+    url: "https://atendimento.nuvemshop.com.br/pt_BR/pdv"
+  - title: "Fulfillment omnichannel"
+    url: "https://atendimento.nuvemshop.com.br/pt_BR/envio"

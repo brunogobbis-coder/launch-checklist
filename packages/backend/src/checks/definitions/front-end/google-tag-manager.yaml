@@ -1,0 +1,21 @@
+check_type: google_tag_manager
+section: front_end
+subcategory: tracking
+display_name: "Google Tag Manager"
+description: "Verificar se o Google Tag Manager está configurado corretamente."
+execution_mode: manual
+default_assessment: >
+  Confirme que o Google Tag Manager está instalado na loja. O ID do container (GTM-XXXXXXX) deve estar em Códigos externos. O GTM permite gerenciar tags de marketing e conversão de forma centralizada sem alterar o código.
+business_impact: >
+  GTM mal configurado ou ausente impede o rastreamento de conversões e remarketing. Configuração correta permite medir campanhas, criar públicos e otimizar anúncios com precisão.
+recommendations:
+  - "Crie container no Google Tag Manager e copie o ID"
+  - "Cole o código do GTM em Configurações > Códigos externos"
+  - "Configure tags de conversão e remarketing no GTM"
+useful_links:
+  - title: "Códigos externos"
+    url: "https://atendimento.nuvemshop.com.br/12313-codigos-externos"
+  - title: "Configurações"
+    url: "https://atendimento.nuvemshop.com.br/pt_BR/configuracoes"
+  - title: "Aplicativos"
+    url: "https://atendimento.nuvemshop.com.br/pt_BR/aplicativos"

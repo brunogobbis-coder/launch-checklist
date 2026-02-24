@@ -1,0 +1,21 @@
+check_type: pos_smart_grid
+section: pos
+subcategory: configuration
+display_name: "Personalização do Smart Grid"
+description: "Verificar se o layout do Smart Grid está customizado e atribuído aos locais corretos."
+execution_mode: manual
+default_assessment: >
+  Verifique se o Smart Grid do PDV está customizado com os produtos mais vendidos ou relevantes por local, e se está corretamente atribuído a cada ponto de venda.
+business_impact: >
+  Smart Grid mal configurado dificulta a operação e aumenta tempo de atendimento. Layout adequado acelera vendas e melhora a experiência do operador no PDV.
+recommendations:
+  - "Customize o Smart Grid com produtos por categoria ou mais vendidos"
+  - "Atribua layouts diferentes por local quando a oferta variar"
+  - "Revise organização e ordem dos produtos no grid"
+useful_links:
+  - title: "Smart Grid no PDV"
+    url: "https://atendimento.nuvemshop.com.br/pt_BR/pdv"
+  - title: "Configurar PDV"
+    url: "https://atendimento.nuvemshop.com.br/pt_BR/pdv"
+  - title: "Produtos e PDV"
+    url: "https://atendimento.nuvemshop.com.br/pt_BR/pdv"

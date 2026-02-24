@@ -1,0 +1,21 @@
+check_type: bank_account_payout
+section: admin_settings
+subcategory: payments
+display_name: "Conta bancária e repasses"
+description: "Verificar se a conta bancária para repasses está configurada corretamente."
+execution_mode: manual
+default_assessment: >
+  Confirme que a conta bancária para repasses está cadastrada, verificada e ativa. Verifique prazos de repasse e se não há pendências que impeçam o recebimento dos valores das vendas.
+business_impact: >
+  Conta não configurada ou com dados incorretos impede o recebimento do dinheiro das vendas. Configuração correta garante que os repasses sejam feitos no prazo esperado.
+recommendations:
+  - "Cadastre conta bancária com dados corretos (banco, agência, conta, CPF/CNPJ)"
+  - "Complete verificação da conta conforme solicitado pela plataforma"
+  - "Consulte prazos de repasse e acompanhe o saldo disponível"
+useful_links:
+  - title: "Nuvem Pago - Repasses"
+    url: "https://atendimento.nuvemshop.com.br/nuvem-pago/como-funcionam-os-repasses-na-nuvem-pago"
+  - title: "Cadastrar conta bancária"
+    url: "https://atendimento.nuvemshop.com.br/nuvem-pago/como-cadastrar-minha-conta-bancaria"
+  - title: "Prazos de repasse"
+    url: "https://atendimento.nuvemshop.com.br/nuvem-pago/qual-o-prazo-para-receber-o-dinheiro-das-minhas-vendas"

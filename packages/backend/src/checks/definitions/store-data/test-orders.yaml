@@ -1,0 +1,21 @@
+check_type: test_orders
+section: store_data
+subcategory: orders
+display_name: "Pedidos de teste"
+description: "Verificar pedidos de teste e recomendar arquivamento/exclusão antes do lançamento."
+execution_mode: manual
+default_assessment: >
+  Identifique pedidos de teste, desenvolvimento ou homologação que não representam vendas reais. Arquivar ou excluir esses pedidos antes do lançamento mantém os relatórios e métricas precisos.
+business_impact: >
+  Pedidos de teste nas vendas inflam métricas incorretamente, confundem análise de desempenho e podem gerar cobranças ou notificações indevidas. Dados limpos são essenciais para decisões.
+recommendations:
+  - "Filtre pedidos com valores zerados, cupons de teste ou e-mails internos"
+  - "Arquive pedidos de homologação em vez de excluir (preserva histórico)"
+  - "Configure ambiente de sandbox para testes futuros, se disponível"
+useful_links:
+  - title: "Gerenciar vendas na Nuvemshop"
+    url: "https://atendimento.nuvemshop.com.br/pt_BR/vendas"
+  - title: "Como cancelar uma venda"
+    url: "https://atendimento.nuvemshop.com.br/cancelar-pedidos/como-cancelar-uma-venda"
+  - title: "Perguntas frequentes sobre vendas"
+    url: "https://atendimento.nuvemshop.com.br/vendas/perguntas-frequentes-sobre-vendas-na-nuvemshop"

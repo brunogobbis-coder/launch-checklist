@@ -1,0 +1,21 @@
+check_type: customer_account_settings
+section: admin_settings
+subcategory: customers
+display_name: "Configurações de conta do cliente"
+description: "Verificar se as configurações de conta estão apropriadas para o público-alvo."
+execution_mode: manual
+default_assessment: >
+  Verifique se as configurações de conta de cliente (criação, login, recuperação de senha, preferências) estão adequadas ao seu público. Confirme se o cadastro traz benefícios claros e se a experiência de login está fluida.
+business_impact: >
+  Contas mal configuradas frustram clientes e podem impedir programas de fidelidade ou remarketing. Configuração adequada facilita recompra e coleta de dados para personalização.
+recommendations:
+  - "Defina se conta é obrigatória ou opcional conforme estratégia da loja"
+  - "Revise fluxo de recuperação de senha e confirme que e-mails chegam"
+  - "Configure benefícios visíveis para quem cria conta (histórico, favoritos, etc.)"
+useful_links:
+  - title: "Clientes na Nuvemshop"
+    url: "https://atendimento.nuvemshop.com.br/pt_BR/clientes"
+  - title: "Configurar contas de clientes"
+    url: "https://atendimento.nuvemshop.com.br/meus-clientes/como-configurar-as-contas-dos-clientes"
+  - title: "Cadastro e login de clientes"
+    url: "https://atendimento.nuvemshop.com.br/meus-clientes/como-funciona-o-cadastro-e-login-dos-clientes"

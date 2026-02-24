@@ -1,0 +1,21 @@
+check_type: header_links
+section: front_end
+subcategory: experience
+display_name: "Links do cabeçalho"
+description: "Verificar se os links de navegação do cabeçalho estão organizados e funcionando."
+execution_mode: manual
+default_assessment: >
+  Verifique se o menu de navegação do cabeçalho está organizado, com links para categorias principais e páginas institucionais (Sobre, Contato). Confirme que todos os links funcionam e a ordem dos itens facilita a navegação.
+business_impact: >
+  Menu desorganizado ou com links quebrados prejudica a descoberta de produtos e a conversão. Navegação clara reduz o abandono e orienta o cliente até a compra.
+recommendations:
+  - "Adicione links para as categorias principais"
+  - "Inclua páginas institucionais (Sobre, Contato)"
+  - "Organize a ordem dos itens do menu por prioridade"
+useful_links:
+  - title: "Barra de navegação e rodapé"
+    url: "https://atendimento.nuvemshop.com.br/barra-de-navegacao-rodape-do-layout"
+  - title: "Personalizar layout"
+    url: "https://atendimento.nuvemshop.com.br/01-layout/conheca-a-opcao-minha-nuvemshop-e-aprenda-como-personalizar-o-seu-layout"
+  - title: "Organizar categorias"
+    url: "https://atendimento.nuvemshop.com.br/organizar-categorias/como-configurar-seo-das-categorias-subcategorias"

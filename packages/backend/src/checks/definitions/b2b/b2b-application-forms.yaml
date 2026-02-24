@@ -1,0 +1,21 @@
+check_type: b2b_application_forms
+section: b2b
+subcategory: customer_accounts
+display_name: "Formulários de aplicação B2B"
+description: "Verificar se os formulários estão configurados para coletar aplicações de compradores B2B."
+execution_mode: manual
+default_assessment: >
+  Confirme se os formulários de aplicação B2B estão ativos, com campos adequados para qualificação de compradores e fluxo de aprovação configurado conforme critérios da loja.
+business_impact: >
+  Formulários mal configurados podem perder leads qualificados ou aprovar compradores inadequados. A coleta correta de dados facilita a qualificação e o onboarding de empresas B2B.
+recommendations:
+  - "Revise campos do formulário de aplicação (CNPJ, razão social, segmento)"
+  - "Configure fluxo de aprovação e notificações para a equipe"
+  - "Teste o fluxo completo de aplicação até aprovação"
+useful_links:
+  - title: "Formulários B2B"
+    url: "https://atendimento.nuvemshop.com.br/pt_BR/b2b"
+  - title: "Clientes e contas"
+    url: "https://atendimento.nuvemshop.com.br/pt_BR/clientes"
+  - title: "Aplicação de compradores B2B"
+    url: "https://atendimento.nuvemshop.com.br/pt_BR/b2b"

@@ -1,0 +1,21 @@
+check_type: published_languages
+section: admin_settings
+subcategory: languages
+display_name: "Idiomas publicados"
+description: "Verificar se os idiomas da loja estão configurados e publicados."
+execution_mode: manual
+default_assessment: >
+  Revise quais idiomas estão ativos na loja e se as traduções estão completas. Confirme que o idioma padrão corresponde ao público-alvo e que idiomas adicionais estão publicados corretamente.
+business_impact: >
+  Idiomas mal configurados ou incompletos prejudicam experiência de clientes internacionais ou bilíngues. Configuração adequada amplia o alcance e reduz abandono por barreira de idioma.
+recommendations:
+  - "Defina idioma padrão conforme público principal"
+  - "Publique idiomas adicionais apenas se as traduções estiverem completas"
+  - "Revise textos traduzidos para garantir coerência e qualidade"
+useful_links:
+  - title: "Idiomas da loja"
+    url: "https://atendimento.nuvemshop.com.br/pt_BR/configuracoes"
+  - title: "Adicionar e configurar idiomas"
+    url: "https://atendimento.nuvemshop.com.br/idiomas/como-adicionar-e-configurar-idiomas-na-minha-loja"
+  - title: "Traduzir conteúdo da loja"
+    url: "https://atendimento.nuvemshop.com.br/idiomas/como-traduzir-o-conteudo-da-minha-loja"

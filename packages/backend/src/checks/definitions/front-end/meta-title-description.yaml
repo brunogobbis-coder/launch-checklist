@@ -1,0 +1,21 @@
+check_type: meta_title_description
+section: front_end
+subcategory: seo
+display_name: "Meta título e descrição"
+description: "Verificar se o meta título e descrição estão configurados e otimizados para SEO."
+execution_mode: manual
+default_assessment: >
+  Verifique se o meta título (até 60 caracteres) e a meta descrição (até 160 caracteres) estão configurados na loja. Inclua palavras-chave relevantes e o nome da marca. Evite usar apenas a descrição padrão da Nuvemshop.
+business_impact: >
+  Meta título e descrição inadequados prejudicam o posicionamento no Google e reduzem a taxa de cliques nos resultados de busca. Conteúdo otimizado aumenta o tráfego orgânico e a conversão.
+recommendations:
+  - "Defina título com até 60 caracteres incluindo palavras-chave"
+  - "Escreva descrição de até 160 caracteres com diferencial da loja"
+  - "Selecione 'Utilizar nome e descrição do negócio para SEO' em Dados do meu negócio"
+useful_links:
+  - title: "Configurar SEO da loja"
+    url: "https://atendimento.nuvemshop.com.br/pt_BR/primeiros-passos/como-configurar-o-seo-da-minha-loja"
+  - title: "Configurar SEO dos produtos"
+    url: "https://atendimento.nuvemshop.com.br/adicionar-um-novo-produto/como-configurar-o-seo-dos-meus-produtos"
+  - title: "Dados do meu negócio"
+    url: "https://atendimento.nuvemshop.com.br/configuracoes/como-alterar-as-informacoes-de-contato-da-minha-loja"

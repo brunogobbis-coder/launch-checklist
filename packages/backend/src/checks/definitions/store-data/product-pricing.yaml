@@ -1,0 +1,21 @@
+check_type: product_pricing
+section: store_data
+subcategory: products
+display_name: "Preços dos produtos"
+description: "Verificar se os preços dos produtos estão configurados corretamente."
+execution_mode: manual
+default_assessment: >
+  Revise se os preços dos produtos estão corretos, em destaque e em promoção quando aplicável. Verifique variações, preços promocionais agendados e consistência entre canais de venda.
+business_impact: >
+  Preços incorretos geram vendas com margem negativa, reclamações de clientes e perda de confiança. Preços bem configurados garantem rentabilidade e transparência.
+recommendations:
+  - "Confirme preços de venda e compare com custos para garantir margem"
+  - "Revise preços promocionais e datas de vigência"
+  - "Verifique preços em variações (tamanho, cor, etc.)"
+useful_links:
+  - title: "Produtos na Nuvemshop"
+    url: "https://atendimento.nuvemshop.com.br/pt_BR/produtos"
+  - title: "Como precificar corretamente os produtos"
+    url: "https://atendimento.nuvemshop.com.br/adicionar-um-novo-produto/como-precificar-corretamente-meus-produtos"
+  - title: "Administrar preços promocionais"
+    url: "https://atendimento.nuvemshop.com.br/organizar-produtos/como-administrar-os-precos-promocionais-nos-meus-produtos"

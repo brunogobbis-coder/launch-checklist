@@ -1,0 +1,21 @@
+check_type: organization_owner
+section: admin_settings
+subcategory: organization
+display_name: "Proprietário da organização"
+description: "Verificar se o proprietário da organização está atribuído corretamente."
+execution_mode: manual
+default_assessment: >
+  Confirme que o proprietário da organização está corretamente identificado e que tem acesso total às configurações. Verifique se o e-mail e dados de contato estão atualizados para comunicações importantes.
+business_impact: >
+  Proprietário incorreto ou sem acesso adequado impede decisões críticas sobre cobrança, migração e suporte. Atribuição correta garante governança e resposta a situações urgentes.
+recommendations:
+  - "Verifique quem está como proprietário nas configurações da organização"
+  - "Garanta que o proprietário tenha e-mail e telefone atualizados"
+  - "Documente procedimento de transferência de propriedade se necessário"
+useful_links:
+  - title: "Minha conta e organização"
+    url: "https://atendimento.nuvemshop.com.br/pt_BR/minha-conta"
+  - title: "Gerenciar organização"
+    url: "https://atendimento.nuvemshop.com.br/organizacao/como-gerenciar-minha-organizacao"
+  - title: "Transferir propriedade da loja"
+    url: "https://atendimento.nuvemshop.com.br/organizacao/como-transferir-a-propriedade-da-minha-loja"

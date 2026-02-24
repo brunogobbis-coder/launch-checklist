@@ -1,0 +1,21 @@
+check_type: custom_domain
+section: admin_settings
+subcategory: domains
+display_name: "Domínio personalizado"
+description: "Verificar se domínios personalizados estão conectados e configurados."
+execution_mode: manual
+default_assessment: >
+  Confirme que o domínio personalizado está conectado corretamente, apontando para a loja, e que o SSL (HTTPS) está ativo. Verifique se não há subdomínios ou redirecionamentos quebrados.
+business_impact: >
+  Loja sem domínio próprio transmite menos confiança e prejudica SEO. Domínio mal configurado pode gerar erros de acesso, perda de tráfego e problemas de segurança.
+recommendations:
+  - "Conecte domínio próprio e verifique registros DNS conforme orientação"
+  - "Confirme que o certificado SSL está ativo (cadeado no navegador)"
+  - "Teste acesso via domínio em diferentes dispositivos e navegadores"
+useful_links:
+  - title: "Usar domínio próprio na Nuvemshop"
+    url: "https://atendimento.nuvemshop.com.br/dominios/como-usar-um-dominio-proprio-na-nuvemshop"
+  - title: "Conectar domínio"
+    url: "https://atendimento.nuvemshop.com.br/dominios/como-conectar-meu-dominio-na-nuvemshop"
+  - title: "Configurar SSL no domínio"
+    url: "https://atendimento.nuvemshop.com.br/dominios/como-configurar-o-certificado-ssl-no-meu-dominio"

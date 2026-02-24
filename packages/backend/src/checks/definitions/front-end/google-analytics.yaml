@@ -1,0 +1,21 @@
+check_type: google_analytics
+section: front_end
+subcategory: tracking
+display_name: "Google Analytics"
+description: "Verificar se o Google Analytics está configurado para rastreamento."
+execution_mode: manual
+default_assessment: >
+  Confirme que o Google Analytics (GA4) está instalado na loja. O ID de medição (G-XXXXXXXXXX) deve estar configurado em Códigos externos. Verifique no GA se os acessos estão sendo registrados.
+business_impact: >
+  Sem Google Analytics, não há visibilidade sobre tráfego, comportamento e conversões. Dados de analytics são essenciais para otimizar campanhas e tomar decisões baseadas em evidências.
+recommendations:
+  - "Crie conta no Google Analytics (GA4) e copie o ID de medição"
+  - "Cole o código de rastreamento em Configurações > Códigos externos"
+  - "Confirme no GA que os acessos estão sendo registrados"
+useful_links:
+  - title: "Códigos externos"
+    url: "https://atendimento.nuvemshop.com.br/12313-codigos-externos"
+  - title: "Configurações"
+    url: "https://atendimento.nuvemshop.com.br/pt_BR/configuracoes"
+  - title: "Integrações"
+    url: "https://atendimento.nuvemshop.com.br/pt_BR/aplicativos"

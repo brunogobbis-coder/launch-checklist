@@ -1,0 +1,21 @@
+check_type: pos_sales_channel
+section: pos
+subcategory: products
+display_name: "Canal de vendas PDV"
+description: "Verificar se os produtos estão disponíveis no canal de vendas do PDV."
+execution_mode: manual
+default_assessment: >
+  Verifique se os produtos que devem ser vendidos no PDV estão disponíveis no canal de vendas do ponto de venda, com estoque e preços corretos.
+business_impact: >
+  Produtos não disponíveis no canal PDV não aparecem para venda no ponto físico, gerando perda de oportunidades. A atribuição correta garante oferta completa na loja.
+recommendations:
+  - "Revise produtos atribuídos ao canal de vendas PDV"
+  - "Confirme estoque e preços por local quando aplicável"
+  - "Verifique se novos produtos são incluídos no canal PDV por padrão"
+useful_links:
+  - title: "Canais de venda"
+    url: "https://atendimento.nuvemshop.com.br/pt_BR/canais"
+  - title: "PDV e produtos"
+    url: "https://atendimento.nuvemshop.com.br/pt_BR/pdv"
+  - title: "Configurar canais"
+    url: "https://atendimento.nuvemshop.com.br/pt_BR/canais"

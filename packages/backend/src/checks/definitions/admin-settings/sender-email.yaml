@@ -1,0 +1,21 @@
+check_type: sender_email
+section: admin_settings
+subcategory: email
+display_name: "E-mail do remetente"
+description: "Confirmar que o e-mail do remetente é de atendimento e está verificado."
+execution_mode: manual
+default_assessment: >
+  Verifique se o e-mail do remetente usado nas notificações é um endereço de atendimento da loja (ex.: contato@minhaloja.com.br) e se está verificado. E-mails não verificados podem ir para spam ou falhar no envio.
+business_impact: >
+  E-mail de remetente não verificado ou genérico aumenta risco de cair em spam e prejudica resposta do cliente. Remetente verificado e profissional melhora entregabilidade e confiança.
+recommendations:
+  - "Use e-mail do domínio da loja como remetente"
+  - "Complete a verificação do e-mail conforme orientação da plataforma"
+  - "Evite remetentes genéricos como noreply@ sem domínio próprio"
+useful_links:
+  - title: "Configurar e-mail do remetente"
+    url: "https://atendimento.nuvemshop.com.br/emails/como-configurar-o-email-do-remetente"
+  - title: "Verificar e-mail do remetente"
+    url: "https://atendimento.nuvemshop.com.br/emails/como-verificar-o-email-do-remetente"
+  - title: "E-mails e notificações"
+    url: "https://atendimento.nuvemshop.com.br/12312-emails"

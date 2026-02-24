@@ -1,0 +1,58 @@
+{
+  "index": {
+    "title": "Checklist de Lanzamiento",
+    "newChecklist": "Nuevo checklist",
+    "alertTitle": "Acerca de esta aplicación",
+    "alertDescription": "El Checklist de Lanzamiento ayuda a verificar que tu tienda esté lista para operar. Revisá todos los resultados antes de confirmar.",
+    "allChecklists": "Todos los checklists",
+    "searchPlaceholder": "Buscar por nombre\u2026",
+    "colName": "Nombre",
+    "colTasks": "Tareas",
+    "colStatus": "Estado",
+    "colCreated": "Creado",
+    "noResults": "No se encontraron checklists.",
+    "emptyState": "No hay checklists creados. Creá uno para empezar.",
+    "confirmDelete": "¿Estás seguro de que querés eliminar este checklist?"
+  },
+  "modal": {
+    "title": "Nuevo checklist de lanzamiento",
+    "nameLabel": "Nombre del checklist",
+    "namePlaceholder": "Ej: Lanzamiento Tienda Principal",
+    "selectChecks": "Seleccioná las verificaciones",
+    "selectAll": "Seleccionar todas",
+    "deselectAll": "Deseleccionar todas",
+    "cancel": "Cancelar",
+    "start": "Iniciar",
+    "creating": "Creando\u2026"
+  },
+  "results": {
+    "back": "Volver",
+    "backToList": "Volver a la lista",
+    "notFound": "Checklist no encontrado.",
+    "legendTitle": "Entendiendo los resultados",
+    "legendReady": "Configuración verificada y lista.",
+    "legendNotReady": "Requiere acción antes del lanzamiento.",
+    "legendConfirm": "Revisá y confirmá la configuración.",
+    "legendManual": "Verificá manualmente."
+  },
+  "sidebar": {
+    "loading": "Cargando\u2026",
+    "findings": "Detalle",
+    "noFindings": "No hay detalle disponible. Verificá manualmente en el panel admin.",
+    "impact": "Impacto en el negocio",
+    "recommendations": "Recomendaciones",
+    "links": "Links útiles"
+  },
+  "status": {
+    "pending": "Pendiente",
+    "ready": "Listo",
+    "not_ready": "No listo",
+    "confirm_set_up": "Confirmar configuración",
+    "check_manually": "Verificar manualmente",
+    "failed": "Falló"
+  },
+  "checklistStatus": {
+    "in_progress": "En curso",
+    "complete": "Completo"
+  }
+}

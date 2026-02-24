@@ -1,0 +1,21 @@
+check_type: shipping_profiles
+section: admin_settings
+subcategory: shipping
+display_name: "Perfis de envio"
+description: "Verificar se todos os mercados ativos estão atribuídos a perfis de envio."
+execution_mode: manual
+default_assessment: >
+  Confirme que todos os mercados/canais ativos (loja online, Instagram, etc.) estão vinculados a perfis de envio com regras de frete configuradas. Verifique se não há produtos ou mercados sem perfil atribuído.
+business_impact: >
+  Mercados sem perfil de envio não calculam frete corretamente, gerando erros no checkout ou bloqueio de vendas. Configuração adequada garante que o frete seja exibido em todos os canais.
+recommendations:
+  - "Atribua perfis de envio a todos os mercados ativos"
+  - "Revise regras de frete (Correios, transportadoras, retirada)"
+  - "Verifique produtos com regras específicas de envio"
+useful_links:
+  - title: "Frete e loja física"
+    url: "https://atendimento.nuvemshop.com.br/pt_BR/frete-e-loja-fisica"
+  - title: "Perfis de envio"
+    url: "https://atendimento.nuvemshop.com.br/frete-e-loja-fisica/como-configurar-perfis-de-envio"
+  - title: "Configurar frete dos Correios"
+    url: "https://atendimento.nuvemshop.com.br/frete-e-loja-fisica/como-configurar-o-frete-dos-correios"

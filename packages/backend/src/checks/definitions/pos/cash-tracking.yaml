@@ -1,0 +1,21 @@
+check_type: pos_cash_tracking
+section: pos
+subcategory: payments
+display_name: "Controle de caixa"
+description: "Verificar se as sessões de caixa foram encerradas e o controle está configurado (POS Pro)."
+execution_mode: manual
+default_assessment: >
+  Confirme se o controle de caixa está configurado, se as sessões são abertas e encerradas corretamente, e se há conciliação entre valores em caixa e vendas registradas.
+business_impact: >
+  Controle de caixa inadequado gera divergências financeiras, dificulta fechamento e pode indicar problemas operacionais. Sessões bem gerenciadas garantem rastreabilidade e segurança.
+recommendations:
+  - "Configure abertura e fechamento de sessões de caixa por turno"
+  - "Revise procedimento de conciliação e fechamento diário"
+  - "Garanta que a equipe seja treinada no fluxo de caixa"
+useful_links:
+  - title: "Controle de caixa no PDV"
+    url: "https://atendimento.nuvemshop.com.br/pt_BR/pdv"
+  - title: "Sessões de caixa"
+    url: "https://atendimento.nuvemshop.com.br/pt_BR/pdv"
+  - title: "POS Pro e caixa"
+    url: "https://atendimento.nuvemshop.com.br/pt_BR/pdv"

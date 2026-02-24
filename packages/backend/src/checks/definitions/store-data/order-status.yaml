@@ -1,0 +1,21 @@
+check_type: order_status
+section: store_data
+subcategory: orders
+display_name: "Status dos pedidos"
+description: "Verificar status dos pedidos e garantir que pedidos enviados estejam marcados como tal."
+execution_mode: manual
+default_assessment: >
+  Revise os pedidos pendentes e confirme que o status reflete a realidade: pedidos já enviados devem estar marcados como enviados, pagos como pagos, e cancelamentos devidamente registrados.
+business_impact: >
+  Status incorretos distorcem relatórios de vendas, confundem o cliente sobre o andamento do pedido e podem gerar cobranças indevidas ou falta de follow-up em pedidos abandonados.
+recommendations:
+  - "Atualize em massa o status de pedidos que já foram despachados"
+  - "Configure integração com transportadora para atualização automática de rastreio"
+  - "Feche ou cancele pedidos antigos que não serão processados"
+useful_links:
+  - title: "Status dos pedidos"
+    url: "https://atendimento.nuvemshop.com.br/pt_BR/vendas"
+  - title: "Como atualizar status dos pedidos em massa"
+    url: "https://atendimento.nuvemshop.com.br/status-dos-pedidos/como-atualizar-o-status-dos-pedidos-de-forma-massiva"
+  - title: "Como o cliente vê o status do pedido"
+    url: "https://atendimento.nuvemshop.com.br/status-dos-pedidos/como-meu-cliente-pode-ver-o-status-de-um-pedido"

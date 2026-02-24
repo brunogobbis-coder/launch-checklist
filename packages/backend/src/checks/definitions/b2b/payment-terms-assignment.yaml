@@ -1,0 +1,21 @@
+check_type: payment_terms_assignment
+section: b2b
+subcategory: pricing
+display_name: "Atribuição de condições de pagamento"
+description: "Verificar se condições de pagamento estão atribuídas a empresas B2B."
+execution_mode: manual
+default_assessment: >
+  Confirme se as condições de pagamento (boleto, PIX, cartão, faturamento) estão configuradas e atribuídas às empresas B2B conforme perfil de crédito e política comercial.
+business_impact: >
+  Condições de pagamento não atribuídas impedem compradores B2B de finalizar pedidos ou expõem opções inadequadas. A atribuição correta alinha fluxo de caixa e operação comercial.
+recommendations:
+  - "Revise condições de pagamento disponíveis para B2B"
+  - "Atribua condições a cada empresa conforme perfil e política"
+  - "Configure prazos e limites quando aplicável (faturamento, boleto)"
+useful_links:
+  - title: "Condições de pagamento B2B"
+    url: "https://atendimento.nuvemshop.com.br/pt_BR/b2b"
+  - title: "Pagamentos na Nuvemshop"
+    url: "https://atendimento.nuvemshop.com.br/pt_BR/pagamentos"
+  - title: "Configurar pagamentos"
+    url: "https://atendimento.nuvemshop.com.br/pt_BR/pagamentos"

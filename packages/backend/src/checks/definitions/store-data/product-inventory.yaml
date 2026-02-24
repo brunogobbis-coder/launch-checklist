@@ -1,0 +1,21 @@
+check_type: product_inventory
+section: store_data
+subcategory: products
+display_name: "Estoque dos produtos"
+description: "Verificar rastreamento de estoque e níveis apropriados."
+execution_mode: manual
+default_assessment: >
+  Confirme que o rastreamento de estoque está configurado corretamente (limitado ou infinito) e que as quantidades cadastradas refletem o estoque real. Produtos com estoque zerado e rastreamento ativo não devem estar ativos para venda.
+business_impact: >
+  Estoque incorreto gera vendas de produtos indisponíveis, cancelamentos e insatisfação. Rastreamento adequado evita overselling e permite planejamento de compras e reposição.
+recommendations:
+  - "Atualize quantidades de estoque para refletir o inventário real"
+  - "Defina estoque limitado ou infinito conforme o tipo de produto"
+  - "Revise produtos vendidos sem estoque e ajuste configurações"
+useful_links:
+  - title: "Gestão do inventário"
+    url: "https://atendimento.nuvemshop.com.br/pt_BR/produtos"
+  - title: "Guia: gerenciar inventário de produtos"
+    url: "https://atendimento.nuvemshop.com.br/gestao-Inventario/como-administrar-o-estoque-dos-meus-produtos"
+  - title: "Alterar tipo de estoque (limitado ou infinito)"
+    url: "https://atendimento.nuvemshop.com.br/gestao-Inventario/como-alterar-o-tipo-de-estoque-para-limitado-ou-infinito"

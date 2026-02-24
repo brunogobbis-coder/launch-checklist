@@ -1,0 +1,21 @@
+check_type: email_notification_customization
+section: admin_settings
+subcategory: email
+display_name: "Personalização de e-mails"
+description: "Verificar se os e-mails de notificação estão personalizados com a marca."
+execution_mode: manual
+default_assessment: >
+  Revise os modelos de e-mail (confirmação de pedido, envio, entrega, etc.) e confirme que estão personalizados com logo, cores e tom da marca. Verifique se as informações essenciais estão presentes e corretas.
+business_impact: >
+  E-mails genéricos ou mal formatados prejudicam a percepção da marca e podem ser confundidos com spam. E-mails bem personalizados reforçam confiança e profissionalismo.
+recommendations:
+  - "Personalize templates com logo e cores da loja"
+  - "Revise textos e garanta tom adequado e informações completas"
+  - "Teste envio de e-mails em diferentes clientes de e-mail"
+useful_links:
+  - title: "E-mails na Nuvemshop"
+    url: "https://atendimento.nuvemshop.com.br/12312-emails"
+  - title: "Personalizar e-mails de notificação"
+    url: "https://atendimento.nuvemshop.com.br/emails/como-personalizar-os-emails-de-notificacao"
+  - title: "Modelos de e-mail disponíveis"
+    url: "https://atendimento.nuvemshop.com.br/emails/quais-sao-os-modelos-de-email-disponiveis"

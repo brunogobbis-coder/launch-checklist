@@ -1,0 +1,21 @@
+check_type: pos_receipt
+section: pos
+subcategory: configuration
+display_name: "Personalização de recibos"
+description: "Verificar se os recibos estão personalizados com a identidade da marca (POS Pro)."
+execution_mode: manual
+default_assessment: >
+  Verifique se os recibos do PDV estão personalizados com logo, nome da loja, informações de contato e demais elementos da identidade visual da marca.
+business_impact: >
+  Recibos genéricos transmitem imagem amadora e perdem oportunidade de reforçar a marca. Personalização adequada aumenta profissionalismo e reconhecimento da loja.
+recommendations:
+  - "Configure logo e nome da loja nos recibos"
+  - "Adicione endereço, telefone e redes sociais quando aplicável"
+  - "Revise layout e legibilidade antes do go-live"
+useful_links:
+  - title: "Recibos no PDV"
+    url: "https://atendimento.nuvemshop.com.br/pt_BR/pdv"
+  - title: "POS Pro"
+    url: "https://atendimento.nuvemshop.com.br/pt_BR/pdv"
+  - title: "Impressoras e PDV"
+    url: "https://atendimento.nuvemshop.com.br/pt_BR/pdv"

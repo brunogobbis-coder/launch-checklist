@@ -1,0 +1,21 @@
+check_type: store_policies
+section: admin_settings
+subcategory: policies
+display_name: "Políticas da loja"
+description: "Verificar se as políticas essenciais da loja estão configuradas."
+execution_mode: manual
+default_assessment: >
+  Revise se as políticas de troca e devolução, privacidade, termos de uso e envio estão configuradas e acessíveis. Confirme que os textos estão claros, atualizados e em conformidade com a legislação.
+business_impact: >
+  Políticas ausentes ou incorretas geram reclamações, processos e problemas com o CDC. Políticas claras protegem a loja e aumentam a confiança do cliente.
+recommendations:
+  - "Configure políticas de troca, devolução e envio com prazos claros"
+  - "Inclua política de privacidade e termos de uso"
+  - "Revise periodicamente para manter conformidade legal"
+useful_links:
+  - title: "Políticas da loja"
+    url: "https://atendimento.nuvemshop.com.br/configuracoes/como-configurar-as-politicas-da-minha-loja"
+  - title: "Política de trocas e devoluções"
+    url: "https://atendimento.nuvemshop.com.br/trocas-e-devolucoes/como-configurar-politica-de-trocas-e-devolucoes"
+  - title: "Política de privacidade"
+    url: "https://atendimento.nuvemshop.com.br/configuracoes/como-adicionar-politica-de-privacidade"

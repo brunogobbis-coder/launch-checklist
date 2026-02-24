@@ -1,0 +1,21 @@
+check_type: pos_barcodes
+section: pos
+subcategory: products
+display_name: "Códigos de barras dos produtos"
+description: "Verificar se os produtos do PDV possuem códigos de barras cadastrados."
+execution_mode: manual
+default_assessment: >
+  Confirme se os produtos vendidos no PDV possuem códigos de barras cadastrados (EAN, UPC ou código interno) para permitir leitura rápida e evitar erros de digitação.
+business_impact: >
+  Produtos sem código de barras exigem busca manual, aumentam tempo de atendimento e risco de erro. Códigos cadastrados aceleram o checkout e melhoram a precisão.
+recommendations:
+  - "Cadastre códigos de barras em todos os produtos do PDV"
+  - "Use EAN-13 ou padrão compatível com leitores"
+  - "Revise variações (tamanho, cor) com códigos únicos"
+useful_links:
+  - title: "Códigos de barras nos produtos"
+    url: "https://atendimento.nuvemshop.com.br/pt_BR/produtos"
+  - title: "Produtos e PDV"
+    url: "https://atendimento.nuvemshop.com.br/pt_BR/pdv"
+  - title: "Cadastrar produtos"
+    url: "https://atendimento.nuvemshop.com.br/pt_BR/produtos"

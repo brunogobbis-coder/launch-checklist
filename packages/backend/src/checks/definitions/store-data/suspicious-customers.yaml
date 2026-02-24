@@ -1,0 +1,21 @@
+check_type: suspicious_customers
+section: store_data
+subcategory: customers
+display_name: "Clientes suspeitos"
+description: "Verificar contas de clientes suspeitas que precisam ser revisadas."
+execution_mode: manual
+default_assessment: >
+  Revise a lista de clientes em busca de contas com padrões suspeitos: múltiplos cadastros com o mesmo e-mail, endereços inválidos, nomes genéricos ou dados inconsistentes que possam indicar fraude ou bots.
+business_impact: >
+  Clientes suspeitos podem gerar chargebacks, pedidos fraudulentos e prejudicar a reputação da loja. Identificar e tratar essas contas antes do lançamento reduz riscos financeiros e operacionais.
+recommendations:
+  - "Filtre clientes com e-mails temporários ou genéricos (ex: teste@teste.com)"
+  - "Verifique clientes com múltiplos pedidos cancelados ou devolvidos"
+  - "Revise cadastros sem telefone ou com endereços incompletos antes de processar envios"
+useful_links:
+  - title: "Gerenciar clientes na Nuvemshop"
+    url: "https://atendimento.nuvemshop.com.br/pt_BR/clientes"
+  - title: "Como cadastrar clientes manualmente"
+    url: "https://atendimento.nuvemshop.com.br/meus-clientes/como-cadastrar-clientes-manualmente"
+  - title: "Como exportar lista de clientes"
+    url: "https://atendimento.nuvemshop.com.br/meus-clientes/como-exportar-minha-lista-de-clientes-na-nuvemshop"

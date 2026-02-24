@@ -1,0 +1,21 @@
+check_type: pos_return_rules
+section: pos
+subcategory: configuration
+display_name: "Regras de devolução"
+description: "Verificar se as regras de devolução estão configuradas para atendimento consistente (POS Pro)."
+execution_mode: manual
+default_assessment: >
+  Confirme se as regras de devolução estão configuradas para o PDV: prazos, condições, reembolso ou troca, e que a equipe está alinhada para atendimento consistente.
+business_impact: >
+  Regras de devolução inconsistentes geram conflitos com clientes e dúvidas na equipe. Configuração clara garante atendimento padronizado e reduz reclamações.
+recommendations:
+  - "Defina prazos e condições de devolução por tipo de produto"
+  - "Configure opções de reembolso (dinheiro, cartão, crédito na loja)"
+  - "Documente e treine a equipe nas regras aplicadas"
+useful_links:
+  - title: "Devoluções no PDV"
+    url: "https://atendimento.nuvemshop.com.br/pt_BR/pdv"
+  - title: "Políticas de devolução"
+    url: "https://atendimento.nuvemshop.com.br/pt_BR/pedidos"
+  - title: "POS Pro e devoluções"
+    url: "https://atendimento.nuvemshop.com.br/pt_BR/pdv"

@@ -1,0 +1,21 @@
+check_type: checkout_styling
+section: admin_settings
+subcategory: checkout
+display_name: "Estilo do checkout e contas"
+description: "Confirmar personalização da aparência do checkout, página de status do pedido e contas de clientes."
+execution_mode: manual
+default_assessment: >
+  Verifique se o checkout, a página de status do pedido e as contas de clientes estão personalizados com a marca da loja (cores, logo, fontes). A aparência deve ser consistente com o restante do site para transmitir confiança.
+business_impact: >
+  Checkout genérico ou inconsistente reduz a confiança do cliente e pode aumentar abandono de carrinho. Personalização adequada reforça a marca e melhora a taxa de conversão.
+recommendations:
+  - "Personalize cores e logo do checkout para combinar com a loja"
+  - "Revise a página de status do pedido e confirme que informações estão claras"
+  - "Configure a aparência das contas de clientes para manter consistência visual"
+useful_links:
+  - title: "Opções de checkout"
+    url: "https://atendimento.nuvemshop.com.br/12311-opcoes-de-checkout/tudo-sobre-as-opcoes-de-checkout"
+  - title: "Personalizar o checkout"
+    url: "https://atendimento.nuvemshop.com.br/checkout/como-personalizar-o-checkout-da-minha-loja"
+  - title: "Página de status do pedido"
+    url: "https://atendimento.nuvemshop.com.br/status-dos-pedidos/como-meu-cliente-pode-ver-o-status-de-um-pedido"

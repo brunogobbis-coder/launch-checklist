@@ -1,0 +1,21 @@
+check_type: pos_staff_location
+section: pos
+subcategory: staff
+display_name: "Equipe atribuída ao local"
+description: "Verificar se os membros da equipe estão atribuídos aos locais corretos (POS Pro)."
+execution_mode: manual
+default_assessment: >
+  Confirme se os membros da equipe estão atribuídos aos locais (lojas, PDVs) corretos, com permissões adequadas para operação em cada ponto de venda.
+business_impact: >
+  Equipe mal atribuída impede acesso ao PDV ou expõe dados de locais inadequados. A atribuição correta garante que cada operador acesse apenas o que precisa.
+recommendations:
+  - "Revise atribuição de membros da equipe a cada local"
+  - "Confirme que novos colaboradores são atribuídos aos locais corretos"
+  - "Ajuste permissões por local quando necessário"
+useful_links:
+  - title: "Equipe e locais"
+    url: "https://atendimento.nuvemshop.com.br/pt_BR/equipe"
+  - title: "Locais na Nuvemshop"
+    url: "https://atendimento.nuvemshop.com.br/pt_BR/locais"
+  - title: "POS Pro e equipe"
+    url: "https://atendimento.nuvemshop.com.br/pt_BR/pdv"

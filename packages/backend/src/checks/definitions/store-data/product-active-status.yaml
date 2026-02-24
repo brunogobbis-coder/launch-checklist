@@ -1,0 +1,21 @@
+check_type: product_active_status
+section: store_data
+subcategory: products
+display_name: "Status ativo dos produtos"
+description: "Verificar se os produtos estão ativos e disponíveis para venda."
+execution_mode: manual
+default_assessment: >
+  Confirme que apenas os produtos que devem estar à venda estão ativos e visíveis na loja. Produtos descontinuados, sem estoque ou em manutenção devem estar ocultos ou inativos.
+business_impact: >
+  Produtos inativos indevidamente reduzem o catálogo e perdem vendas. Produtos ativos que deveriam estar ocultos podem gerar pedidos que não podem ser atendidos e frustração do cliente.
+recommendations:
+  - "Revise produtos ocultos e ative os que estão prontos para venda"
+  - "Oculte produtos sem estoque ou descontinuados antes do lançamento"
+  - "Verifique se variações de produtos estão com status correto"
+useful_links:
+  - title: "Produtos na Nuvemshop"
+    url: "https://atendimento.nuvemshop.com.br/pt_BR/produtos"
+  - title: "Como ocultar produtos"
+    url: "https://atendimento.nuvemshop.com.br/organizar-produtos/como-ocultar-meus-produtos"
+  - title: "Como filtrar produtos no painel"
+    url: "https://atendimento.nuvemshop.com.br/organizar-produtos/como-filtrar-os-produtos-da-minha-loja"

@@ -1,0 +1,21 @@
+check_type: social_sharing_image
+section: front_end
+subcategory: seo
+display_name: "Imagem de compartilhamento social"
+description: "Verificar se as imagens de compartilhamento social estão configuradas."
+execution_mode: manual
+default_assessment: >
+  Confirme que a imagem de compartilhamento social (Open Graph) está configurada. Use imagem de 1200x630px com a marca. Teste compartilhando a URL da loja no WhatsApp ou Facebook para verificar a prévia.
+business_impact: >
+  Sem imagem de compartilhamento, links compartilhados exibem prévia genérica ou em branco, reduzindo cliques. Imagem adequada aumenta o engajamento em redes sociais e WhatsApp.
+recommendations:
+  - "Prepare imagem de 1200x630px com identidade da marca"
+  - "Faça upload na configuração de SEO ou preferências da loja"
+  - "Teste compartilhando a URL no WhatsApp e redes sociais"
+useful_links:
+  - title: "Configurar SEO dos produtos"
+    url: "https://atendimento.nuvemshop.com.br/adicionar-um-novo-produto/como-configurar-o-seo-dos-meus-produtos"
+  - title: "Configurar SEO da loja"
+    url: "https://atendimento.nuvemshop.com.br/pt_BR/primeiros-passos/como-configurar-o-seo-da-minha-loja"
+  - title: "Dados do meu negócio"
+    url: "https://atendimento.nuvemshop.com.br/pt_BR/configuracoes"

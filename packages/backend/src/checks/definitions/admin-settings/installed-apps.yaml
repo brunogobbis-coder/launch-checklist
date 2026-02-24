@@ -1,0 +1,21 @@
+check_type: installed_apps
+section: admin_settings
+subcategory: apps
+display_name: "Aplicativos instalados"
+description: "Revisar aplicativos instalados e garantir que todos os necessários estejam presentes."
+execution_mode: manual
+default_assessment: >
+  Revise a lista de aplicativos instalados e confirme que todos os necessários para o funcionamento da loja estão ativos. Remova aplicativos não utilizados e verifique integrações essenciais como frete, pagamento e marketing.
+business_impact: >
+  Aplicativos faltando impedem funcionalidades críticas (ex.: cálculo de frete, cupons). Aplicativos desnecessários podem gerar custos extras e lentidão. A configuração correta garante experiência completa ao cliente.
+recommendations:
+  - "Instale aplicativos essenciais: frete, pagamento alternativo, e-mail marketing conforme necessidade"
+  - "Revise aplicativos pagos e cancele os que não são utilizados"
+  - "Verifique se integrações de aplicativos estão conectadas e funcionando"
+useful_links:
+  - title: "Aplicativos na Nuvemshop"
+    url: "https://atendimento.nuvemshop.com.br/pt_BR/aplicativos"
+  - title: "Como instalar e desinstalar aplicativos"
+    url: "https://atendimento.nuvemshop.com.br/aplicativos/como-instalar-e-desinstalar-aplicativos-na-nuvemshop"
+  - title: "Aplicativos recomendados para sua loja"
+    url: "https://atendimento.nuvemshop.com.br/aplicativos/aplicativos-recomendados-para-sua-loja"

@@ -1,0 +1,21 @@
+check_type: pos_ship_to_customer
+section: pos
+subcategory: fulfillment
+display_name: "Envio para o cliente"
+description: "Verificar se o envio a partir da loja física está configurado (POS Pro)."
+execution_mode: manual
+default_assessment: >
+  Verifique se o envio a partir da loja física está configurado: perfis de envio, transportadoras, etiquetas e integração com pedidos criados no PDV para envio ao cliente.
+business_impact: >
+  Sem envio configurado, pedidos feitos na loja física não podem ser despachados. A configuração permite vender no PDV e enviar para o cliente, ampliando o alcance das vendas.
+recommendations:
+  - "Configure perfis de envio para pedidos originados no PDV"
+  - "Revise transportadoras e custos de envio por local"
+  - "Teste fluxo completo: venda no PDV, geração de etiqueta, despacho"
+useful_links:
+  - title: "Envio a partir da loja"
+    url: "https://atendimento.nuvemshop.com.br/pt_BR/envio"
+  - title: "PDV e envio"
+    url: "https://atendimento.nuvemshop.com.br/pt_BR/pdv"
+  - title: "Configurar envio"
+    url: "https://atendimento.nuvemshop.com.br/pt_BR/envio"

@@ -1,0 +1,21 @@
+check_type: product_details
+section: store_data
+subcategory: products
+display_name: "Detalhes dos produtos"
+description: "Confirmar que os produtos possuem título e descrição."
+execution_mode: manual
+default_assessment: >
+  Verifique se todos os produtos ativos possuem título claro, descrição informativa e pelo menos uma imagem. Conteúdo incompleto prejudica conversão e SEO da loja.
+business_impact: >
+  Produtos sem descrição ou com títulos genéricos convertem menos e ranqueiam pior em buscas. Informações completas aumentam confiança do cliente e reduzem dúvidas no suporte.
+recommendations:
+  - "Preencha descrições faltantes, priorizando produtos mais vendidos"
+  - "Use a IA da Nuvemshop para criar descrições automaticamente"
+  - "Siga as dicas de nomenclatura para títulos de produtos"
+useful_links:
+  - title: "Produtos na Nuvemshop"
+    url: "https://atendimento.nuvemshop.com.br/pt_BR/produtos"
+  - title: "Como cadastrar um produto (Básico)"
+    url: "https://atendimento.nuvemshop.com.br/adicionar-um-novo-produto/como-cadastrar-um-produto"
+  - title: "Criar descrições com IA"
+    url: "https://atendimento.nuvemshop.com.br/adicionar-um-novo-produto/como-criar-descricoes-para-os-produtos-na-nuvemshop-usando-inteligencia-artificial"

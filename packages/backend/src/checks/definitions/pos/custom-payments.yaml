@@ -1,0 +1,21 @@
+check_type: pos_custom_payments
+section: pos
+subcategory: payments
+display_name: "Pagamentos personalizados"
+description: "Verificar se métodos de pagamento personalizados estão configurados para o PDV."
+execution_mode: manual
+default_assessment: >
+  Verifique se os métodos de pagamento personalizados (vale-refeição, PIX manual, parcelado na loja, etc.) estão configurados e funcionando corretamente no PDV.
+business_impact: >
+  Pagamentos personalizados não configurados limitam as opções de pagamento e podem perder vendas. Configuração adequada atende às necessidades específicas do negócio.
+recommendations:
+  - "Revise métodos de pagamento disponíveis no PDV"
+  - "Configure pagamentos personalizados conforme operação da loja"
+  - "Teste cada método antes do go-live"
+useful_links:
+  - title: "Pagamentos no PDV"
+    url: "https://atendimento.nuvemshop.com.br/pt_BR/pdv"
+  - title: "Métodos de pagamento"
+    url: "https://atendimento.nuvemshop.com.br/pt_BR/pagamentos"
+  - title: "Configurar pagamentos PDV"
+    url: "https://atendimento.nuvemshop.com.br/pt_BR/pdv"

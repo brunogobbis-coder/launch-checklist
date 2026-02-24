@@ -1,0 +1,21 @@
+check_type: one_time_shipping_addresses
+section: b2b
+subcategory: checkout_experience
+display_name: "Endereços de envio avulsos"
+description: "Verificar se endereços de envio avulsos estão configurados para flexibilidade no checkout B2B."
+execution_mode: manual
+default_assessment: >
+  Verifique se endereços de envio avulsos estão habilitados e configurados para permitir que compradores B2B insiram endereços diferentes por pedido, sem necessidade de cadastro prévio.
+business_impact: >
+  Sem endereços avulsos, compradores B2B ficam limitados a endereços cadastrados, gerando fricção em compras pontuais ou para múltiplos destinos. A flexibilidade melhora a experiência de compra.
+recommendations:
+  - "Habilite endereços de envio avulsos no checkout B2B"
+  - "Revise validação de endereços para garantir dados corretos"
+  - "Configure opção de salvar endereço para compras futuras quando aplicável"
+useful_links:
+  - title: "Checkout B2B"
+    url: "https://atendimento.nuvemshop.com.br/pt_BR/checkout"
+  - title: "Endereços de envio"
+    url: "https://atendimento.nuvemshop.com.br/pt_BR/envio"
+  - title: "Configurações B2B"
+    url: "https://atendimento.nuvemshop.com.br/pt_BR/b2b"

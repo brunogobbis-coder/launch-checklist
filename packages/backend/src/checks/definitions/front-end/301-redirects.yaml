@@ -1,0 +1,21 @@
+check_type: 301_redirects
+section: front_end
+subcategory: redirects
+display_name: "Redirecionamentos 301"
+description: "Verificar se redirecionamentos 301 estão configurados corretamente para SEO."
+execution_mode: manual
+default_assessment: >
+  Se migrou de outra plataforma ou alterou URLs, configure redirecionamentos 301 das URLs antigas para as novas. Liste cada URL antiga e o destino correto. Teste acessando as URLs antigas para confirmar o redirecionamento.
+business_impact: >
+  URLs antigas sem redirecionamento geram erros 404, perda de tráfego orgânico e penalização de SEO. Redirecionamentos 301 preservam o valor de links e ranqueamento nos buscadores.
+recommendations:
+  - "Liste todas as URLs antigas que precisam ser redirecionadas"
+  - "Configure cada redirecionamento para a URL nova correspondente"
+  - "Teste os redirecionamentos antes do lançamento"
+useful_links:
+  - title: "Redirecionamento 301"
+    url: "https://atendimento.nuvemshop.com.br/12315-redirecionamento-301"
+  - title: "Configurar SEO"
+    url: "https://atendimento.nuvemshop.com.br/pt_BR/primeiros-passos/como-configurar-o-seo-da-minha-loja"
+  - title: "Domínios"
+    url: "https://atendimento.nuvemshop.com.br/dominios/como-usar-um-dominio-proprio-na-nuvemshop"

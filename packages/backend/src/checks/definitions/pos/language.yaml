@@ -1,0 +1,21 @@
+check_type: pos_language
+section: pos
+subcategory: configuration
+display_name: "Idioma do local e dispositivo"
+description: "Verificar se os idiomas estão configurados corretamente para cada região do PDV."
+execution_mode: manual
+default_assessment: >
+  Confirme se o idioma do PDV está configurado corretamente para cada local e dispositivo, garantindo que a equipe e os clientes vejam as informações no idioma adequado.
+business_impact: >
+  Idioma incorreto gera confusão na operação e má experiência para clientes. Configuração por região garante consistência e profissionalismo no atendimento.
+recommendations:
+  - "Revise idioma configurado em cada local do PDV"
+  - "Verifique idioma em dispositivos (tablets, terminais) por região"
+  - "Confirme que recibos e mensagens seguem o idioma do local"
+useful_links:
+  - title: "Configurações do PDV"
+    url: "https://atendimento.nuvemshop.com.br/pt_BR/pdv"
+  - title: "Idiomas da loja"
+    url: "https://atendimento.nuvemshop.com.br/pt_BR/idiomas"
+  - title: "Locais e PDV"
+    url: "https://atendimento.nuvemshop.com.br/pt_BR/locais"
