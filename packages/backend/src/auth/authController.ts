@@ -1,6 +1,19 @@
 import type { Request, Response } from "express";
 import { exchangeCodeForToken, saveStoreCredentials } from "./authService.js";
 
+const ADMIN_DOMAINS: Record<string, string> = {
+  br: "https://admin.nuvemshop.com.br",
+  ar: "https://admin.tiendanube.com",
+  default: "https://admin.tiendanube.com",
+};
+
+function getAdminAppUrl(): string {
+  const clientId = process.env.CLIENT_ID;
+  const country = (process.env.STORE_COUNTRY ?? "br").toLowerCase();
+  const adminBase = ADMIN_DOMAINS[country] ?? ADMIN_DOMAINS.default;
+  return `${adminBase}/apps/${clientId}`;
+}
+
 export async function handleInstall(req: Request, res: Response): Promise<void> {
   const clientId = process.env.CLIENT_ID;
   if (!clientId) {
@@ -32,8 +45,7 @@ export async function handleCallback(req: Request, res: Response): Promise<void>
       BigInt(tokenData.user_id)
     );
 
-    const adminUrl = `https://admin.nuvemshop.com.br`;
-    res.redirect(adminUrl);
+    res.redirect(getAdminAppUrl());
   } catch (error) {
     const message = error instanceof Error ? error.message : "Unknown error";
     console.error("OAuth callback error:", message);

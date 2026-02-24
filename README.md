@@ -13,6 +13,8 @@ Aplicativo integrado ao admin da Nuvemshop que permite merchants verificarem se 
 
 1. Acesse [partners.nuvemshop.com.br](https://partners.nuvemshop.com.br/) e crie um novo aplicativo.
 2. Configure:
+   - **Tipo de app**: Embarcado (embedded)
+   - **App URL**: `https://<SEU_DOMINIO>/` (onde o frontend carrega dentro do iframe)
    - **Redirect URL**: `https://<SEU_DOMINIO>/auth/callback`  
      (em desenvolvimento: `http://localhost:3400/auth/callback`)
    - **Webhook URL**: `https://<SEU_DOMINIO>/webhooks`
@@ -41,6 +43,7 @@ cp .env.example .env
 | `NODE_ENV` | `development` ou `production` |
 | `CLIENT_ID` | App ID do Partners Portal |
 | `CLIENT_SECRET` | Client Secret do Partners Portal |
+| `STORE_COUNTRY` | País da loja: `br` ou `ar` (default: `br`) |
 | `DATABASE_URL` | Connection string do PostgreSQL |
 | `VITE_API_BASE_URL` | URL base do backend para o frontend |
 | `VITE_NEXO_CLIENT_ID` | Mesmo valor do CLIENT_ID |
@@ -99,14 +102,45 @@ launch-checklist/
 └── package.json              # Monorepo workspaces
 ```
 
-## 6. Fluxo de Autenticação
+## 6. Fluxo de Instalação (Loja de Aplicativos)
 
-1. Merchant instala o app no admin da Nuvemshop
-2. Nuvemshop redireciona para `/auth/install`
-3. Backend redireciona para o OAuth da Nuvemshop
-4. Após autorização, callback em `/auth/callback` troca o code por access_token
-5. Credenciais são salvas na tabela `stores`
-6. Frontend usa Nexo SDK para obter JWT e autenticar chamadas à API
+```
+┌─────────────────┐    ┌──────────────┐    ┌──────────────┐    ┌──────────────┐
+│  Loja de Apps   │    │  Nuvemshop   │    │  Backend     │    │  Admin       │
+│  (merchant)     │    │  OAuth       │    │  /auth/      │    │  (iframe)    │
+└────────┬────────┘    └──────┬───────┘    └──────┬───────┘    └──────┬───────┘
+         │ Instalar           │                    │                   │
+         ├───────────────────>│                    │                   │
+         │                    │ redirect + code    │                   │
+         │                    ├───────────────────>│                   │
+         │                    │                    │ troca code por    │
+         │                    │<───────────────────┤ access_token      │
+         │                    │                    │                   │
+         │                    │                    │ salva na tabela   │
+         │                    │                    │ stores            │
+         │                    │                    │                   │
+         │                    │                    │ redirect          │
+         │<───────────────────┼────────────────────┤ /apps/{id}        │
+         │                    │                    │                   │
+         │ Admin carrega app no iframe             │                   │
+         ├─────────────────────────────────────────┼──────────────────>│
+         │                    │                    │    Nexo connect   │
+         │                    │                    │<──────────────────┤
+         │                    │                    │    JWT auth       │
+         │                    │                    │    API calls      │
+         └────────────────────┴────────────────────┴──────────────────┘
+```
+
+### Passo a passo:
+
+1. Merchant encontra o app na **Loja de Aplicativos** da Nuvemshop
+2. Clica em **"Instalar"** — Nuvemshop exibe a tela de permissões
+3. Após autorizar, Nuvemshop redireciona para `/auth/callback?code=<auth_code>`
+4. Backend troca o `code` por `access_token` via API da Nuvemshop
+5. Credenciais são salvas na tabela `stores` (por `store_id`)
+6. Backend redireciona o merchant para `/apps/{CLIENT_ID}` no admin
+7. Admin carrega o frontend no iframe — Nexo SDK faz o handshake
+8. Frontend obtém JWT via Nexo e usa para autenticar chamadas à API
 
 ## 7. Endpoints da API
 
@@ -131,14 +165,42 @@ launch-checklist/
 npm run build
 ```
 
-O backend é compilado com TypeScript e o frontend com Vite.
+O frontend é buildado com Vite (`packages/frontend/dist/`) e o backend com TypeScript (`packages/backend/dist/`). Em produção, o backend serve os arquivos estáticos do frontend automaticamente.
 
 ## 9. Deploy
 
-Para deploy em produção, certifique-se de:
+```bash
+# Build completo
+npm run build
 
-1. Definir `NODE_ENV=production` 
+# Rodar migrações em produção (não-interativo)
+npm run db:migrate:deploy
+
+# Iniciar o servidor
+NODE_ENV=production npm start
+```
+
+### Checklist de deploy:
+
+1. Definir `NODE_ENV=production`
 2. Configurar `DATABASE_URL` para o PostgreSQL de produção
-3. Rodar `npm run db:migrate` no ambiente de produção
-4. Atualizar a **Redirect URL** e **Webhook URL** no Partners Portal para o domínio de produção
-5. Servir o frontend buildado como arquivos estáticos ou em um CDN
+3. Configurar `CLIENT_ID`, `CLIENT_SECRET` e `STORE_COUNTRY`
+4. Rodar `npm run db:migrate:deploy`
+5. Rodar `npm run build` (builda frontend + backend)
+6. Iniciar com `npm start` — o backend serve o frontend em `/` e a API em `/api`
+7. Atualizar no Partners Portal:
+   - **App URL**: `https://<SEU_DOMINIO>/`
+   - **Redirect URL**: `https://<SEU_DOMINIO>/auth/callback`
+   - **Webhook URL**: `https://<SEU_DOMINIO>/webhooks`
+
+## 10. Publicar na Loja de Aplicativos
+
+1. No [Partners Portal](https://partners.nuvemshop.com.br/), vá até seu app
+2. Preencha as informações de listagem:
+   - **Nome**: Checklist de Lançamento
+   - **Descrição**: Verifique se sua loja está pronta para lançamento
+   - **Ícone e screenshots**: Adicione imagens do app
+   - **Categoria**: Ferramentas de gestão
+3. Certifique-se de que as URLs estão configuradas para o domínio de produção
+4. Submeta para **revisão** — a equipe da Nuvemshop avaliará o app
+5. Após aprovação, o app ficará disponível na Loja de Aplicativos para todos os merchants

@@ -9,8 +9,10 @@
     "dev": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\"",
     "dev:backend": "npm run dev --workspace=packages/backend",
     "dev:frontend": "npm run dev --workspace=packages/frontend",
-    "build": "npm run build --workspace=packages/backend && npm run build --workspace=packages/frontend",
+    "build": "npm run build --workspace=packages/frontend && npm run build --workspace=packages/backend",
+    "start": "npm run start --workspace=packages/backend",
     "db:migrate": "npm run db:migrate --workspace=packages/backend",
+    "db:migrate:deploy": "npm run db:migrate:deploy --workspace=packages/backend",
     "db:generate": "npm run db:generate --workspace=packages/backend",
     "db:seed": "npm run db:seed --workspace=packages/backend"
   },
